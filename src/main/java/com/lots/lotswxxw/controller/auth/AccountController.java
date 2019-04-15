@@ -1,4 +1,4 @@
-package com.lots.lotswxxw.controller;
+package com.lots.lotswxxw.controller.auth;
 
 import com.lots.lotswxxw.domain.bo.AuthUser;
 import com.lots.lotswxxw.domain.vo.Message;

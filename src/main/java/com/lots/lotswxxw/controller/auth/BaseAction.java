@@ -1,4 +1,4 @@
-package com.lots.lotswxxw.controller;
+package com.lots.lotswxxw.controller.auth;
 
 import com.lots.lotswxxw.util.RequestResponseUtil;
 
