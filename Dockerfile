@@ -4,13 +4,13 @@
 FROM openjdk:12-alpine
 
 #签名
-MAINTAINER tomsun28 "tomsun28@outlook.com"
+MAINTAINER lots "553294090@qq.com.com"
 
 
-RUN rm -rf /opt/running/bootshiro*
-ADD ./target/bootshiro.jar /opt/running/bootshiro.jar
+RUN rm -rf /opt/running/lotswxxw*
+ADD ./target/bootshiro.jar /opt/running/lotswxxw.jar
 
 EXPOSE 8080
 WORKDIR /opt/running/
 
-CMD ["java", "-jar", "bootshiro.jar","--spring.profiles.active=prod"]
+CMD ["java", "-jar", "lotswxxw.jar","--spring.profiles.active=prod"]

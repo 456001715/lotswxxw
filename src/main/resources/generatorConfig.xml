@@ -6,7 +6,7 @@
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!--避免生成重复代码的插件-->
-        <plugin type="com.usthe.bootshiro.plugin.OverIsMergeablePlugin"/>
+        <plugin type="com.lots.lotswxxw.plugin.OverIsMergeablePlugin"/>
 
         <!--是否在代码中显示注释-->
         <commentGenerator>
@@ -16,7 +16,7 @@
 
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:12345/usthe" userId="root"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:12345/lots" userId="root"
                         password="admin">
         </jdbcConnection>
         <!--不知道做什么用的。。。反正贴上来了~-->
@@ -24,7 +24,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成pojo类存放位置-->
-        <javaModelGenerator targetPackage="com.usthe.bootshiro.domain.bo" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.lots.lotswxxw.domain.bo" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
@@ -33,7 +33,7 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成mapper类存放位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.usthe.bootshiro.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.lots.lotswxxw.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 

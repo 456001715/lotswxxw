@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.usthe.bootshiro.dao.AuthUserMapper">
-  <resultMap id="BaseResultMap" type="com.usthe.bootshiro.domain.bo.AuthUser">
+<mapper namespace="com.lots.lotswxxw.dao.AuthUserMapper">
+  <resultMap id="BaseResultMap" type="com.lots.lotswxxw.domain.bo.AuthUser">
     <id column="uid" jdbcType="VARCHAR" property="uid" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -30,7 +30,7 @@
     delete from auth_user
     where uid = #{uid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.usthe.bootshiro.domain.bo.AuthUser">
+  <insert id="insert" parameterType="com.lots.lotswxxw.domain.bo.AuthUser">
     insert into auth_user (uid, username, password, 
       salt, real_name, avatar, 
       phone, email, sex, 
@@ -42,7 +42,7 @@
       #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{createWhere,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.usthe.bootshiro.domain.bo.AuthUser">
+  <insert id="insertSelective" parameterType="com.lots.lotswxxw.domain.bo.AuthUser">
     insert into auth_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="uid != null">
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.usthe.bootshiro.domain.bo.AuthUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.lots.lotswxxw.domain.bo.AuthUser">
     update auth_user
     <set>
       <if test="username != null">
@@ -169,7 +169,7 @@
     </set>
     where uid = #{uid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.usthe.bootshiro.domain.bo.AuthUser">
+  <update id="updateByPrimaryKey" parameterType="com.lots.lotswxxw.domain.bo.AuthUser">
     update auth_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
