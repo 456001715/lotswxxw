@@ -44,4 +44,16 @@ public class LotteryTicketUtil {
 
         return finalBalls;
     }
+
+    public static void main(String[] args) {
+        int redBallNum[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33};
+        int blueBallNum[]={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};
+        for(int a : blueBallNum){
+            int index = (int) (Math.random() * blueBallNum.length);
+            System.out.println(Math.random());
+            System.out.println(Math.random()*blueBallNum.length);
+            System.out.println(blueBallNum[index]);
+        }
+
+    }
 }

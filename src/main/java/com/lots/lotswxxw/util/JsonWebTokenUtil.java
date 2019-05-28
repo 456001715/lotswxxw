@@ -195,4 +195,10 @@ public class JsonWebTokenUtil {
         return set;
     }
 
+    public static void main(String[] args) {
+        System.out.println(
+                parseJwtPayload("eyJhbGciOiJIUzUxMiIsInppcCI6IkRFRiJ9.eNokjNsKwyAQRP9ln7OQGHVjfqZ4WcFekqKmFEr_vdo8DecwMx-41gQrhFFrbYgx-KhQmuBwiWNEZz1pIYj8wjBAOVwr2_BIW6NUSqO633jDwvnFuUtbYZ2UUrORs6QB-P08hZzEX-T9zn3Y83J-fX8AAAD__w.-pmZAbWFY3JJoKg4qhi0FVu5mB__qsBvJd1GVRcZz21BLsnLiGUzkb4rH5O_AHtZ7QN86aV0DX5aozDyM9OLcg")
+        );
+        System.out.println( 36000L>>1);
+    }
 }
