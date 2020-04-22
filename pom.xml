@@ -101,7 +101,21 @@
 			<artifactId>mybatis-generator-core</artifactId>
 			<version>${mybatis-generator.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.jsoup</groupId>
+			<artifactId>jsoup</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.3.1</version>
+		</dependency>
 		<!-- shiro安全框架 -->
 		<!--<dependency>-->
 			<!--<groupId>org.apache.shiro</groupId>-->
@@ -208,7 +222,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<!-- java code style check -->
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
 				<version>3.8</version>
@@ -237,7 +251,7 @@
 					</execution>
 				</executions>
 				<dependencies>
-					<!-- 需要使用阿里的一些xml文件，因此需要这里增加p3c的依赖 -->
+					&lt;!&ndash; 需要使用阿里的一些xml文件，因此需要这里增加p3c的依赖 &ndash;&gt;
 					<dependency>
 						<groupId>com.alibaba.p3c</groupId>
 						<artifactId>p3c-pmd</artifactId>
@@ -245,12 +259,12 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- java doc 生成 -->
+			&lt;!&ndash; java doc 生成 &ndash;&gt;
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.0.0</version>
-			</plugin>
+			</plugin>-->
 		</plugins>
 	</build>
 
