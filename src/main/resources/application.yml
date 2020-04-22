@@ -106,11 +106,11 @@ spring:
       password: As..147852
     redis:
       # 服务器IP地址
-      host: 127.0.0.1
+      host: 119.23.206.234
       # 连接端口
       port: 6379
       # Redis服务器连接密码（默认为空）
-      password:
+      password: as..147852
 
 ---
 # 测试环境配置(配置项只包括不同项)
@@ -123,11 +123,11 @@ spring:
       password: As..147852
     redis:
       # 服务器IP地址
-      host: 127.0.0.1
+      host: 119.23.206.234
       # 连接端口
       port: 6379
       # Redis服务器连接密码（默认为空）
-      password:
+      password: as..147852
 
 ---
 # 生产环境配置(配置项只包括不同项)
@@ -140,8 +140,8 @@ spring:
       password: As..147852
     redis:
       # 服务器IP地址
-      host: 127.0.0.1
+      host: 119.23.206.234
       # 连接端口
       port: 6379
       # Redis服务器连接密码（默认为空）
-      password:
+      password: as..147852

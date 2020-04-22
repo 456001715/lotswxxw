@@ -1,5 +1,6 @@
 package com.lots.lotswxxw.controller;
 
+import com.lots.lotswxxw.domain.vo.JsonResult;
 import com.lots.lotswxxw.domain.vo.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ import java.util.TreeSet;
 public class GetSsqController {
 
     @GetMapping("get")
-    public Message getTwo(){
+    public JsonResult getTwo(){
         Set<String> set = new TreeSet<String>();
         while(true){
             int sui = new Random().nextInt(33);
@@ -31,7 +32,7 @@ public class GetSsqController {
         Set<String> set2 = new TreeSet<String>();
         int sui2 = new Random().nextInt(16);
         set2.add(sui2<10?"0"+sui2:""+sui2);
-        return new Message().ok(200,"").addData("双色球",set2);
+        return new JsonResult(200,"双色球",set.toString()+set2.toString());
     }
 
 
