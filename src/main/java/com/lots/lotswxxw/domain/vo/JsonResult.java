@@ -22,7 +22,11 @@ public class JsonResult<T> {
 
     public JsonResult() {
     }
-
+    public JsonResult(Throwable e){
+        code = 500;
+        data=null;
+        msg=e.getMessage();
+    }
     public JsonResult(T data) {
         this(CODE_SUCCESS, SUCCESS, data);
     }
@@ -36,13 +40,7 @@ public class JsonResult<T> {
         this(code, msg, null);
     }
 
-//    public JSONResult(String key, T value) {
-//        this.ts = System.currentTimeMillis();
-//        this.code = 0;
-//        Map<String, T> m = new HashMap<String, T>(1);
-//        m.put(key, value);
-//        data = m;
-//    }
+
 
     public JsonResult(Integer code, String msg, T data) {
         this.code = code;
