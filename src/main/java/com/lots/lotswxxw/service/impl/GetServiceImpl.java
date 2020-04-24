@@ -1,6 +1,7 @@
 package com.lots.lotswxxw.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
@@ -29,14 +30,15 @@ public class GetServiceImpl implements GetService {
     public JsonResult getTwo() {
         Set<String> set = new TreeSet<String>();
         while(true){
-            int sui = new Random().nextInt(33);
+
+            int sui = RandomUtil.randomInt(1,34);
             set.add(sui<10?"0"+sui:""+sui);
             if (set.size() == 6) {
                 break;
             }
         }
         Set<String> set2 = new TreeSet<String>();
-        int sui2 = new Random().nextInt(16);
+        int sui2 =  RandomUtil.randomInt(1,17);
         set2.add(sui2<10?"0"+sui2:""+sui2);
         return new JsonResult(200,"双色球",set.toString()+set2.toString());
     }
