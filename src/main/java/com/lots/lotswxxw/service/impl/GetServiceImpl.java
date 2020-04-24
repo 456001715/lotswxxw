@@ -43,36 +43,20 @@ public class GetServiceImpl implements GetService {
 
     @Override
     public JsonResult getMusic(String id, String type) {
+        List<ListenHisoryEntity>list=new ArrayList<>();
         Map<String,Object> data=new HashMap();
         id = id == null ? "283135753" : id;
         type = type == null ? "1" : type;
         data.put("uid",id);
         data.put("type",type);
         String dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap());
-        JSONObject jsonResult = JSONUtil.parseObj(dataPage);
+        JSONObject jsonResult =JSONUtil.parseObj(dataPage);
         JsonRootBean jsonRootBean = (JsonRootBean)JSONUtil.toBean(jsonResult, JsonRootBean.class);
         if(jsonRootBean!=null&&jsonRootBean.getWeekData()!=null&&jsonRootBean.getWeekData().size()>0){
             String finalId = id;
             List<WeekData> weekData = jsonRootBean.getWeekData();
             ListenHisoryEntity findUser=new ListenHisoryEntity();
             findUser.setUserId(finalId);
-            List<ListenHisoryEntity> userListen = listenHisoryDao.findListenHisoryByCondition(findUser);
-            if(CollUtil.isNotEmpty(weekData)){
-                if(CollUtil.isNotEmpty(userListen)){
-                    Iterator<WeekData> it = weekData.iterator();
-
-                    while(it.hasNext()){
-                        WeekData x = it.next();
-                        Iterator<ListenHisoryEntity> userit = userListen.iterator();
-                        while(userit.hasNext()){
-                            ListenHisoryEntity user = userit.next();
-                            if(x.getSong().getName().equals(user.getSongName())){
-                                it.remove();
-                            }
-                        }
-                    }
-                }
-            }
             if(CollUtil.isNotEmpty(weekData)){
                 weekData.forEach(week->{
                     //分数
@@ -87,35 +71,14 @@ public class GetServiceImpl implements GetService {
                     entity.setSongName(name);
                     entity.setSongScore(score);
                     entity.setSinger(singer);
-                    listenHisoryDao.insertListenHisory(entity);
+                    list.add(entity);
+
                 });
-
             }
-
-
-        }
-        if(jsonRootBean!=null&&jsonRootBean.getAllData()!=null&&jsonRootBean.getAllData().size()>0){
-            String finalId = id;
-            jsonRootBean.getAllData().forEach(week->{
-                //分数
-                int score = week.getScore();
-                //歌曲名称
-                String name = week.getSong().getName();
-                //歌手
-                String singer=week.getSong().getAr().get(0).getName();
-                ListenHisoryEntity entity = new ListenHisoryEntity();
-                entity.setUserId(finalId);
-                entity.setCreatTime(new Date());
-                entity.setSongName(name);
-                entity.setSongScore(score);
-                entity.setSinger(singer);
-                listenHisoryDao.insertListenHisory(entity);
-
-
-            });
         }
 
 
-        return new JsonResult(jsonRootBean);
+
+        return new JsonResult(list);
     }
 }
