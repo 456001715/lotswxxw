@@ -1,7 +1,6 @@
-package com.lots.lotswxxw.controller;
+package com.lots.lotswxxw.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
@@ -9,30 +8,25 @@ import com.lots.lotswxxw.domain.po.ListenHisoryEntity;
 import com.lots.lotswxxw.domain.vo.JsonResult;
 import com.lots.lotswxxw.domain.vo.music.JsonRootBean;
 import com.lots.lotswxxw.domain.vo.music.WeekData;
+import com.lots.lotswxxw.service.GetService;
 import com.lots.lotswxxw.util.CloudMusicApiUrl;
 import com.lots.lotswxxw.util.CreateWebRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author: lots
- * @date: 2020/4/21 17:51
+ * @date: 2020/4/24 10:28
  * @description:
  */
-@RestController
-@RequestMapping("get")
-public class GetSsqController {
+@Service
+public class GetServiceImpl implements GetService {
     @Resource
     private ListenHisoryDao listenHisoryDao;
-
-    @GetMapping("two")
-    public JsonResult getTwo(){
+    @Override
+    public JsonResult getTwo() {
         Set<String> set = new TreeSet<String>();
         while(true){
             int sui = new Random().nextInt(33);
@@ -47,16 +41,15 @@ public class GetSsqController {
         return new JsonResult(200,"双色球",set.toString()+set2.toString());
     }
 
-    @GetMapping("music")
-    public JsonResult getMusic(String id,String type){
-
+    @Override
+    public JsonResult getMusic(String id, String type) {
         Map<String,Object> data=new HashMap();
         id = id == null ? "283135753" : id;
         type = type == null ? "1" : type;
         data.put("uid",id);
         data.put("type",type);
         String dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap());
-        JSONObject jsonResult =JSONUtil.parseObj(dataPage);
+        JSONObject jsonResult = JSONUtil.parseObj(dataPage);
         JsonRootBean jsonRootBean = (JsonRootBean)JSONUtil.toBean(jsonResult, JsonRootBean.class);
         if(jsonRootBean!=null&&jsonRootBean.getWeekData()!=null&&jsonRootBean.getWeekData().size()>0){
             String finalId = id;
@@ -125,9 +118,4 @@ public class GetSsqController {
 
         return new JsonResult(jsonRootBean);
     }
-
-
-
-
-
 }
