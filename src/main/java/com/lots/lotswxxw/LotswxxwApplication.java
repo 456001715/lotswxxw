@@ -13,6 +13,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  *
@@ -23,6 +24,7 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 @MapperScan("com.lots.lotswxxw.dao")
 @EnableCaching
 @ServletComponentScan
+@EnableScheduling
 public class LotswxxwApplication {
 
 	public static void main(String[] args) {
