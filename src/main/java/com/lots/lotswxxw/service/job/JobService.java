@@ -37,7 +37,7 @@ public class JobService {
     @Scheduled(cron="0 0 0/1 * * ? ")
    public void listenHisoryJob(){
        Map<String,Object> data=new HashMap<String,Object> ();
-       String id =  "128074624" ;
+       String id =  "283135753" ;
        String type = "1" ;
        data.put("uid",id);
        data.put("type",type);
