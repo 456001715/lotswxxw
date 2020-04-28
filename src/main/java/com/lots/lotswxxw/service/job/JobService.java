@@ -31,14 +31,17 @@ public class JobService {
     @Resource
     private  ListenHisoryDao listenHisoryDao;
 
-    @Scheduled(cron="*/5 * * * * ?")   //每5分钟执行一次
-   public void ListenHisoryJob(){
-       Map<String,Object> data=new HashMap();
-       String id =  "283135753" ;
+    /**
+     * 每5小时执行一次
+     */
+    @Scheduled(cron="0 0 0/1 * * ? ")
+   public void listenHisoryJob(){
+       Map<String,Object> data=new HashMap<String,Object> ();
+       String id =  "128074624" ;
        String type = "1" ;
        data.put("uid",id);
        data.put("type",type);
-       String dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap());
+       String dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap<String, String> ());
        JSONObject jsonResult = JSONUtil.parseObj(dataPage);
        JsonRootBean jsonRootBean = (JsonRootBean)JSONUtil.toBean(jsonResult, JsonRootBean.class);
        if(jsonRootBean!=null&&jsonRootBean.getWeekData()!=null&&jsonRootBean.getWeekData().size()>0){
