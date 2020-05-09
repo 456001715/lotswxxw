@@ -2,6 +2,7 @@ package com.lots.lotswxxw.util;
 
 
 import org.apache.commons.codec.binary.Base64;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.crypto.*;
@@ -114,7 +115,7 @@ public class AesUtil {
     }
 
     public static void main(String[] args) {
-        String[] keys = {
+       /* String[] keys = {
                 "", "123456", "word"
         };
         System.out.println("key | AESEncode | AESDecode");
@@ -124,7 +125,21 @@ public class AesUtil {
             System.out.print(encryptString + " | ");
             String decryptString = aesDecode(encryptString, ENCODE_RULES);
             System.out.println(decryptString);
-        }
+        }*/
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        // 配置加密解密的密码/salt值
+        encryptor.setPassword("e!lotsbalbal");
+        // 对"raw_password"进行加密：S5kR+Y7CI8k7MaecZpde25yK8NKUnd6p
+        String password = "119.23.206.234";
+        String encPwd = encryptor.encrypt(password);
+        System.out.println(encPwd);
+        // 再进行解密：raw_password
+        String rawPwd = encryptor.decrypt(encPwd);
+        System.out.println(rawPwd);
+        //AS  ENC(IBKnbNivdT/X+cRBvV3ZibLD5X3OffvO)
+        //as ENC(qCh2Nc1wLkKnY74rBRlisLsWL340R157)
+        //ip ENC(twaqcgyqUUZMfBLitLQpPHhALndTRk/f)
+
     }
 
 
