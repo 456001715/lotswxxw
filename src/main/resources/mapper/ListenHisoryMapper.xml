@@ -9,7 +9,7 @@
     
     <!-- 表查询字段 -->
     <sql id="allColumns">
-        id, song_name, song_score, user_id, creat_time, singer
+        id, song_name, song_score, user_id, creat_time, singer, song_id
     </sql>
     
     <!-- 查询所有数据 -->
@@ -43,21 +43,22 @@
     <!-- 插入数据 -->
     <insert id="insertListenHisory" parameterType="map">
         INSERT INTO listen_hisory (
-            id, song_name, song_score, user_id, creat_time, singer
+            id, song_name, song_score, user_id, creat_time, singer, song_id
         ) VALUES (
             #{id},
             #{songName},
             #{songScore},
             #{userId},
             #{creatTime},
-            #{singer}
+            #{singer},
+            #{songId}
         )
     </insert>
     
     <!-- 批量插入数据 -->
     <insert id="insertListenHisorys" parameterType="list">
         INSERT INTO listen_hisory (
-            id, song_name, song_score, user_id, creat_time
+            id, song_name, song_score, user_id, creat_time, song_id
         ) VALUES
         <foreach collection="list" index="index" item="item" separator=",">
             (
@@ -66,7 +67,8 @@
                 #{item.songScore},
                 #{item.userId},
                 #{item.creatTime},
-                #{item.singer}
+                #{item.singer},
+                #{item.songId}
             )
         </foreach>
     </insert>

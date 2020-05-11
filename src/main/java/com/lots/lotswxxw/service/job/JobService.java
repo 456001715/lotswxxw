@@ -34,13 +34,13 @@ public class JobService {
     /**
      * 每5小时执行一次
      */
-    @Scheduled(cron="0 0 0/1 * * ? ")
- //   @Scheduled(cron="0/5 * * * * ? ")
+       @Scheduled(cron="0 0 0/1 * * ? ")
+       // @Scheduled(cron="0/5 * * * * ? ")
    public void listenHisoryJob(){
        Map<String,Object> data=new HashMap<String,Object> ();
        String id =
-               "283135753" ;
-//               "128074624" ;
+                  "283135753" ;
+           //     "128074624" ;
 
        String type = "1" ;
        data.put("uid",id);
@@ -61,12 +61,15 @@ public class JobService {
                    String name = week.getSong().getName();
                    //歌手
                    String singer=week.getSong().getAr().get(0).getName();
+                   //歌曲id
+                   Long songId=week.getSong().getId();
                    ListenHisoryEntity entity = new ListenHisoryEntity();
                    entity.setUserId(finalId);
                    entity.setCreatTime(new Date());
                    entity.setSongName(name);
                    entity.setSongScore(score);
                    entity.setSinger(singer);
+                   entity.setSongId(songId);
                    try{
                        listenHisoryDao.insertListenHisory(entity);
                    }catch (Exception e ){

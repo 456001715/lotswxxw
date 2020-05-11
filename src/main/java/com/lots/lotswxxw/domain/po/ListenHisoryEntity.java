@@ -40,4 +40,7 @@ public class ListenHisoryEntity implements Serializable {
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date creatTime;
+
+    @ApiModelProperty(value = "歌曲Id")
+    private Long songId;
 }
