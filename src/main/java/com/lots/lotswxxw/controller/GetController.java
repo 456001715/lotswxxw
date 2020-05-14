@@ -34,21 +34,16 @@ public class GetController {
 
     @GetMapping("two")
     public JsonResult getTwo(){
-
         return getService.getTwo();
     }
 
     @GetMapping("music")
     public JsonResult getMusic(String id,String type){
-
-
         return getService.getMusic(id,type);
     }
 
     @GetMapping("port")
     public JsonResult getPort(@RequestParam("ip") String ip,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
-
-
         return getService.getPort(ip,start,end);
     }
 
