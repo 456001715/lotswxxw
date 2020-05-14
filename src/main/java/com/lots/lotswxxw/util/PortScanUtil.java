@@ -1,18 +1,21 @@
 package com.lots.lotswxxw.util;
 
+import com.lots.lotswxxw.domain.vo.JsonResult;
+import org.springframework.util.StringUtils;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class PortScanUtil {
+     boolean flag=true;
+     List<String> list=new ArrayList<String>();
     public static void main(String[] args) {
         PortScanUtil portScanDemo = new PortScanUtil();
         //方式1
@@ -22,11 +25,37 @@ public class PortScanUtil {
         //方式2
         Set<Integer> portSet = new LinkedHashSet<Integer>();
         Integer[] ports = new Integer[]{21, 22, 23, 25, 26, 69, 80, 110, 143,
-                443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389,
+                443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389,6379,
                 7001, 8080, 8081, 8888, 9080, 9090,9100,9200,9300,9090, 43958};
         portSet.addAll(Arrays.asList(ports));
         portScanDemo.scanLargePorts(ip, portSet, 5, 800);
 //        portScanDemo.scanLargePorts(ip,0,10000,5, 800);
+    }
+    public JsonResult getPort(String ip,Integer start,Integer end){
+        if(flag){
+            flag=false;
+            try {
+                if(start==0&&end==0){
+                    Set<Integer> portSet = new LinkedHashSet<Integer>();
+                    Integer[] ports = new Integer[]{21, 22, 23, 25, 26, 69, 80, 110, 143,
+                            443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389,6379,
+                            7001, 8080, 8081, 8888, 9080, 9090,9100,9200,9300,9090, 43958};
+                    portSet.addAll(Arrays.asList(ports));
+                    List<String> strings = scanLargePorts(ip, portSet, 5, 800);
+                    return new JsonResult(strings);
+                }else{
+                    List<String> strings = scanLargePorts(ip, start,end, 5, 800);
+                    return new JsonResult(strings);
+                }
+            }catch (Exception e ){
+                return new JsonResult("出现不明原因错误"+e.getMessage());
+            }finally {
+                flag=true;
+            }
+
+        }
+
+        return new JsonResult("其他ip正在被扫描");
     }
 
     /**
@@ -38,7 +67,7 @@ public class PortScanUtil {
      * @param threadNumber 线程数
      * @param timeout      连接超时时间
      */
-    public void scanLargePorts(String ip, int startPort, int endPort,
+    public List<String> scanLargePorts(String ip, int startPort, int endPort,
                                int threadNumber, int timeout) {
         ExecutorService threadPool = Executors.newCachedThreadPool();
         for (int i = 0; i < threadNumber; i++) {
@@ -51,7 +80,7 @@ public class PortScanUtil {
         while (true) {
             if (threadPool.isTerminated()) {
                 System.out.println("扫描结束");
-                break;
+                return list;
             }
             try {
                 Thread.sleep(1000);
@@ -69,7 +98,7 @@ public class PortScanUtil {
      * @param threadNumber 线程数
      * @param timeout      连接超时时间
      */
-    public void scanLargePorts(String ip, Set<Integer> portSet,
+    public List<String> scanLargePorts(String ip, Set<Integer> portSet,
                                int threadNumber, int timeout) {
         ExecutorService threadPool = Executors.newCachedThreadPool();
         for (int i = 0; i < threadNumber; i++) {
@@ -81,7 +110,7 @@ public class PortScanUtil {
         while (true) {
             if (threadPool.isTerminated()) {
                 System.out.println("扫描结束");
-                break;
+                return list;
             }
             try {
                 Thread.sleep(1000);
@@ -131,7 +160,9 @@ public class PortScanUtil {
                     try {
                         socket.connect(socketAddress, timeout); // 超时时间
                         socket.close();
+
                         System.out.println("端口 " + port + " ：开放");
+                        list.add("端口 " + port + " ：开放");
                     } catch (IOException e) {
                         // System.out.println("端口 " + port + " ：关闭");
                     }
@@ -177,7 +208,9 @@ public class PortScanUtil {
                     try {
                         socket.connect(socketAddress, timeout);
                         socket.close();
+
                         System.out.println("端口 " + ports[port] + " ：开放");
+                        list.add("端口 " + ports[port] + " ：开放");
                     } catch (IOException e) {
                         // System.out.println("端口 " + ports[port] + " ：关闭");
                     }

@@ -14,6 +14,7 @@ import com.lots.lotswxxw.util.CloudMusicApiUrl;
 import com.lots.lotswxxw.util.CreateWebRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -42,6 +43,13 @@ public class GetController {
 
 
         return getService.getMusic(id,type);
+    }
+
+    @GetMapping("port")
+    public JsonResult getPort(@RequestParam("ip") String ip,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
+
+
+        return getService.getPort(ip,start,end);
     }
 
 

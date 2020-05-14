@@ -12,6 +12,7 @@ import com.lots.lotswxxw.domain.vo.music.WeekData;
 import com.lots.lotswxxw.service.GetService;
 import com.lots.lotswxxw.util.CloudMusicApiUrl;
 import com.lots.lotswxxw.util.CreateWebRequest;
+import com.lots.lotswxxw.util.PortScanUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -82,5 +83,12 @@ public class GetServiceImpl implements GetService {
 
 
         return new JsonResult(list);
+    }
+
+    @Override
+    public JsonResult getPort(String ip,Integer start,Integer end) {
+        PortScanUtil util=new PortScanUtil();
+
+        return util.getPort(ip,start,end);
     }
 }
