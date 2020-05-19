@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.lots.lotswxxw.dao.GetTwoMapper;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
 import com.lots.lotswxxw.domain.po.GetTwoPO;
 import com.lots.lotswxxw.domain.po.ListenHisoryEntity;
@@ -29,6 +30,9 @@ import java.util.*;
 public class GetServiceImpl implements GetService {
     @Resource
     private ListenHisoryDao listenHisoryDao;
+
+    @Resource
+    private GetTwoMapper getTwoMapper;
     @Override
     public JsonResult getTwo() {
         GetTwoPO get=new GetTwoPO();
@@ -124,7 +128,12 @@ public class GetServiceImpl implements GetService {
     }
 
     @Override
-    public JsonResult buyTwo() {
-        return null;
+    public JsonResult buyTwo(GetTwoPO get) {
+        get.setCreateTimestamp(new Date());
+        int flag = getTwoMapper.insertGetTwo(get);
+        if(flag>0){
+            return new JsonResult();
+        }
+        return new JsonResult(500,"服务器开小差了");
     }
 }

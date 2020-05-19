@@ -5,6 +5,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
+import com.lots.lotswxxw.domain.po.GetTwoPO;
 import com.lots.lotswxxw.domain.po.ListenHisoryEntity;
 import com.lots.lotswxxw.domain.vo.JsonResult;
 import com.lots.lotswxxw.domain.vo.music.JsonRootBean;
@@ -12,10 +13,7 @@ import com.lots.lotswxxw.domain.vo.music.WeekData;
 import com.lots.lotswxxw.service.GetService;
 import com.lots.lotswxxw.util.CloudMusicApiUrl;
 import com.lots.lotswxxw.util.CreateWebRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -38,9 +36,9 @@ public class GetController {
         return getService.getTwo();
     }
 
-    @GetMapping("buyTwo")
-    public JsonResult getBuyTwo(@RequestParam("number")String number){
-        return getService.buyTwo();
+    @PostMapping("buyTwo")
+    public JsonResult getBuyTwo(@RequestBody GetTwoPO get){
+        return getService.buyTwo(get);
     }
 
     @GetMapping("music")

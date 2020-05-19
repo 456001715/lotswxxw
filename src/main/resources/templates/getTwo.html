@@ -119,7 +119,28 @@
 	})();
 
 	function buyTwo(){
-		A.alert('提示','密码修改成功');
+		var redNumber = $("#redNumber").text();
+		var blueNumber = $("#blueNumber").text();
+		var chapter = $("#chapter").val();
+
+		var url="/get/buyTwo";
+		var param={"uid" : "lots",
+			"blueNumber" : blueNumber,
+			"redNumber" : redNumber,
+			"chapter" : chapter,
+			"uid" : "lots",}
+		$.ajax({
+			type: "POST",
+			url: url,
+			contentType: "application/json",
+			dataType: "JSON",
+			async: false,
+			data: JSON.stringify(param),
+			success: function (data) {//格式{key:value}
+				A.alert('提示',data.msg);
+			}
+		});
+
 	}
 
 
