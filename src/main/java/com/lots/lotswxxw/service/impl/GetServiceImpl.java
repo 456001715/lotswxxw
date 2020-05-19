@@ -5,6 +5,7 @@ import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
+import com.lots.lotswxxw.domain.po.GetTwoPO;
 import com.lots.lotswxxw.domain.po.ListenHisoryEntity;
 import com.lots.lotswxxw.domain.vo.JsonResult;
 import com.lots.lotswxxw.domain.vo.music.JsonRootBean;
@@ -16,6 +17,7 @@ import com.lots.lotswxxw.util.PortScanUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -29,19 +31,48 @@ public class GetServiceImpl implements GetService {
     private ListenHisoryDao listenHisoryDao;
     @Override
     public JsonResult getTwo() {
-        Set<Integer> set = new TreeSet<Integer>();
+        GetTwoPO get=new GetTwoPO();
+        Set<Integer> set = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
         while(true){
-
-            int sui = RandomUtil.randomInt(1,34);
+            Integer sui = RandomUtil.randomInt(1,34);
             set.add(sui);
             if (set.size() == 6) {
                 break;
             }
         }
+        List<String> list =new ArrayList<>();
+        set.forEach(s->list.add(s.toString()));
+        /*Set<Integer> sortSet = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
+        sortSet.addAll(set);
+        String[] array = sortSet.toArray(new String[]{});*/
+        String redList = String.join(" , ", list);
         Set<Integer> set2 = new TreeSet<Integer>();
         int sui2 =  RandomUtil.randomInt(1,17);
         set2.add(sui2);
-        return new JsonResult(200,"双色球",set.toString()+set2.toString());
+        String blue=sui2+"";
+
+        Date date = new Date();
+        SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
+        String currSun = dateFm.format(date);
+        get.setRedNumber(redList);
+        get.setBlueNumber(blue);
+        if(currSun.equals("星期二")||currSun.equals("星期四")||currSun.equals("星期日")) {
+            get.setChapter(date);
+        }else if(currSun.equals("星期五")){
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            c.add(Calendar.DAY_OF_MONTH, 2);
+            get.setChapter(c.getTime());
+        }else {
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+            c.add(Calendar.DAY_OF_MONTH, 1);
+            get.setChapter(c.getTime());
+        }
+
+
+
+        return new JsonResult(200,"get two",get);
     }
 
     @Override

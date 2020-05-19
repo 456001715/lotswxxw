@@ -37,16 +37,29 @@
 				<div class="inputbox underline">
 						<label class="inputbox-left">期数</label>
 						<div class="inputbox-right inputbox" data-input="clear">
-							<input type="text" placeholder="期数" name="chapter" data-rule-field="期数" readonly="readonly">
+							<input type="text" placeholder="期数" name="chapter" id="chapter" data-rule-field="期数" readonly="readonly">
 							<i class="icon icon-clear-fill color-placeholder" style="font-size: 20px;line-height: 24px;text-align: center;display: none;"></i>
 						</div>
-					</div>
-					<div class="inputbox underline">
-                    <label class="inputbox-left">号码</label>
+				</div>
+
+				<div class="inputbox underline">
+                    <label class="inputbox-left">红号码</label>
                     <div class="inputbox-right inputbox" data-input="reveal">
-                        <input type="text" placeholder="号码" name="number" data-rule-field="号码"  readonly="readonly"/>
+						<span class="mark-cancel" name="redNumber"id="redNumber"></span>
+<!--
+                        <input type="text" placeholder="红号码" name="redNumber"id="redNumber" data-rule-field="红号码"  readonly="readonly" value=""/>
+-->
                     </div>
                 </div>
+
+				<div class="inputbox underline">
+					<label class="inputbox-left">蓝号码</label>
+					<div class="inputbox-right inputbox" data-input="reveal">
+						<span class="mark-info" name="blueNumber"id="blueNumber"></span>
+						<!--<input type="text" placeholder="蓝号码" name="blueNumber" id="blueNumber" data-rule-field="蓝号码"  readonly="readonly" value="12"/>-->
+					</div>
+				</div>
+
 
 			</form>
 			<div style="height:12px;background-color:#f4f4f4"></div>
@@ -92,13 +105,25 @@
     <script type="text/javascript" src="../../static/assets/app/js/app.seedsui.js"></script>
 
 <script>
+	(function(){
+		var url="/get/two";
+		$.get(url,function(data){
+			var redNumber=data.data.redNumber;
+			var blueNumber=data.data.blueNumber;
+			var chapter=data.data.chapter;
+			$("#redNumber").text(redNumber,);
+			$("#blueNumber").text(blueNumber);
+			$("#chapter").attr("value",chapter);
+		})
+
+	})();
+
 	function buyTwo(){
 		A.alert('提示','密码修改成功');
 	}
-		(function(){
 
-		})();
-		
+
+
 		</script>
 </body>
 </html>
