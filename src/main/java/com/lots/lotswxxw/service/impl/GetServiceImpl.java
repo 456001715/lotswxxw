@@ -56,7 +56,7 @@ public class GetServiceImpl implements GetService {
         String blue=sui2+"";
 
         Date date = new Date();
-        SimpleDateFormat dateFm = new SimpleDateFormat("EEEE");
+        SimpleDateFormat dateFm = new SimpleDateFormat("EEEE", Locale.CHINA);
         String currSun = dateFm.format(date);
         get.setRedNumber(redList);
         get.setBlueNumber(blue);
