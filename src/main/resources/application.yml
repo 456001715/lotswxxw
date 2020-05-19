@@ -103,7 +103,7 @@ jasypt:
 spring:
     profiles: dev
     datasource:
-      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&nullNamePatternMatchesAll=true&allowPublicKeyRetrieval=true
       username: root
       password: ENC(IBKnbNivdT/X+cRBvV3ZibLD5X3OffvO)
     redis:
@@ -120,7 +120,7 @@ spring:
 spring:
     profiles: test
     datasource:
-      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&nullNamePatternMatchesAll=true&allowPublicKeyRetrieval=true
       username: root
       password: ENC(IBKnbNivdT/X+cRBvV3ZibLD5X3OffvO)
     redis:
@@ -137,7 +137,7 @@ spring:
 spring:
     profiles: prod
     datasource:
-      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      url: jdbc:mysql://119.23.206.234:3306/lotswxxw?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false&nullNamePatternMatchesAll=true&allowPublicKeyRetrieval=true
       username: root
       password: ENC(IBKnbNivdT/X+cRBvV3ZibLD5X3OffvO)
     redis:

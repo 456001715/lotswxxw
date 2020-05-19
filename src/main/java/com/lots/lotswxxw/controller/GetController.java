@@ -31,6 +31,7 @@ public class GetController {
     private GetService getService;
 
 
+    //todo 定时刷新
     @GetMapping("two")
     public JsonResult getTwo(){
         return getService.getTwo();
