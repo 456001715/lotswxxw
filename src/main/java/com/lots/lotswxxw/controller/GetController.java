@@ -32,9 +32,15 @@ public class GetController {
     @Resource
     private GetService getService;
 
+
     @GetMapping("two")
     public JsonResult getTwo(){
         return getService.getTwo();
+    }
+
+    @GetMapping("buyTwo")
+    public JsonResult getBuyTwo(@RequestParam("number")String number){
+        return getService.buyTwo();
     }
 
     @GetMapping("music")

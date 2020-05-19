@@ -29,18 +29,18 @@ public class GetServiceImpl implements GetService {
     private ListenHisoryDao listenHisoryDao;
     @Override
     public JsonResult getTwo() {
-        Set<String> set = new TreeSet<String>();
+        Set<Integer> set = new TreeSet<Integer>();
         while(true){
 
             int sui = RandomUtil.randomInt(1,34);
-            set.add(sui<10?"0"+sui:""+sui);
+            set.add(sui);
             if (set.size() == 6) {
                 break;
             }
         }
-        Set<String> set2 = new TreeSet<String>();
+        Set<Integer> set2 = new TreeSet<Integer>();
         int sui2 =  RandomUtil.randomInt(1,17);
-        set2.add(sui2<10?"0"+sui2:""+sui2);
+        set2.add(sui2);
         return new JsonResult(200,"双色球",set.toString()+set2.toString());
     }
 
@@ -90,5 +90,10 @@ public class GetServiceImpl implements GetService {
         PortScanUtil util=new PortScanUtil();
 
         return util.getPort(ip,start,end);
+    }
+
+    @Override
+    public JsonResult buyTwo() {
+        return null;
     }
 }
