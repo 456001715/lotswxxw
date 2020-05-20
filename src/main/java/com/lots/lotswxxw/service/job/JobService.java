@@ -89,7 +89,8 @@ public class JobService {
         }
     }
 
-    @Scheduled(cron = "0 1 21 0 0 2,4,7 ")
+    @Scheduled(cron = "0 0 21 ? * 2,4,7")
+//@Scheduled(cron = "0 0 0/1 * * ? ")
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
         List<GetTwoPO> nowList = getTwoMapper.getNowList();
@@ -149,7 +150,7 @@ public class JobService {
                                     getTwo.setUpdateTimestamp(new Date());
                                 }
                                 if (getTwo.getIsTrue()) {
-                                    MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级" + getTwo.getChapter() + "期", false);
+                                    MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + getTwo.getChapter() + "期", false);
                                 }
                                 getTwoMapper.updateGetTwo(getTwo);
                             });
