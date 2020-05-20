@@ -14,5 +14,6 @@ public interface GetTwoMapper {
     int insertGetTwo(GetTwoPO entity);
     int deleteGetTwoByIds(List<Integer>ids);
     int updateGetTwo(GetTwoPO entity);
+    List<GetTwoPO> getNowList();
 
 }

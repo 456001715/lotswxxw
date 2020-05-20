@@ -48,7 +48,7 @@ public class GetTwoPO implements java.io.Serializable {
     /** 第几期 */
     @ApiModelProperty(value = "第几期")
     @NotNull(message = "第几期不能为空！")
-    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy年MM月dd日")
     private Date chapter;
 
     /** 是否中奖 */
