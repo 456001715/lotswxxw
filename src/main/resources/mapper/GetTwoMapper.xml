@@ -91,6 +91,6 @@
         SELECT
         <include refid="allColumns" />
         FROM get_two WHERE
-        a.chapter=date_format(now(),'%Y-%m-%d');
+        chapter=date_format(now(),'%Y-%m-%d');
     </select>
 </mapper>
