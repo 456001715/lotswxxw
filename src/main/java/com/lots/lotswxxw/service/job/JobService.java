@@ -79,7 +79,10 @@ public class JobService {
                     entity.setSongId(songId);
                     entity.setSongScore(weekData.get(0).getScore());
                     try {
-                        listenHisoryDao.insertListenHisory(entity);
+                        int flag = listenHisoryDao.findByName(entity);
+                        if(flag<1) {
+                            listenHisoryDao.insertListenHisory(entity);
+                        }
                     } catch (Exception e) {
 
                     }

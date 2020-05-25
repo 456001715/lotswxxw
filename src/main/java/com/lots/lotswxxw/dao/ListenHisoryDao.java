@@ -16,5 +16,6 @@ public interface ListenHisoryDao {
     int insertListenHisorys(List<ListenHisoryEntity>list);
     int deleteListenHisoryById(int id);
     int deleteListenHisoryByIds(List<Integer>ids);
+    int findByName(ListenHisoryEntity entity);
 
 }

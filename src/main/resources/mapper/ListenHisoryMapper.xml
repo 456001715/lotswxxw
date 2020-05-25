@@ -87,4 +87,8 @@
             #{id}
         </foreach>
     </delete>
+
+    <select id="findByName" resultType="int" parameterType="map">
+        select count(*) from listen_hisory a where a.song_name=#{songName} and a.singer=#{singer} and user_id=#{userId}
+    </select>
 </mapper>
