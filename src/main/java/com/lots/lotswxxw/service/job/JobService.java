@@ -41,6 +41,7 @@ public class JobService {
     /**
      * 每5小时执行一次
      */
+
     @Scheduled(cron = "0 0 0/1 * * ? ")
 //       @Scheduled(cron="0/5 * * * * ? ")
     public void listenHisoryJob() {
