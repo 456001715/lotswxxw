@@ -39,7 +39,7 @@ public class JobService {
     private GetTwoMapper getTwoMapper;
 
     /**
-     * 每5小时执行一次
+     * 每1小时执行一次
      */
     @Scheduled(cron = "0 0 0/1 * * ? ")
 //       @Scheduled(cron="0/5 * * * * ? ")
