@@ -44,9 +44,9 @@
 									<tbody id="litsVal">
 									<tr>
 										<th width="100px;" style="text-align:center;">data</th>
-										<th width="100px;" style="text-align:center;">singName</th>
-										<th width="100px;" style="text-align:center;">singer</th>
-										<th width="100px;" style="text-align:center;">songScore</th>
+										<th  style="text-align:center;">singName</th>
+										<th  style="text-align:center;">singer</th>
+										<th  style="text-align:center;">songScore</th>
 									  </tr>
 
 
@@ -104,13 +104,12 @@
 			for (let dataKey in data.data) {
 				var tr;
 				tr=`<td style="text-align:center;"><span class="mark-warn">`+data.data[dataKey].creatTime+`</span></td>
-                                <td style="text-align:center;">`+data.data[dataKey].songName+`</td>
+                                <td style="text-align:center;"><span >`+data.data[dataKey].songName+`</span></td>
                                 <td style="text-align:center;">`+data.data[dataKey].singer+`</td>
                                 <td style="text-align:center;">`+data.data[dataKey].songScore+`</td>`
 
 
 				$("#litsVal").append('<tr>'+tr+'</tr>');
-				console.log( JSON.stringify(data.data[dataKey].creatTime));
 			}
 		})
 
