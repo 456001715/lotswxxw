@@ -121,6 +121,12 @@ public class GetServiceImpl implements GetService {
     }
 
     @Override
+    public JsonResult getMusicPage() {
+        List<ListenHisoryEntity> all = listenHisoryDao.findListenHisoryAll();
+        return new JsonResult(all);
+    }
+
+    @Override
     public JsonResult getPort(String ip,Integer start,Integer end) {
         PortScanUtil util=new PortScanUtil();
 

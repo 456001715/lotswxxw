@@ -47,6 +47,11 @@ public class GetController {
         return getService.getMusic(id,type);
     }
 
+    @GetMapping("musicPage")
+    public JsonResult getMusicPage(){
+        return getService.getMusicPage();
+    }
+
     @GetMapping("port")
     public JsonResult getPort(@RequestParam("ip") String ip,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
         return getService.getPort(ip,start,end);
