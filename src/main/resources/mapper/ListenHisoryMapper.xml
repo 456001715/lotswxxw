@@ -24,7 +24,7 @@
     <select id="findListenHisoryAll" resultMap="listenHisoryMap">
         SELECT
         *
-        FROM listen_hisory where user_id='283135753'
+        FROM listen_hisory where user_id='283135753' ORDER BY creat_time DESC
     </select>
     
     <!-- 根据条件参数查询数据列表 -->

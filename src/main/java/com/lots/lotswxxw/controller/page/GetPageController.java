@@ -29,6 +29,10 @@ public class GetPageController {
     }
 
 
+    @RequestMapping("music")
+    public String getMusic(){
+        return "getMusic";
+    }
 
 
 
