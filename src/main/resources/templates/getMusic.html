@@ -40,11 +40,11 @@
 						</div>
 						<div class="group nomargin padding8">
 							<div class="table-box">
-								<table align="center">
+								<table align="center" width="100%">
 									<tbody id="litsVal">
 									<tr>
 										<th width="100px;" style="text-align:center;">data</th>
-										<th width="100px;"  style="text-align:center;">singName</th>
+										<th width="100px;"  style="word-break:break-all;table-layout:fixed;text-align:center;">singName</th>
 										<th  style="text-align:center;">singer</th>
 										<th  style="text-align:center;">songScore</th>
 									  </tr>
@@ -104,7 +104,7 @@
 			for (let dataKey in data.data) {
 				var tr;
 				tr=`<td style="text-align:center;"><span class="mark-warn">`+data.data[dataKey].creatTime+`</span></td>
-                    <td style="text-align:center;"><span class="mark-info">`+data.data[dataKey].songName+`</span></td>
+                    <td style="word-break:break-all;table-layout:fixed;text-align:center;">`+data.data[dataKey].songName+`</td>
                     <td style="text-align:center;">`+data.data[dataKey].singer+`</td>
                     <td style="text-align:center;">`+data.data[dataKey].songScore+`</td>`
 
