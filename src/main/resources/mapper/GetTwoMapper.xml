@@ -53,7 +53,7 @@
             #{chapter},
             #{isTrue},
             #{isRmb},
-            #{createTimestamp},
+            now(),
             #{updateTimestamp}
         )
     </insert>

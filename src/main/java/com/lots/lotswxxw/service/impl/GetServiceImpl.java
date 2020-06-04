@@ -21,6 +21,8 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static org.springframework.context.i18n.LocaleContextHolder.setTimeZone;
+
 /**
  * @author: lots
  * @date: 2020/4/24 10:28
@@ -35,6 +37,7 @@ public class GetServiceImpl implements GetService {
     private GetTwoMapper getTwoMapper;
     @Override
     public JsonResult getTwo() {
+        setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));//importan
         GetTwoPO get=new GetTwoPO();
         Set<Integer> set = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
         while(true){
