@@ -45,10 +45,10 @@ public class JobService {
 //       @Scheduled(cron="0/5 * * * * ? ")
     public void listenHisoryJob() {
         Map<String, Object> data = new HashMap<String, Object>();
-        String id =
-                "283135753";
-//                "128074624" ;
-
+        String idList =
+                "283135753,128074624" ;
+        String[] ids = idList.split(",");
+        for(String id:ids) {
         String type = "1";
         data.put("uid", id);
         data.put("type", type);
@@ -89,7 +89,7 @@ public class JobService {
 
                 });
             }
-        }
+        }}
     }
 
     @Scheduled(cron = "0 0 21 ? * 2,4,7")
