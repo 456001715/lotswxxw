@@ -1,7 +1,8 @@
 /**
-  * Copyright 2020 bejson.com 
-  */
+ * Copyright 2020 bejson.com
+ */
 package com.lots.lotswxxw.domain.vo.music;
+
 import java.util.List;
 
 /**
@@ -17,39 +18,45 @@ public class Al {
     private String picUrl;
     private List<String> tns;
     private long pic;
+
     public void setId(long id) {
-         this.id = id;
-     }
-     public long getId() {
-         return id;
-     }
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
 
     public void setName(String name) {
-         this.name = name;
-     }
-     public String getName() {
-         return name;
-     }
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setPicUrl(String picUrl) {
-         this.picUrl = picUrl;
-     }
-     public String getPicUrl() {
-         return picUrl;
-     }
+        this.picUrl = picUrl;
+    }
+
+    public String getPicUrl() {
+        return picUrl;
+    }
 
     public void setTns(List<String> tns) {
-         this.tns = tns;
-     }
-     public List<String> getTns() {
-         return tns;
-     }
+        this.tns = tns;
+    }
+
+    public List<String> getTns() {
+        return tns;
+    }
 
     public void setPic(long pic) {
-         this.pic = pic;
-     }
-     public long getPic() {
-         return pic;
-     }
+        this.pic = pic;
+    }
+
+    public long getPic() {
+        return pic;
+    }
 
 }

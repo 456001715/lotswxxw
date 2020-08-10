@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *    tree 抽象节点 树可继承这个节点
+ * tree 抽象节点 树可继承这个节点
+ *
  * @author lots
  * @date 16:47 2018/3/20
  */

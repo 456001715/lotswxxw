@@ -4,7 +4,8 @@ package com.lots.lotswxxw.shiro.provider;
 import com.lots.lotswxxw.domain.vo.Account;
 
 /**
- *    数据库用户密码账户提供
+ * 数据库用户密码账户提供
+ *
  * @author lots
  * @date 16:35 2018/2/11
  */

@@ -361,12 +361,16 @@
                 var timestamp = new Date().getTime().toString();
                 var key1 = data.data.tokenKey;
                 var tokenKey = CryptoJS.enc.Utf8.parse(key1);
-                console.log("tokenKey="+tokenKey);
-                console.log("password="+password)
+                console.log("tokenKey=" + tokenKey);
+                console.log("password=" + password)
                 var srcs = CryptoJS.enc.Utf8.parse(password);
-                console.log("srcs="+srcs)
-                var password = CryptoJS.AES.encrypt(srcs, tokenKey, {iv: tokenKey, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7}).toString() ;
-                console.log(tokenKey +"-----------------------------------"+ password)
+                console.log("srcs=" + srcs)
+                var password = CryptoJS.AES.encrypt(srcs, tokenKey, {
+                    iv: tokenKey,
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                }).toString();
+                console.log(tokenKey + "-----------------------------------" + password)
                 var getToken = {
                     "appId": username,
                     "password": password,
@@ -391,8 +395,6 @@
 
 
     }
-
-
 
 
 </script>

@@ -3,11 +3,12 @@ package com.lots.lotswxxw.shiro.token;
 import org.apache.shiro.authc.AuthenticationToken;
 
 /**
- *   JWT token
+ * JWT token
+ *
  * @author lots
  * @date 19:37 2018/2/10
  */
-public class JwtToken implements AuthenticationToken{
+public class JwtToken implements AuthenticationToken {
 
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +29,7 @@ public class JwtToken implements AuthenticationToken{
      */
     private String jwt;
 
-    public JwtToken(String ipHost, String deviceInfo, String jwt,String appId) {
+    public JwtToken(String ipHost, String deviceInfo, String jwt, String appId) {
         this.ipHost = ipHost;
         this.deviceInfo = deviceInfo;
         this.jwt = jwt;

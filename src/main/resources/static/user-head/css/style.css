@@ -13,7 +13,7 @@
 
 body {
     /*position: relative;*/
-	background:#000
+    background: #000
 }
 
 .fl {
@@ -72,10 +72,10 @@ header span {
     margin-left: -4rem
 }
 
-.half > a  img {
+.half > a img {
     width: 8rem;
     height: 8rem;
-	border-radius:50%;
+    border-radius: 50%;
 }
 
 .half > p {
@@ -90,7 +90,8 @@ header span {
 .logo-license {
     margin-top: 8rem
 }
-.license{
+
+.license {
     position: relative;
     width: 8rem;
     display: inline-block;
@@ -99,12 +100,14 @@ header span {
     left: 50%;
     margin-left: -4rem
 }
-.license >img{
+
+.license > img {
     width: 5rem;
     height: 4.16rem;
     margin-left: 1.5rem;
     margin-top: 1.92rem
 }
+
 .logo {
     border-radius: 100%
 }
@@ -113,8 +116,8 @@ header span {
 @import url(reset.css);
 @font-face {
     font-family: 'icomoon';
-    src:url('../fonts/icomoon.eot?rretjt');
-    src:url('../fonts/icomoon.eot?#iefixrretjt') format('embedded-opentype'),
+    src: url('../fonts/icomoon.eot?rretjt');
+    src: url('../fonts/icomoon.eot?#iefixrretjt') format('embedded-opentype'),
     url('../fonts/icomoon.woff?rretjt') format('woff'),
     url('../fonts/icomoon.ttf?rretjt') format('truetype'),
     url('../fonts/icomoon.svg?rretjt#icomoon') format('svg');
@@ -155,7 +158,8 @@ header span {
 .clearfix:after {
     clear: both;
 }
-.htmleaf-container{
+
+.htmleaf-container {
     margin: 0 auto;
     text-align: center;
     overflow: hidden;
@@ -167,6 +171,7 @@ header span {
     display: none;
     z-index: 9999999;
 }
+
 .htmleaf-content {
     font-size: 150%;
     padding: 1em 0;
@@ -182,48 +187,131 @@ header span {
     padding: 5em 0 0 0;
     font-size: 0.65em;
 }
-.bgcolor-1 { background: #f0efee; }
-.bgcolor-2 { background: #f9f9f9; }
-.bgcolor-3 { background: #e8e8e8; }/*light grey*/
-.bgcolor-4 { background: #2f3238; color: #fff; }/*Dark grey*/
-.bgcolor-5 { background: #df6659; color: #521e18; }/*pink1*/
-.bgcolor-6 { background: #2fa8ec; }/*sky blue*/
-.bgcolor-7 { background: #d0d6d6; }/*White tea*/
-.bgcolor-8 { background: #3d4444; color: #fff; }/*Dark grey2*/
-.bgcolor-9 { background: #ef3f52; color: #fff;}/*pink2*/
-.bgcolor-10{ background: #64448f; color: #fff;}/*Violet*/
-.bgcolor-11{ background: #3755ad; color: #fff;}/*dark blue*/
-.bgcolor-12{ background: #3498DB; color: #fff;}/*light blue*/
-.bgcolor-20{ background: #494A5F;color: #D5D6E2;}
+
+.bgcolor-1 {
+    background: #f0efee;
+}
+
+.bgcolor-2 {
+    background: #f9f9f9;
+}
+
+.bgcolor-3 {
+    background: #e8e8e8;
+}
+
+/*light grey*/
+.bgcolor-4 {
+    background: #2f3238;
+    color: #fff;
+}
+
+/*Dark grey*/
+.bgcolor-5 {
+    background: #df6659;
+    color: #521e18;
+}
+
+/*pink1*/
+.bgcolor-6 {
+    background: #2fa8ec;
+}
+
+/*sky blue*/
+.bgcolor-7 {
+    background: #d0d6d6;
+}
+
+/*White tea*/
+.bgcolor-8 {
+    background: #3d4444;
+    color: #fff;
+}
+
+/*Dark grey2*/
+.bgcolor-9 {
+    background: #ef3f52;
+    color: #fff;
+}
+
+/*pink2*/
+.bgcolor-10 {
+    background: #64448f;
+    color: #fff;
+}
+
+/*Violet*/
+.bgcolor-11 {
+    background: #3755ad;
+    color: #fff;
+}
+
+/*dark blue*/
+.bgcolor-12 {
+    background: #3498DB;
+    color: #fff;
+}
+
+/*light blue*/
+.bgcolor-20 {
+    background: #494A5F;
+    color: #D5D6E2;
+}
+
 /* Header */
-.htmleaf-header{
+.htmleaf-header {
     padding: 1em 190px 1em;
     letter-spacing: -1px;
     text-align: center;
     background: #66677c;
 }
+
 .htmleaf-header h1 {
     color: #D5D6E2;
     font-weight: 600;
     font-size: 2em;
     line-height: 1;
     margin-bottom: 0;
-    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+    font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
 }
+
 .htmleaf-header h1 span {
-    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+    font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
     display: block;
     font-size: 60%;
     font-weight: 400;
     padding: 0.8em 0 0.5em 0;
     color: #c3c8cd;
 }
+
 /*nav*/
-.htmleaf-demo a{color: #1d7db1;text-decoration: none;}
-.htmleaf-demo{width: 100%;padding-bottom: 1.2em;}
-.htmleaf-demo a{display: inline-block;margin: 0.5em;padding: 0.6em 1em;border: 3px solid #1d7db1;font-weight: 700;}
-.htmleaf-demo a:hover{opacity: 0.6;}
-.htmleaf-demo a.current{background:#1d7db1;color: #fff; }
+.htmleaf-demo a {
+    color: #1d7db1;
+    text-decoration: none;
+}
+
+.htmleaf-demo {
+    width: 100%;
+    padding-bottom: 1.2em;
+}
+
+.htmleaf-demo a {
+    display: inline-block;
+    margin: 0.5em;
+    padding: 0.6em 1em;
+    border: 3px solid #1d7db1;
+    font-weight: 700;
+}
+
+.htmleaf-demo a:hover {
+    opacity: 0.6;
+}
+
+.htmleaf-demo a.current {
+    background: #1d7db1;
+    color: #fff;
+}
+
 /* Top Navigation Style */
 .htmleaf-links {
     position: relative;
@@ -242,8 +330,8 @@ header span {
     height: 100%;
     background: #dbdbdb;
     content: '';
-    -webkit-transform: rotate3d(0,0,1,22.5deg);
-    transform: rotate3d(0,0,1,22.5deg);
+    -webkit-transform: rotate3d(0, 0, 1, 22.5deg);
+    transform: rotate3d(0, 0, 1, 22.5deg);
 }
 
 .htmleaf-icon {
@@ -269,10 +357,20 @@ header span {
     speak: none;
     -webkit-font-smoothing: antialiased;
 }
+
 /* footer */
-.htmleaf-footer{width: 100%;padding-top: 10px;}
-.htmleaf-small{font-size: 0.8em;}
-.center{text-align: center;}
+.htmleaf-footer {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.htmleaf-small {
+    font-size: 0.8em;
+}
+
+.center {
+    text-align: center;
+}
 
 .related {
     color: #fff;
@@ -291,8 +389,9 @@ header span {
     text-align: center;
     margin: 20px 10px;
     padding: 25px;
-    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+    font-family: "Microsoft YaHei", "宋体", "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
 }
+
 .related a {
     display: inline-block;
     text-align: left;
@@ -314,16 +413,22 @@ header span {
     opacity: 0.8;
     border-radius: 4px;
 }
+
 .related a:hover img,
 .related a:active img {
     opacity: 1;
 }
-.related h3{font-family: "Microsoft YaHei", sans-serif;}
+
+.related h3 {
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
 .related a h3 {
     font-weight: 300;
     margin-top: 0.15em;
     color: #fff;
 }
+
 /* icomoon */
 .icon-htmleaf-home-outline:before {
     content: "\e5000";
@@ -337,8 +442,9 @@ header span {
     .htmleaf-header {
         padding: 3em 10% 4em;
     }
+
     .htmleaf-header h1 {
-        font-size:2em;
+        font-size: 2em;
     }
 }
 
@@ -351,9 +457,10 @@ header span {
 
 @media screen and (max-width: 30em) {
     .htmleaf-header h1 {
-        font-size:1.2em;
+        font-size: 1.2em;
     }
 }
+
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
     display: block;
 }
@@ -532,11 +639,12 @@ table {
 
 
 /*上传图标*/
-#file{
+#file {
     float: left;
     height: 100%;
 }
-#clipBtn{
+
+#clipBtn {
     float: right;
     height: 100%;
     width: 8rem;
@@ -547,23 +655,25 @@ table {
     font-size: 2rem;
     z-index: 999;
 }
-.foot-use{
+
+.foot-use {
     background: #fff;
     height: 10%;
     width: 100%;
-position: relative;
+    position: relative;
 }
 
 
 .uploader {
     position: absolute;
-width: 54%;
+    width: 54%;
     height: 8rem;
     left: 23%;
     cursor: default;
     height: 100%;
     float: left;
 }
+
 .uploader1 {
     position: absolute;
     width: 50%;
@@ -572,6 +682,7 @@ width: 54%;
     height: 100%;
     float: left;
 }
+
 .filename {
     position: absolute;
     outline: 0 none;
@@ -610,12 +721,13 @@ width: 54%;
     border: 0;
     padding: 0;
     margin: 0;
-    height:8rem;
+    height: 8rem;
     width: 100%;
     cursor: pointer;
-   border: solid 1px #ddd;
+    border: solid 1px #ddd;
     opacity: 0;
 }
+
 .uploader1 input[type=file] {
     position: absolute;
     top: 0;
@@ -624,12 +736,13 @@ width: 54%;
     border: 0;
     padding: 0;
     margin: 0;
-    height:8rem;
+    height: 8rem;
     width: 50%;
     cursor: pointer;
     border: solid 1px #ddd;
     opacity: 0;
 }
+
 input[type=button]::-moz-focus-inner {
     padding: 0;
     border: 0 none;
@@ -660,28 +773,74 @@ input[type=text]::-webkit-focus-inner {
     height: 100%;
 
 }
-.info{
+
+.info {
     margin-top: 4rem;
     border-top: solid 1px #ddd;
 }
-.info ul li{list-style-type: none;padding: 1.5rem 0 ;border-bottom: solid 1px #eee;width: 98%;margin: auto}
-.info ul li .left{width: 25%;float: left;position: relative;text-align: right;font-size: 1.5rem;color: #999}
-.info ul li .right{width: 72%;float: right;position: relative;text-align: left;font-size: 1.5rem}
-.info ul li .right input{outline: none;border:0}
-.btn-1{margin-top: 3rem;margin-bottom: 2rem;text-align: center}
-.btn-1 button{width: 90%;outline: none;border: none;background: #18b4ed;color: #fff;height: 4rem;display: inline-block;border-radius: 0.4rem;font-size: 2rem}
+
+.info ul li {
+    list-style-type: none;
+    padding: 1.5rem 0;
+    border-bottom: solid 1px #eee;
+    width: 98%;
+    margin: auto
+}
+
+.info ul li .left {
+    width: 25%;
+    float: left;
+    position: relative;
+    text-align: right;
+    font-size: 1.5rem;
+    color: #999
+}
+
+.info ul li .right {
+    width: 72%;
+    float: right;
+    position: relative;
+    text-align: left;
+    font-size: 1.5rem
+}
+
+.info ul li .right input {
+    outline: none;
+    border: 0
+}
+
+.btn-1 {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    text-align: center
+}
+
+.btn-1 button {
+    width: 90%;
+    outline: none;
+    border: none;
+    background: #18b4ed;
+    color: #fff;
+    height: 4rem;
+    display: inline-block;
+    border-radius: 0.4rem;
+    font-size: 2rem
+}
+
 /*所属行业*/
-#divselect,#divselectx,#divselecty{
+#divselect, #divselectx, #divselecty {
     width: 100%;
     position: relative;
 }
-#divselect small,#divselectx small,#divselecty small{
+
+#divselect small, #divselectx small, #divselecty small {
     font-size: 1.5rem;
     color: #999;
     width: 100%;
-display: block;
+    display: block;
 }
-#divselect .all,#divselectx .all,#divselecty .all{
+
+#divselect .all, #divselectx .all, #divselecty .all {
     display: none;
     width: 80%;
     max-height: 80%;
@@ -696,19 +855,22 @@ display: block;
     z-index: 99999;
     border-radius: 0.5rem;
 }
-#divselect .all li,#divselectx .all li,#divselecty .all li{
-text-indent: 1rem;
+
+#divselect .all li, #divselectx .all li, #divselecty .all li {
+    text-indent: 1rem;
     line-height: 5rem;
     padding: 0;
 
 }
-#divselect .all li a,#divselectx .all li a,#divselecty .all li a{
+
+#divselect .all li a, #divselectx .all li a, #divselecty .all li a {
     text-decoration: none;
     color: #666;
     font-size: 1.5rem;
     display: block;
 }
-.mask{
+
+.mask {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -719,15 +881,18 @@ text-indent: 1rem;
     left: 0;
     display: none;
 }
-.second{
+
+.second {
     margin-top: 1rem;
     border-top: solid 1px #eee;
     padding-top: 1rem;
 }
+
 .place::-webkit-input-placeholder {
     color: #f00;
 }
-.yulan{
+
+.yulan {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -740,16 +905,19 @@ text-indent: 1rem;
     z-index: 99999999;
 
 }
-.yulan #img0{
+
+.yulan #img0 {
     display: inline-block;
     max-width: 90%;
     line-height: 100%;
     max-height: 90%;
-    top: 40%; left: 50%;
+    top: 40%;
+    left: 50%;
     -webkit-transform: translate(-50%, -40%);
     position: absolute;
 }
-.enter{
+
+.enter {
     position: absolute;
     height: 10%;
     bottom: 0;
@@ -758,8 +926,9 @@ text-indent: 1rem;
     background: #fff;
 
 }
-.enter .btn-2,.enter .btn-3{
-border: 0;
+
+.enter .btn-2, .enter .btn-3 {
+    border: 0;
     outline: none;
     background: #18b4ed;
     color: #fff;
@@ -767,7 +936,8 @@ border: 0;
     width: 8rem;
     font-size: 2rem;
 }
-.success{
+
+.success {
     margin: auto;
     width: 100%;
     text-align: center;
@@ -775,16 +945,18 @@ border: 0;
     left: 0;
     position: absolute;
 }
-.install>p{
+
+.install > p {
     font-size: 1.7rem;
     color: #999;
     padding: 0 3rem;
     line-height: 2rem;
     position: absolute;
     bottom: 10rem;
-/*    text-align: center;*/
+    /*    text-align: center;*/
 }
-.install button{
+
+.install button {
     width: 90%;
     left: 5%;
     position: absolute;
@@ -798,78 +970,92 @@ border: 0;
     font-size: 2rem;
     border-radius: 0.5rem;
 }
-.yeah{
+
+.yeah {
     position: relative;
     margin-top: 5rem;
     text-align: center;
     top: 5rem;
 }
-.yeah>img{
+
+.yeah > img {
     width: 8rem;
     height: 8rem;
     padding: 1rem;
     border-radius: 100%;
     background: #18b4ed;
-    margin:1rem auto;
+    margin: 1rem auto;
     display: inline-block;
 }
-.yeah>p{
+
+.yeah > p {
     font-size: 2rem;
     color: #18b4ed;
     padding: 0 3rem;
     line-height: 3rem;
     text-align: center;
 }
-header .close{
+
+header .close {
     width: 2rem;
     height: 2rem;
     margin-top: 1.5rem;
     margin-left: 1rem;
 }
-.mybonus{
+
+.mybonus {
     background: #fff;
     margin-top: 5rem;
 }
-.mybonus li{
-    padding:0 1rem;
+
+.mybonus li {
+    padding: 0 1rem;
     border-bottom: solid 1px #eee;
 }
-.mybonus li .left{
+
+.mybonus li .left {
     float: left;
 }
-.mybonus li .right{
+
+.mybonus li .right {
     float: right;
     text-align: right;
 }
-.mybonus li .left h3{
-color: #333;
+
+.mybonus li .left h3 {
+    color: #333;
     font-size: 1.8rem;
     max-width: 12.1em;
     white-space: nowrap;
     overflow: hidden;
 }
-.mybonus li p{
+
+.mybonus li p {
     font-size: 1.8rem;
     color: #999;
     margin-top: 0.5rem;
     margin-bottom: 0.7rem;
 }
-.mybonus li .right h3{
+
+.mybonus li .right h3 {
     color: #ff5500;
     font-size: 1.8rem;
 }
-.scanmybonus{
+
+.scanmybonus {
     z-index: 99999999999999;
     position: absolute;
     top: 0;
     right: 0;
     height: 5rem;
 }
-.scanmybonus img{
+
+.scanmybonus img {
     height: 3rem;
     margin-top: 1rem;
 }
-article .bg{
+
+article .bg {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -878,7 +1064,8 @@ article .bg{
     z-index: -1;
     opacity: 0.7;
 }
-.sel-main{
+
+.sel-main {
     position: fixed;
     width: 80%;
     height: 50%;
@@ -887,7 +1074,8 @@ article .bg{
     top: 25%;
     border-radius: 0.8rem;
 }
-.self-help,.invitation{
+
+.self-help, .invitation {
     width: 90%;
     height: 40%;
     background: #eee;
@@ -895,121 +1083,143 @@ article .bg{
     position: absolute;
     border-radius: 0.6rem;
 }
-.self-help{
+
+.self-help {
     top: 2rem;
 }
-.invitation{
+
+.invitation {
     bottom: 2rem;
 }
-.self-help .icon,.invitation .icon{
+
+.self-help .icon, .invitation .icon {
     height: 60%;
     float: left;
-    top:20%;
+    top: 20%;
     position: relative;
     left: 1rem;
 }
-.self-help .main,.invitation .main{
+
+.self-help .main, .invitation .main {
     display: inline-block;
     float: left;
     position: relative;
     left: 2rem;
 }
-.self-help .main h2,.invitation .main h2{
+
+.self-help .main h2, .invitation .main h2 {
     font-size: 1.8rem;
     margin-top: 2.8rem;
     color: #242424;
 }
-.self-help .main p,.invitation .main p{
+
+.self-help .main p, .invitation .main p {
     font-size: 1.3rem;
     margin-top: 0.5rem;
     color: #999;
 }
-.self-help .main p a,.invitation .main p a{
+
+.self-help .main p a, .invitation .main p a {
     font-size: 1.3rem;
     color: #eb9e19;
 }
-.self-help .sel,.invitation .sel{
+
+.self-help .sel, .invitation .sel {
     height: 2rem;
     position: absolute;
     top: 50%;
     margin-top: -1rem;
-    right:1rem;
+    right: 1rem;
 }
+
 @media screen and (max-width: 414px) and (min-width: 376px) {
-    .mybonus li .left h3{
+    .mybonus li .left h3 {
         color: #333;
         font-size: 1.8rem;
         max-width: 20em;
         white-space: nowrap;
         overflow: hidden;
     }
-    .self-help .main,.invitation .main{
+
+    .self-help .main, .invitation .main {
         display: inline-block;
         float: left;
         position: relative;
         left: 3rem;
     }
-    .self-help .main h2,.invitation .main h2{
+
+    .self-help .main h2, .invitation .main h2 {
         font-size: 2.1rem;
         margin-top: 3.5rem;
         color: #242424;
     }
-    .self-help .main p,.invitation .main p{
+
+    .self-help .main p, .invitation .main p {
         font-size: 1.55rem;
         margin-top: 0.5rem;
         color: #999;
     }
-    .self-help .main p a,.invitation .main p a{
+
+    .self-help .main p a, .invitation .main p a {
         font-size: 1.55rem;
         color: #eb9e19;
     }
 }
+
 @media screen and (max-width: 375px) and (min-width: 321px) {
-    .self-help .main h2,.invitation .main h2{
+    .self-help .main h2, .invitation .main h2 {
         font-size: 1.8rem;
         margin-top: 3.5rem;
         color: #242424;
     }
-    .self-help .main,.invitation .main{
+
+    .self-help .main, .invitation .main {
         display: inline-block;
         float: left;
         position: relative;
         left: 3rem;
     }
-    .mybonus li .left h3{
+
+    .mybonus li .left h3 {
         color: #333;
         font-size: 1.8rem;
         max-width: 14em;
         white-space: nowrap;
         overflow: hidden;
     }
-    .self-help .main p,.invitation .main p{
+
+    .self-help .main p, .invitation .main p {
         font-size: 1.3rem;
         margin-top: 0.5rem;
         color: #999;
     }
-    .self-help .main p a,.invitation .main p a{
+
+    .self-help .main p a, .invitation .main p a {
         font-size: 1.3rem;
         color: #eb9e19;
     }
 }
-@media screen and (max-width: 320px){
-    .self-help .main h2,.invitation .main h2{
+
+@media screen and (max-width: 320px) {
+    .self-help .main h2, .invitation .main h2 {
         font-size: 1.8rem;
         margin-top: 2.5rem;
         color: #242424;
     }
-    .self-help .main p,.invitation .main p{
+
+    .self-help .main p, .invitation .main p {
         font-size: 1.3rem;
         margin-top: 0.5rem;
         color: #999;
     }
-    .self-help .main p a,.invitation .main p a{
+
+    .self-help .main p a, .invitation .main p a {
         font-size: 1.3rem;
         color: #eb9e19;
     }
 }
-header .scanbonus{
+
+header .scanbonus {
     width: 40%;
     height: 5rem;
     background: #18b4ed;
@@ -1022,42 +1232,49 @@ header .scanbonus{
     right: 1rem;
     display: none;
 }
-.invit{
-   position: absolute;
+
+.invit {
+    position: absolute;
     width: 100%;
     top: 5rem;
 }
-.invit h1{
+
+.invit h1 {
     font-size: 6rem;
     color: #18b4ed;
     text-align: center;
     line-height: 4rem;
 }
-.invit p{
+
+.invit p {
     text-align: center;
     color: #18b4ed;
     font-size: 2.2rem;
     margin-top: -2rem;
 }
-.make-money .make{
+
+.make-money .make {
     position: absolute;
     width: 50%;
     left: 25%;
     top: 22rem;
 }
-.make-money .make .font-1{
-color: #ff5500;
+
+.make-money .make .font-1 {
+    color: #ff5500;
     font-size: 2.2rem;
     position: absolute;
     top: 2.2rem;
 }
-.make-money .make .font-2{
+
+.make-money .make .font-2 {
     color: #ff5500;
     font-size: 11rem;
     position: absolute;
     left: 2.2rem;
 }
-.make-money .make .font-3{
+
+.make-money .make .font-3 {
     color: #ff5500;
     font-size: 2.2rem;
     position: absolute;
@@ -1065,14 +1282,16 @@ color: #ff5500;
     top: 9rem;
     top: 7.5rem;
 }
-.make-money img{
-     width: 80%;
+
+.make-money img {
+    width: 80%;
     left: 10%;
     position: absolute;
     top: 18rem;
     z-index: -11;
 }
-.btn-4{
+
+.btn-4 {
     border: 0;
     width: 90%;
     height: 5rem;
@@ -1086,7 +1305,8 @@ color: #ff5500;
     border-radius: 0.5rem;
     bottom: 5rem;
 }
-.btn-5{
+
+.btn-5 {
     border: 0;
     width: 90%;
     height: 5rem;
@@ -1100,7 +1320,8 @@ color: #ff5500;
     border-radius: 0.5rem;
     bottom: 3rem;
 }
-.scan-a{
+
+.scan-a {
     position: fixed;
     width: 90%;
     left: 5%;
@@ -1111,7 +1332,8 @@ color: #ff5500;
     height: 3rem;
     line-height: 3rem;
 }
-.qrcode{
+
+.qrcode {
     position: absolute;
     width: 90%;
     left: 5%;
@@ -1119,27 +1341,31 @@ color: #ff5500;
     background: #fff;
     border-radius: .5rem;
 }
-.qrcode h2{
+
+.qrcode h2 {
     font-size: 1.5rem;
     text-align: center;
     margin-top: 2rem;
     color: #999;
     font-weight: normal;
 }
-.qrcode p{
+
+.qrcode p {
     text-align: center;
     margin-top: 1rem;
     font-size: 1.2rem;
     color: #999;
 }
-.qrcode img{
+
+.qrcode img {
     position: relative;
     width: 54%;
     left: 23%;
     margin-top: 2rem;
     margin-bottom: 3rem;
 }
-.share{
+
+.share {
     position: absolute;
     text-align: center;
     bottom: 9rem;
@@ -1147,7 +1373,8 @@ color: #ff5500;
     font-size: 1.5rem;
     color: #999;
 }
-.share a{
+
+.share a {
     font-size: 1.5rem;
     color: #ff5500;
 }

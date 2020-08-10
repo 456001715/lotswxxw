@@ -22,11 +22,12 @@ public class CloudMusicUtil {
 
     /**
      * 获取网易云反爬虫->加密参数(params,encSecKey)
+     *
      * @param data 请求参数
      * @return Map ->params,encSecKey
      * @throws Exception
      */
-    public static Map<String, String> arithmetic(Map<String,Object> data) throws Exception {
+    public static Map<String, String> arithmetic(Map<String, Object> data) throws Exception {
         //将参数转成json字符串
         String text = new JSONObject(data).toString();
         //私钥，随机16位字符串（自己可改）

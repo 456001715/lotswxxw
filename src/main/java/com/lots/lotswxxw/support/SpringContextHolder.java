@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Spring的ApplicationContext的持有者,可以用静态方法的方式获取spring容器中的bean
+ *
  * @author lots
  * @date 21:07 2018/4/18
  */
@@ -29,6 +30,7 @@ public class SpringContextHolder implements ApplicationContextAware {
         assertApplicationContext();
         return applicationContext;
     }
+
     @SuppressWarnings("unchecked")
     public static <T> T getBean(String beanName) {
         assertApplicationContext();

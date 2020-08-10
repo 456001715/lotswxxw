@@ -5,6 +5,7 @@ import com.lots.lotswxxw.shiro.provider.ShiroFilterRulesProvider;
 import com.lots.lotswxxw.shiro.rule.RolePermRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**

@@ -24,24 +24,25 @@ public class JsonWebTokenUtil {
     public static final String SECRET_KEY = "?::4343fdf4fdf6cvf):";
     private static final ObjectMapper MAPPER = new ObjectMapper();
     private static final int COUNT_2 = 2;
-    private static  CompressionCodecResolver codecResolver = new DefaultCompressionCodecResolver();
+    private static CompressionCodecResolver codecResolver = new DefaultCompressionCodecResolver();
 
     private JsonWebTokenUtil() {
 
     }
 
     /**
-     *   json web token 签发
-     * @param id 令牌ID
-     * @param subject 用户ID
-     * @param issuer 签发人
-     * @param period 有效时间(毫秒)
-     * @param roles 访问主张-角色
+     * json web token 签发
+     *
+     * @param id          令牌ID
+     * @param subject     用户ID
+     * @param issuer      签发人
+     * @param period      有效时间(毫秒)
+     * @param roles       访问主张-角色
      * @param permissions 访问主张-权限
-     * @param algorithm 加密算法
+     * @param algorithm   加密算法
      * @return java.lang.String
      */
-    public static String issueJWT(String id,String subject, String issuer, Long period, String roles, String permissions, SignatureAlgorithm algorithm) {
+    public static String issueJWT(String id, String subject, String issuer, Long period, String roles, String permissions, SignatureAlgorithm algorithm) {
         // 当前时间戳
         Long currentTimeMillis = System.currentTimeMillis();
         // 秘钥
@@ -60,18 +61,18 @@ public class JsonWebTokenUtil {
         jwtBuilder.setIssuedAt(new Date(currentTimeMillis));
         // 设置到期时间
         if (null != period) {
-            jwtBuilder.setExpiration(new Date(currentTimeMillis+period*1000));
+            jwtBuilder.setExpiration(new Date(currentTimeMillis + period * 1000));
         }
         if (!StringUtils.isEmpty(roles)) {
-            jwtBuilder.claim("roles",roles);
+            jwtBuilder.claim("roles", roles);
         }
         if (!StringUtils.isEmpty(permissions)) {
-            jwtBuilder.claim("perms",permissions);
+            jwtBuilder.claim("perms", permissions);
         }
         // 压缩，可选GZIP
         jwtBuilder.compressWith(CompressionCodecs.DEFLATE);
         // 加密设置
-        jwtBuilder.signWith(algorithm,secreKeyBytes);
+        jwtBuilder.signWith(algorithm, secreKeyBytes);
 
         return jwtBuilder.compact();
     }
@@ -79,7 +80,7 @@ public class JsonWebTokenUtil {
     /**
      * 解析JWT的Payload
      */
-    public static String parseJwtPayload(String jwt){
+    public static String parseJwtPayload(String jwt) {
         Assert.hasText(jwt, "JWT String argument cannot be null or empty.");
         String base64UrlEncodedHeader = null;
         String base64UrlEncodedPayload = null;
@@ -89,7 +90,7 @@ public class JsonWebTokenUtil {
         for (char c : jwt.toCharArray()) {
             if (c == '.') {
                 CharSequence tokenSeq = io.jsonwebtoken.lang.Strings.clean(sb);
-                String token = tokenSeq!=null?tokenSeq.toString():null;
+                String token = tokenSeq != null ? tokenSeq.toString() : null;
 
                 if (delimiterCount == 0) {
                     base64UrlEncodedHeader = token;
@@ -170,7 +171,7 @@ public class JsonWebTokenUtil {
      * description 从json数据中读取格式化map
      *
      * @param val 1
-     * @return java.util.Map<java.lang.String,java.lang.Object>
+     * @return java.util.Map<java.lang.String, java.lang.Object>
      */
     @SuppressWarnings("unchecked")
     public static Map<String, Object> readValue(String val) {

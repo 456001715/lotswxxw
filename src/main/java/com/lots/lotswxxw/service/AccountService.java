@@ -16,6 +16,7 @@ public interface AccountService {
      * @return Account
      */
     Account loadAccount(String appId);
+
     /**
      * description TODO
      *
@@ -23,6 +24,7 @@ public interface AccountService {
      * @return boolean
      */
     boolean isAccountExistByUid(String uid);
+
     /**
      * description TODO
      *
@@ -30,6 +32,7 @@ public interface AccountService {
      * @return boolean
      */
     boolean registerAccount(AuthUser account);
+
     /**
      * description TODO
      *

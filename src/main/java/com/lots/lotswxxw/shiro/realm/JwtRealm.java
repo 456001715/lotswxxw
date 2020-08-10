@@ -42,13 +42,13 @@ public class JwtRealm extends AuthorizingRealm {
                 && payload.charAt(payload.length() - 1) == RIGHT) {
 
             Map<String, Object> payloadMap = JsonWebTokenUtil.readValue(payload.substring(4));
-            Set<String> roles = JsonWebTokenUtil.split((String)payloadMap.get("roles"));
-            Set<String> permissions = JsonWebTokenUtil.split((String)payloadMap.get("perms"));
-            SimpleAuthorizationInfo info =  new SimpleAuthorizationInfo();
-            if(null!=roles&&!roles.isEmpty()) {
+            Set<String> roles = JsonWebTokenUtil.split((String) payloadMap.get("roles"));
+            Set<String> permissions = JsonWebTokenUtil.split((String) payloadMap.get("perms"));
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            if (null != roles && !roles.isEmpty()) {
                 info.setRoles(roles);
             }
-            if(null!=permissions&&!permissions.isEmpty()) {
+            if (null != permissions && !permissions.isEmpty()) {
                 info.setStringPermissions(permissions);
             }
             return info;
@@ -61,24 +61,24 @@ public class JwtRealm extends AuthorizingRealm {
         if (!(authenticationToken instanceof JwtToken)) {
             return null;
         }
-        JwtToken jwtToken = (JwtToken)authenticationToken;
-        String jwt = (String)jwtToken.getCredentials();
+        JwtToken jwtToken = (JwtToken) authenticationToken;
+        String jwt = (String) jwtToken.getCredentials();
         String payload = null;
-        try{
+        try {
             // 预先解析Payload
             // 没有做任何的签名校验
             payload = JsonWebTokenUtil.parseJwtPayload(jwt);
-        } catch(MalformedJwtException e){
+        } catch (MalformedJwtException e) {
             //令牌格式错误
             throw new AuthenticationException("errJwt");
-        } catch(Exception e){
+        } catch (Exception e) {
             //令牌无效
             throw new AuthenticationException("errsJwt");
         }
-        if(null == payload){
+        if (null == payload) {
             //令牌无效
             throw new AuthenticationException("errJwt");
         }
-        return new SimpleAuthenticationInfo("jwt:"+payload,jwt,this.getName());
+        return new SimpleAuthenticationInfo("jwt:" + payload, jwt, this.getName());
     }
 }

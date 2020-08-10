@@ -11,7 +11,8 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 /**
- *   这里是登录认证realm
+ * 这里是登录认证realm
+ *
  * @author lots
  * @date 21:08 2018/2/10
  */
@@ -48,17 +49,17 @@ public class PasswordRealm extends AuthorizingRealm {
             return null;
         }
 
-        if(null==authenticationToken.getPrincipal()||null==authenticationToken.getCredentials()){
+        if (null == authenticationToken.getPrincipal() || null == authenticationToken.getCredentials()) {
             throw new UnknownAccountException();
         }
-        String appId = (String)authenticationToken.getPrincipal();
+        String appId = (String) authenticationToken.getPrincipal();
         Account account = accountProvider.loadAccount(appId);
         if (account != null) {
             // 用盐对密码进行MD5加密
-            ((PasswordToken) authenticationToken).setPassword(Md5Util.md5(((PasswordToken) authenticationToken).getPassword()+account.getSalt()));
-            return new SimpleAuthenticationInfo(appId,account.getPassword(),getName());
+            ((PasswordToken) authenticationToken).setPassword(Md5Util.md5(((PasswordToken) authenticationToken).getPassword() + account.getSalt()));
+            return new SimpleAuthenticationInfo(appId, account.getPassword(), getName());
         } else {
-            return new SimpleAuthenticationInfo(appId,"",getName());
+            return new SimpleAuthenticationInfo(appId, "", getName());
         }
 
     }

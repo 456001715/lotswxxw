@@ -35,8 +35,8 @@ public class RestPathMatchingFilterChainResolver extends PathMatchingFilterChain
     /**
      * description TODO 重写filterChain匹配
      *
-     * @param request 1
-     * @param response 2
+     * @param request       1
+     * @param response      2
      * @param originalChain 3
      * @return javax.servlet.FilterChain
      */
@@ -60,7 +60,7 @@ public class RestPathMatchingFilterChainResolver extends PathMatchingFilterChain
                     return null;
                 }
 
-                pathPattern = (String)var6.next();
+                pathPattern = (String) var6.next();
 
                 strings = pathPattern.split("==");
                 if (strings.length == NUM_2) {
@@ -75,9 +75,9 @@ public class RestPathMatchingFilterChainResolver extends PathMatchingFilterChain
                 }
                 pathPattern = strings[0];
                 if (pathPattern != null && pathPattern.endsWith(DEFAULT_PATH_SEPARATOR)) {
-                    pathPattern = pathPattern.substring(0, pathPattern.length() -1);
+                    pathPattern = pathPattern.substring(0, pathPattern.length() - 1);
                 }
-            } while(!this.pathMatches(pathPattern, requestURI) || flag);
+            } while (!this.pathMatches(pathPattern, requestURI) || flag);
 
             if (LOGGER.isTraceEnabled()) {
                 LOGGER.trace("Matched path pattern [" + pathPattern + "] for requestURI [" + requestURI + "].  Utilizing corresponding filter chain...");

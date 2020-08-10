@@ -36,7 +36,7 @@ public interface UserService {
     /**
      * description TODO
      *
-     * @param appId 1
+     * @param appId  1
      * @param roleId 2
      * @return boolean
      */
@@ -45,11 +45,11 @@ public interface UserService {
     /**
      * description TODO
      *
-     * @param uid 1
+     * @param uid    1
      * @param roleId 2
      * @return boolean
      */
-    boolean deleteAuthorityUserRole(String uid,int roleId);
+    boolean deleteAuthorityUserRole(String uid, int roleId);
 
     /**
      * description TODO

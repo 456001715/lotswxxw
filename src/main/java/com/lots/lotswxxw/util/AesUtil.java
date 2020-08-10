@@ -5,6 +5,7 @@ import org.apache.commons.codec.binary.Base64;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -14,6 +15,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * AES 双向加密解密工具
+ *
  * @author lots
  * @date 20:04 2018/2/11
  */
@@ -22,12 +24,12 @@ public class AesUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(AesUtil.class);
 
     /**
-     *  默认加密秘钥 AES加密秘钥为约定16位，小于16位会报错
+     * 默认加密秘钥 AES加密秘钥为约定16位，小于16位会报错
      */
     private static final String ENCODE_RULES = "lotsHaHaHaHa";
 
     /**
-     *  默认算法
+     * 默认算法
      */
     private static final String ALGORITHM_STR = "AES/CBC/PKCS5Padding";
 
@@ -47,7 +49,7 @@ public class AesUtil {
     /**
      * description 加密 aes cbc模式
      *
-     * @param content 1
+     * @param content    1
      * @param encryptKey 2
      * @return java.lang.String
      */
@@ -64,10 +66,10 @@ public class AesUtil {
             //根据密码器的初始化方式--加密：将数据加密
             byte[] byteAES = cipher.doFinal(byteEncode);
             //将加密后的byte[]数据转换为Base64字符串
-            return new String(Base64.encodeBase64(byteAES),StandardCharsets.UTF_8);
+            return new String(Base64.encodeBase64(byteAES), StandardCharsets.UTF_8);
             //将字符串返回
         } catch (Exception e) {
-            LOGGER.error("密文加密失败"+e.getMessage(),e);
+            LOGGER.error("密文加密失败" + e.getMessage(), e);
             throw new RuntimeException("密文加密失败");
         }
         //如果有错就返加null
@@ -78,7 +80,7 @@ public class AesUtil {
     /**
      * description 解密
      *
-     * @param content 1
+     * @param content    1
      * @param decryptKey 2
      * @return java.lang.String
      */
@@ -98,15 +100,15 @@ public class AesUtil {
             byte[] byteDecode = cipher.doFinal(bytesContent);
             return new String(byteDecode, StandardCharsets.UTF_8);
         } catch (NoSuchAlgorithmException e) {
-            LOGGER.error("没有指定的加密算法::"+e.getMessage(),e);
+            LOGGER.error("没有指定的加密算法::" + e.getMessage(), e);
         } catch (IllegalBlockSizeException e) {
-            LOGGER.error("非法的块大小"+"::"+e.getMessage(),e);
+            LOGGER.error("非法的块大小" + "::" + e.getMessage(), e);
             throw new RuntimeException("密文解密失败");
         } catch (NullPointerException e) {
-            LOGGER.error("秘钥解析空指针异常"+"::"+e.getMessage(),e);
+            LOGGER.error("秘钥解析空指针异常" + "::" + e.getMessage(), e);
             throw new RuntimeException("秘钥解析空指针异常");
         } catch (Exception e) {
-            LOGGER.error("秘钥AES解析出现未知错误"+"::"+e.getMessage(),e);
+            LOGGER.error("秘钥AES解析出现未知错误" + "::" + e.getMessage(), e);
             throw new RuntimeException("密文解密失败");
         }
         //如果有错就返null

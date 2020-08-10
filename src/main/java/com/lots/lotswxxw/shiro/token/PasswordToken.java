@@ -7,7 +7,7 @@ import org.apache.shiro.authc.AuthenticationToken;
  * @author lots
  * @date 12:34 2018/2/27
  */
-public class PasswordToken implements AuthenticationToken{
+public class PasswordToken implements AuthenticationToken {
 
     private static final long serialVersionUID = 1L;
     private String appId;
@@ -16,17 +16,19 @@ public class PasswordToken implements AuthenticationToken{
     private String host;
     private String tokenKey;
 
-    public PasswordToken(String appId, String password, String timestamp, String host,String tokenKey) throws Exception {
+    public PasswordToken(String appId, String password, String timestamp, String host, String tokenKey) throws Exception {
         this.appId = appId;
         this.timestamp = timestamp;
         this.host = host;
-        this.password = AesUtil.aesDecode(password,tokenKey);
+        this.password = AesUtil.aesDecode(password, tokenKey);
         this.tokenKey = tokenKey;
 
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public String getPassword() {
         return this.password;
     }

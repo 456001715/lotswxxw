@@ -11,9 +11,13 @@ import java.util.List;
  */
 public interface GetTwoMapper {
     List<GetTwoPO> findGetTwoByCondition(GetTwoPO entity);
+
     int insertGetTwo(GetTwoPO entity);
-    int deleteGetTwoByIds(List<Integer>ids);
+
+    int deleteGetTwoByIds(List<Integer> ids);
+
     int updateGetTwo(GetTwoPO entity);
+
     List<GetTwoPO> getNowList();
 
 }

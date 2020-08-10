@@ -33,32 +33,29 @@ public class GetController {
 
     //todo 定时刷新
     @GetMapping("two")
-    public JsonResult getTwo(){
+    public JsonResult getTwo() {
         return getService.getTwo();
     }
 
     @PostMapping("buyTwo")
-    public JsonResult getBuyTwo(@RequestBody GetTwoPO get){
+    public JsonResult getBuyTwo(@RequestBody GetTwoPO get) {
         return getService.buyTwo(get);
     }
 
     @GetMapping("music")
-    public JsonResult getMusic(String id,String type){
-        return getService.getMusic(id,type);
+    public JsonResult getMusic(String id, String type) {
+        return getService.getMusic(id, type);
     }
 
     @GetMapping("musicPage")
-    public JsonResult getMusicPage(){
+    public JsonResult getMusicPage() {
         return getService.getMusicPage();
     }
 
     @GetMapping("port")
-    public JsonResult getPort(@RequestParam("ip") String ip,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
-        return getService.getPort(ip,start,end);
+    public JsonResult getPort(@RequestParam("ip") String ip, @RequestParam("start") Integer start, @RequestParam("end") Integer end) {
+        return getService.getPort(ip, start, end);
     }
-
-
-
 
 
 }

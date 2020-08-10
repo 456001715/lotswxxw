@@ -10,8 +10,12 @@ import com.lots.lotswxxw.domain.vo.JsonResult;
  */
 public interface GetService {
     public JsonResult getTwo();
-    public JsonResult getMusic(String id,String type);
+
+    public JsonResult getMusic(String id, String type);
+
     public JsonResult getMusicPage();
-    public JsonResult getPort(String ip,Integer start,Integer end);
+
+    public JsonResult getPort(String ip, Integer start, Integer end);
+
     public JsonResult buyTwo(GetTwoPO get);
 }

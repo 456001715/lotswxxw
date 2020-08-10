@@ -1,6 +1,6 @@
 /**
-  * Copyright 2020 bejson.com 
-  */
+ * Copyright 2020 bejson.com
+ */
 package com.lots.lotswxxw.domain.vo.music;
 
 /**
@@ -15,32 +15,37 @@ public class L {
     private int fid;
     private long size;
     private int vd;
+
     public void setBr(long br) {
-         this.br = br;
-     }
-     public long getBr() {
-         return br;
-     }
+        this.br = br;
+    }
+
+    public long getBr() {
+        return br;
+    }
 
     public void setFid(int fid) {
-         this.fid = fid;
-     }
-     public int getFid() {
-         return fid;
-     }
+        this.fid = fid;
+    }
+
+    public int getFid() {
+        return fid;
+    }
 
     public void setSize(long size) {
-         this.size = size;
-     }
-     public long getSize() {
-         return size;
-     }
+        this.size = size;
+    }
+
+    public long getSize() {
+        return size;
+    }
 
     public void setVd(int vd) {
-         this.vd = vd;
-     }
-     public int getVd() {
-         return vd;
-     }
+        this.vd = vd;
+    }
+
+    public int getVd() {
+        return vd;
+    }
 
 }

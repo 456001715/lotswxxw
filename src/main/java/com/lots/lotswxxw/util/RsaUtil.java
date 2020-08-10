@@ -3,6 +3,7 @@ package com.lots.lotswxxw.util;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import javax.crypto.Cipher;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
@@ -17,6 +18,7 @@ import java.util.Map;
  * 非对称加密算法 RSA
  * 使用RSA明文长度不得超过秘钥长度否则会抛诸如
  * javax.crypto.IllegalBlockSizeException: Data must not be longer than xxxx bytes 的异常)。
+ *
  * @author from internet
  */
 public class RsaUtil {
@@ -81,8 +83,8 @@ public class RsaUtil {
             return Base64.encodeBase64URLSafeString(cipher.doFinal(data.getBytes(StandardCharsets.UTF_8)));
 
         } catch (Exception e) {
-           logger.warn(e.getMessage());
-           return null;
+            logger.warn(e.getMessage());
+            return null;
         }
     }
 

@@ -2,6 +2,7 @@ package com.lots.lotswxxw.dao;
 
 import com.lots.lotswxxw.domain.bo.AuthRole;
 import org.springframework.dao.DataAccessException;
+
 import java.util.List;
 
 /**
@@ -65,6 +66,7 @@ public interface AuthRoleMapper {
 
     /**
      * description TODO
+     *
      * @return java.util.List<AuthRole>
      * @throws DataAccessException when
      */

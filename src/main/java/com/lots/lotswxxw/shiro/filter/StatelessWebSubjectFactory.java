@@ -6,7 +6,8 @@ import org.apache.shiro.subject.SubjectContext;
 import org.apache.shiro.web.mgt.DefaultWebSubjectFactory;
 
 /**
- *   对于无状态的TOKEN不创建session 这里都不使用session
+ * 对于无状态的TOKEN不创建session 这里都不使用session
+ *
  * @author lots
  * @date 21:52 2018/3/3
  */
@@ -19,6 +20,7 @@ public class StatelessWebSubjectFactory extends DefaultWebSubjectFactory {
         return super.createSubject(context);
     }
 
-    public StatelessWebSubjectFactory() {}
+    public StatelessWebSubjectFactory() {
+    }
 
 }

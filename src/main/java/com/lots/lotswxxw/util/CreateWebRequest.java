@@ -1,7 +1,6 @@
 package com.lots.lotswxxw.util;
 
 
-
 import com.lots.lotswxxw.domain.vo.JsonResult;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -22,8 +21,9 @@ public class CreateWebRequest {
 
     /**
      * 发送请求
-     * @param url api接口地址
-     * @param data 请求参数
+     *
+     * @param url    api接口地址
+     * @param data   请求参数
      * @param cookie 请求cookie
      * @return 如果成功返回json结果数据
      */
@@ -36,7 +36,7 @@ public class CreateWebRequest {
                     userAgent(randomUserAgent()).
                     data(arithmeticParam).
                     //解决评论接口460问题
-                    cookies(cookie).cookie("_ntes_nuid","1234567890123456").
+                            cookies(cookie).cookie("_ntes_nuid", "1234567890123456").
                     //header请求头
                             header("Accept", "*/*").
                             header("Accept-Language", "zh-CN,zh;q=0.8,gl;q=0.6,zh-TW;q=0.4").
@@ -57,12 +57,13 @@ public class CreateWebRequest {
 
     /**
      * 发送登陆请求,登陆成功保存cookie
-     * @param url api接口地址
-     * @param data 请求参数
+     *
+     * @param url      api接口地址
+     * @param data     请求参数
      * @param response
      * @return 如果成功返回json结果数据
      */
-    public static String createLoginRequest(String url, Map<String, Object> data, Map<String,String> cookie, HttpServletResponse response) {
+    public static String createLoginRequest(String url, Map<String, Object> data, Map<String, String> cookie, HttpServletResponse response) {
         try {
             //得到加密参数
             Map<String, String> arithmeticParam = CloudMusicUtil.arithmetic(data);
@@ -82,12 +83,12 @@ public class CreateWebRequest {
             //设置cookie
             String token = cookies.get("MUSIC_U");
             System.out.println(cookies.get("MUSIC_U"));
-            Cookie MUSIC_U=new Cookie("MUSIC_U",cookies.get("MUSIC_U"));
-            Cookie __csrf=new Cookie("__csrf",cookies.get("__csrf"));
-            Cookie appver=new Cookie("__csrf",cookies.get("1.5.9"));
-            Cookie os=new Cookie("__csrf",cookies.get("osx"));
-            Cookie channel=new Cookie("__csrf",cookies.get("netease"));
-            Cookie osver=new Cookie("__csrf",cookies.get("%E7%89%88%E6%9C%AC%2010.13.2%EF%BC%88%E7%89%88%E5%8F%B7%2017C88%EF%BC%89"));
+            Cookie MUSIC_U = new Cookie("MUSIC_U", cookies.get("MUSIC_U"));
+            Cookie __csrf = new Cookie("__csrf", cookies.get("__csrf"));
+            Cookie appver = new Cookie("__csrf", cookies.get("1.5.9"));
+            Cookie os = new Cookie("__csrf", cookies.get("osx"));
+            Cookie channel = new Cookie("__csrf", cookies.get("netease"));
+            Cookie osver = new Cookie("__csrf", cookies.get("%E7%89%88%E6%9C%AC%2010.13.2%EF%BC%88%E7%89%88%E5%8F%B7%2017C88%EF%BC%89"));
             response.addCookie(MUSIC_U);
             response.addCookie(__csrf);
             response.addCookie(appver);
@@ -95,13 +96,13 @@ public class CreateWebRequest {
             response.addCookie(channel);
             response.addCookie(osver);
             response.addCookie(__csrf);
-            Map<String,Object> result=new HashMap();
-            if(token!=null&&!"".equals(token)){
-                result.put("code",200);
-                result.put("token",token);
-            }else{
-                result.put("code",500);
-                result.put("msg","获取不到token,登录失败");
+            Map<String, Object> result = new HashMap();
+            if (token != null && !"".equals(token)) {
+                result.put("code", 200);
+                result.put("token", token);
+            } else {
+                result.put("code", 500);
+                result.put("msg", "获取不到token,登录失败");
             }
             //返回结果数据
 //            return new JSONObject(result).toString();
@@ -114,23 +115,25 @@ public class CreateWebRequest {
 
     /**
      * 获取cookie 需要登陆的接口需要该cookie才能访问
+     *
      * @param request
      * @return cookie信息
      */
-    public static Map<String,String> getCookie(HttpServletRequest request){
+    public static Map<String, String> getCookie(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        Map<String,String> cookie=new HashMap();
-        if(cookies==null){
+        Map<String, String> cookie = new HashMap();
+        if (cookies == null) {
             return cookie;
         }
-        for (Cookie c:cookies){
-            cookie.put(c.getName(),c.getValue());
+        for (Cookie c : cookies) {
+            cookie.put(c.getName(), c.getValue());
         }
         return cookie;
     }
 
     /**
      * 返回随机的UserAgent
+     *
      * @return
      */
     private static String randomUserAgent() {

@@ -12,7 +12,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- *  swagger2配置 默认地址http://localhost:8080/swagger-ui.html
+ * swagger2配置 默认地址http://localhost:8080/swagger-ui.html
+ *
  * @author lots
  * @date 21:05 2018/3/17
  */
@@ -20,20 +21,20 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 
-	@Bean
-	public Docket createRestApi() {
-		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
-				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.lots.lotswxxw.controller"))
-				.paths(PathSelectors.any()).build();
-	}
+    @Bean
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.lots.lotswxxw.controller"))
+                .paths(PathSelectors.any()).build();
+    }
 
-	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder()
-				.title("lotswxxw:"+" Restful APIs")
-				.description("restful apis docs")
-				.termsOfServiceUrl("lots.com").version("1.0").build();
-	}
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("lotswxxw:" + " Restful APIs")
+                .description("restful apis docs")
+                .termsOfServiceUrl("lots.com").version("1.0").build();
+    }
 
 
 }

@@ -16,7 +16,8 @@
 
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:12345/lots" userId="root"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:12345/lots"
+                        userId="root"
                         password="admin">
         </jdbcConnection>
         <!--不知道做什么用的。。。反正贴上来了~-->

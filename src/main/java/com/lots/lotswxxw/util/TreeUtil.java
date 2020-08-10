@@ -1,11 +1,13 @@
 package com.lots.lotswxxw.util;
 
 import com.lots.lotswxxw.domain.vo.BaseTreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 树结构相关工具类
+ *
  * @author lots
  * @date 16:55 2018/3/20
  */
@@ -16,7 +18,7 @@ public class TreeUtil {
      * description 用双重循环建树
      *
      * @param treeNodes 1 树节点列表, root根标志
-     * @param root 2
+     * @param root      2
      * @return java.util.List<T>
      */
     public static <T extends BaseTreeNode> List<T> buildTreeBy2Loop(List<T> treeNodes, Object root) {
@@ -28,7 +30,7 @@ public class TreeUtil {
 
             for (T treeNode : treeNodes) {
                 if (node.getId().equals(treeNode.getParentId())) {
-                    if (node.getChildren()==null) {
+                    if (node.getChildren() == null) {
                         node.setChildren(new ArrayList<>());
                     }
                     node.addChilren(treeNode);

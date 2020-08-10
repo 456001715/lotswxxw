@@ -8,6 +8,7 @@ import com.lots.lotswxxw.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 
@@ -31,31 +32,31 @@ public class RoleServiceImpl implements RoleService {
         authRoleResource.setResourceId(resourceId);
         authRoleResource.setCreateTime(new Date());
         authRoleResource.setUpdateTime(new Date());
-        return authRoleResourceMapper.insert(authRoleResource) == 1? Boolean.TRUE : Boolean.FALSE;
+        return authRoleResourceMapper.insert(authRoleResource) == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override
     public boolean addRole(AuthRole role) throws DataAccessException {
         int num = authRoleMapper.insertSelective(role);
-        return num == 1? Boolean.TRUE : Boolean.FALSE;
+        return num == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override
     public boolean updateRole(AuthRole role) throws DataAccessException {
         int num = authRoleMapper.updateByPrimaryKeySelective(role);
-        return num == 1? Boolean.TRUE : Boolean.FALSE;
+        return num == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override
     public boolean deleteRoleByRoleId(Integer roleId) throws DataAccessException {
         int num = authRoleMapper.deleteByPrimaryKey(roleId);
-        return num == 1? Boolean.TRUE : Boolean.FALSE;
+        return num == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override
     public boolean deleteAuthorityRoleResource(Integer roleId, Integer resourceId) throws DataAccessException {
         int num = authRoleResourceMapper.deleteByUniqueKey(roleId, resourceId);
-        return num == 1? Boolean.TRUE : Boolean.FALSE;
+        return num == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override

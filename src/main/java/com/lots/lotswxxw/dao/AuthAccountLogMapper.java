@@ -13,6 +13,7 @@ public interface AuthAccountLogMapper {
 
     /**
      * description 获取账户操作相关日志
+     *
      * @return java.util.List<AuthAccountLog>
      */
     List<AuthAccountLog> selectAccountLogList();

@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *  durid 监控页面配置 默认地址 localhost:8080/druid/login.html
+ * durid 监控页面配置 默认地址 localhost:8080/druid/login.html
+ *
  * @author lots
  * @date 15:40 2018/3/5
  */
@@ -18,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
 public class DruidConfiguration {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DruidConfiguration.class);
-
 
 
     @Bean
@@ -36,6 +36,7 @@ public class DruidConfiguration {
         servletRegistrationBean.addInitParameter("resetEnable", "false");
         return servletRegistrationBean;
     }
+
     @Bean
     @SuppressWarnings("unchecked")
     public FilterRegistrationBean filterRegistrationBean() {

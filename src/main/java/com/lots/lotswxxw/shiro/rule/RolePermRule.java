@@ -59,7 +59,7 @@ public class RolePermRule implements Serializable {
         }
         //  其他自定义资源uri需通过jwt认证和角色认证
         if (!StringUtils.isEmpty(this.getNeedRoles()) && !setRole.contains(ANON_ROLE)) {
-            stringBuilder.append("jwt"+"["+this.getNeedRoles()+"]");
+            stringBuilder.append("jwt" + "[" + this.getNeedRoles() + "]");
         }
 
         return stringBuilder.length() > 0 ? stringBuilder : null;
@@ -67,6 +67,6 @@ public class RolePermRule implements Serializable {
 
     @Override
     public String toString() {
-        return "RolePermRule [url="+url+", needRoles="+needRoles+"]";
+        return "RolePermRule [url=" + url + ", needRoles=" + needRoles + "]";
     }
 }

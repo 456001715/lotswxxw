@@ -67,10 +67,10 @@ public interface AuthRoleResourceMapper {
     /**
      * description TODO
      *
-     * @param roleId 1
+     * @param roleId     1
      * @param resourceId 2
      * @return int
      * @throws DataAccessException when
      */
-    int deleteByUniqueKey(@Param("roleId") Integer roleId,@Param("resourceId") Integer resourceId) throws DataAccessException;
+    int deleteByUniqueKey(@Param("roleId") Integer roleId, @Param("resourceId") Integer resourceId) throws DataAccessException;
 }

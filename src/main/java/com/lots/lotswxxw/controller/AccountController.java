@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
@@ -26,7 +27,8 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
- *   post新增,get读取,put完整更新,patch部分更新,delete删除
+ * post新增,get读取,put完整更新,patch部分更新,delete删除
+ *
  * @author lots
  * @date 14:40 2018/3/8
  */
@@ -44,7 +46,6 @@ public class AccountController extends BaseAction {
     private static final String STR_WHERE = "createWhere";
 
 
-
     @Autowired
     private StringRedisTemplate redisTemplate;
 
@@ -57,7 +58,7 @@ public class AccountController extends BaseAction {
     /**
      * description 登录签发 JWT ,这里已经在 passwordFilter 进行了登录认证
      *
-     * @param request 1
+     * @param request  1
      * @param response 2
      * @return Message
      */
@@ -86,7 +87,7 @@ public class AccountController extends BaseAction {
     /**
      * description 用户账号的注册
      *
-     * @param request 1
+     * @param request  1
      * @param response 2
      * @return Message
      */
@@ -111,7 +112,7 @@ public class AccountController extends BaseAction {
         authUser.setUid(uid);
 
         // 从Redis取出密码传输加密解密秘钥
-        String tokenKey = redisTemplate.opsForValue().get("TOKEN_KEY_" + IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase()+userKey);
+        String tokenKey = redisTemplate.opsForValue().get("TOKEN_KEY_" + IpUtil.getIpFromRequest(WebUtils.toHttp(request)).toUpperCase() + userKey);
         String realPassword = AesUtil.aesDecode(password, tokenKey);
         String salt = CommonUtil.getRandomString(6);
         // 存储到数据库的密码为 MD5(原密码+盐值)

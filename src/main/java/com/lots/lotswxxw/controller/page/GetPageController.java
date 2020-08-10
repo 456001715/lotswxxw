@@ -24,17 +24,15 @@ public class GetPageController {
 
 
     @RequestMapping("two")
-    public String getTwo(){
+    public String getTwo() {
         return "getTwo";
     }
 
 
     @RequestMapping("music")
-    public String getMusic(){
+    public String getMusic() {
         return "getMusic";
     }
-
-
 
 
 }

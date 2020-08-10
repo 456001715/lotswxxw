@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("readImage")
 public class ReadImageController {
     @RequestMapping("index")
-    public String index(){
+    public String index() {
 
         return "gettext";
 
     }
 
     @PostMapping("gettext")
-    public JsouResult gettext(@RequestBody Object obj){
+    public JsouResult gettext(@RequestBody Object obj) {
         System.out.println(obj.toString());
         System.out.println("进入");
-        return new JsouResult(200,"请求成功","123");
+        return new JsouResult(200, "请求成功", "123");
 
     }
 }

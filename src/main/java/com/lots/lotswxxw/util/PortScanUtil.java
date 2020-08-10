@@ -14,43 +14,45 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class PortScanUtil {
-     boolean flag=true;
-     List<String> list=new ArrayList<String>();
+    boolean flag = true;
+    List<String> list = new ArrayList<String>();
+
     public static void main(String[] args) {
         PortScanUtil portScanDemo = new PortScanUtil();
         //方式1
         // portScanDemo.scanLargePorts("ultra-book.co", 20, 10000, 5,800);
         // portScanDemo.scanLargePorts("180.97.161.184", 1, 100, 5);
-        String ip="47.244.21.169";
+        String ip = "47.244.21.169";
         //方式2
         Set<Integer> portSet = new LinkedHashSet<Integer>();
         Integer[] ports = new Integer[]{21, 22, 23, 25, 26, 69, 80, 110, 143,
-                443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389,6379,
-                7001, 8080, 8081, 8888,9000, 9080, 9090,9100,9200,9300,9090, 43958};
+                443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389, 6379,
+                7001, 8080, 8081, 8888, 9000, 9080, 9090, 9100, 9200, 9300, 9090, 43958};
         portSet.addAll(Arrays.asList(ports));
         portScanDemo.scanLargePorts(ip, portSet, 5, 800);
 //        portScanDemo.scanLargePorts(ip,0,10000,5, 800);
     }
-    public JsonResult getPort(String ip,Integer start,Integer end){
-        if(flag){
-            flag=false;
+
+    public JsonResult getPort(String ip, Integer start, Integer end) {
+        if (flag) {
+            flag = false;
             try {
-                if(start==0&&end==0){
+                if (start == 0 && end == 0) {
                     Set<Integer> portSet = new LinkedHashSet<Integer>();
                     Integer[] ports = new Integer[]{21, 22, 23, 25, 26, 69, 80, 110, 143,
-                            443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389,6379,
-                            7001, 8080, 8081, 8888, 9080, 9090,9100,9200,9300,9090, 43958};
+                            443, 465, 995, 1080, 1158, 1433, 1521, 2100, 3128, 3306, 3389, 6379,
+                            7001, 8080, 8081, 8888, 9080, 9090, 9100, 9200, 9300, 9090, 43958};
                     portSet.addAll(Arrays.asList(ports));
                     List<String> strings = scanLargePorts(ip, portSet, 5, 800);
                     return new JsonResult(strings);
-                }else{
-                    List<String> strings = scanLargePorts(ip, start,end, 5, 800);
+                } else {
+                    List<String> strings = scanLargePorts(ip, start, end, 5, 800);
                     return new JsonResult(strings);
                 }
-            }catch (Exception e ){
-                return new JsonResult("出现不明原因错误"+e.getMessage());
-            }finally {
-                flag=true;
+            } catch (Exception e) {
+                return new JsonResult("出现不明原因错误" + e.getMessage());
+            } finally {
+                flag = true;
             }
 
         }
@@ -68,7 +70,7 @@ public class PortScanUtil {
      * @param timeout      连接超时时间
      */
     public List<String> scanLargePorts(String ip, int startPort, int endPort,
-                               int threadNumber, int timeout) {
+                                       int threadNumber, int timeout) {
         ExecutorService threadPool = Executors.newCachedThreadPool();
         for (int i = 0; i < threadNumber; i++) {
             ScanMethod1 scanMethod1 = new ScanMethod1(ip, startPort, endPort,
@@ -99,7 +101,7 @@ public class PortScanUtil {
      * @param timeout      连接超时时间
      */
     public List<String> scanLargePorts(String ip, Set<Integer> portSet,
-                               int threadNumber, int timeout) {
+                                       int threadNumber, int timeout) {
         ExecutorService threadPool = Executors.newCachedThreadPool();
         for (int i = 0; i < threadNumber; i++) {
             ScanMethod2 scanMethod2 = new ScanMethod2(ip, portSet,

@@ -22,11 +22,13 @@ public class JsonResult<T> {
 
     public JsonResult() {
     }
-    public JsonResult(Throwable e){
+
+    public JsonResult(Throwable e) {
         code = 500;
-        data=null;
-        msg=e.getMessage();
+        data = null;
+        msg = e.getMessage();
     }
+
     public JsonResult(T data) {
         this(CODE_SUCCESS, SUCCESS, data);
     }
@@ -41,15 +43,12 @@ public class JsonResult<T> {
     }
 
 
-
     public JsonResult(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
         ts = System.currentTimeMillis();
     }
-
-
 
 
     public Integer getCode() {
@@ -80,7 +79,7 @@ public class JsonResult<T> {
         this.data = data;
     }
 
-    public void setData(final Integer code, final String msg,final T data) {
+    public void setData(final Integer code, final String msg, final T data) {
         this.data = data;
     }
 

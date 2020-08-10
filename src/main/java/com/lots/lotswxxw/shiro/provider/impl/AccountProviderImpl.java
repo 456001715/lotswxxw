@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 @Service("AccountProvider")
 public class AccountProviderImpl implements AccountProvider {
 
-      @Autowired
-      @Qualifier("AccountService")
-      private AccountService accountService;
+    @Autowired
+    @Qualifier("AccountService")
+    private AccountService accountService;
 
     @Override
     public Account loadAccount(String appId) {

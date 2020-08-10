@@ -32,11 +32,11 @@ public class LogController extends BaseAction {
     @SuppressWarnings("unchecked")
     @ApiOperation(value = "获取日志记录", httpMethod = "GET")
     @RequestMapping("/accountLog/{currentPage}/{pageSize}")
-    public Message getAccountLogList(@PathVariable Integer currentPage, @PathVariable Integer pageSize ) {
+    public Message getAccountLogList(@PathVariable Integer currentPage, @PathVariable Integer pageSize) {
         PageHelper.startPage(currentPage, pageSize);
         List<AuthAccountLog> accountLogs = accountLogService.getAccountLogList();
         PageInfo pageInfo = new PageInfo(accountLogs);
-        return new Message().ok(6666, "return accountLogs success").addData("data",pageInfo);
+        return new Message().ok(6666, "return accountLogs success").addData("data", pageInfo);
     }
 
     @SuppressWarnings("unchecked")

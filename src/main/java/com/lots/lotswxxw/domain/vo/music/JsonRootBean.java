@@ -1,7 +1,8 @@
 /**
-  * Copyright 2020 bejson.com 
-  */
+ * Copyright 2020 bejson.com
+ */
 package com.lots.lotswxxw.domain.vo.music;
+
 import lombok.Data;
 
 import java.util.List;

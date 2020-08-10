@@ -27,18 +27,18 @@ public class JwtMatcher implements CredentialsMatcher {
 
         String jwt = (String) authenticationInfo.getCredentials();
         JwtAccount jwtAccount = null;
-        try{
-            jwtAccount = JsonWebTokenUtil.parseJwt(jwt,JsonWebTokenUtil.SECRET_KEY);
-        } catch(SignatureException | UnsupportedJwtException | MalformedJwtException | IllegalArgumentException e){
+        try {
+            jwtAccount = JsonWebTokenUtil.parseJwt(jwt, JsonWebTokenUtil.SECRET_KEY);
+        } catch (SignatureException | UnsupportedJwtException | MalformedJwtException | IllegalArgumentException e) {
             // 令牌错误
             throw new AuthenticationException("errJwt");
-        } catch(ExpiredJwtException e){
+        } catch (ExpiredJwtException e) {
             // 令牌过期
             throw new AuthenticationException("expiredJwt");
-        } catch(Exception e){
+        } catch (Exception e) {
             throw new AuthenticationException("errJwt");
         }
-        if(null == jwtAccount){
+        if (null == jwtAccount) {
             throw new AuthenticationException("errJwt");
         }
 

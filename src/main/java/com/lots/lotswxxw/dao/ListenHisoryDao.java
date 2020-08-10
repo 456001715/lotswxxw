@@ -11,11 +11,17 @@ import java.util.List;
  */
 public interface ListenHisoryDao {
     List<ListenHisoryEntity> findListenHisoryAll();
+
     List<ListenHisoryEntity> findListenHisoryByCondition(ListenHisoryEntity entity);
+
     int insertListenHisory(ListenHisoryEntity entity);
-    int insertListenHisorys(List<ListenHisoryEntity>list);
+
+    int insertListenHisorys(List<ListenHisoryEntity> list);
+
     int deleteListenHisoryById(int id);
-    int deleteListenHisoryByIds(List<Integer>ids);
+
+    int deleteListenHisoryByIds(List<Integer> ids);
+
     int findByName(ListenHisoryEntity entity);
 
 }

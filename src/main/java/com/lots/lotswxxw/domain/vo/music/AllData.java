@@ -1,6 +1,6 @@
 /**
-  * Copyright 2020 bejson.com 
-  */
+ * Copyright 2020 bejson.com
+ */
 package com.lots.lotswxxw.domain.vo.music;
 
 /**
@@ -14,25 +14,29 @@ public class AllData {
     private int playCount;
     private int score;
     private Song song;
+
     public void setPlayCount(int playCount) {
-         this.playCount = playCount;
-     }
-     public int getPlayCount() {
-         return playCount;
-     }
+        this.playCount = playCount;
+    }
+
+    public int getPlayCount() {
+        return playCount;
+    }
 
     public void setScore(int score) {
-         this.score = score;
-     }
-     public int getScore() {
-         return score;
-     }
+        this.score = score;
+    }
+
+    public int getScore() {
+        return score;
+    }
 
     public void setSong(Song song) {
-         this.song = song;
-     }
-     public Song getSong() {
-         return song;
-     }
+        this.song = song;
+    }
+
+    public Song getSong() {
+        return song;
+    }
 
 }

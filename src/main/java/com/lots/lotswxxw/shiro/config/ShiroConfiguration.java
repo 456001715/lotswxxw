@@ -14,7 +14,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- *   shiro配置
+ * shiro配置
+ *
  * @author lots
  * @date 12:41 2018/3/6
  */
@@ -22,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 public class ShiroConfiguration {
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager,ShiroFilterChainManager filterChainManager) {
+    public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager, ShiroFilterChainManager filterChainManager) {
         RestShiroFilterFactoryBean shiroFilterFactoryBean = new RestShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setFilters(filterChainManager.initGetFilters());
@@ -37,7 +38,7 @@ public class ShiroConfiguration {
         securityManager.setRealms(realmManager.initGetRealm());
 
         // 无状态subjectFactory设置
-        DefaultSessionStorageEvaluator evaluator = (DefaultSessionStorageEvaluator)((DefaultSubjectDAO) securityManager.getSubjectDAO()).getSessionStorageEvaluator();
+        DefaultSessionStorageEvaluator evaluator = (DefaultSessionStorageEvaluator) ((DefaultSubjectDAO) securityManager.getSubjectDAO()).getSessionStorageEvaluator();
         evaluator.setSessionStorageEnabled(Boolean.FALSE);
         StatelessWebSubjectFactory subjectFactory = new StatelessWebSubjectFactory();
         securityManager.setSubjectFactory(subjectFactory);

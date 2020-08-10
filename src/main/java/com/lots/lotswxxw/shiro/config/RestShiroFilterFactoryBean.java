@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanInitializationException;
 
 /**
- *   rest支持的shiroFilterFactoryBean
+ * rest支持的shiroFilterFactoryBean
+ *
  * @author lots
  * @date 21:35 2018/4/20
  */
@@ -38,7 +39,7 @@ public class RestShiroFilterFactoryBean extends ShiroFilterFactoryBean {
             FilterChainManager manager = this.createFilterChainManager();
             RestPathMatchingFilterChainResolver chainResolver = new RestPathMatchingFilterChainResolver();
             chainResolver.setFilterChainManager(manager);
-            return new RestShiroFilterFactoryBean.SpringShiroFilter((WebSecurityManager)securityManager, chainResolver);
+            return new RestShiroFilterFactoryBean.SpringShiroFilter((WebSecurityManager) securityManager, chainResolver);
         }
     }
 

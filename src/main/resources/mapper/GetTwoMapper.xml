@@ -6,28 +6,28 @@
 <mapper namespace="com.lots.lotswxxw.dao.GetTwoMapper">
     <!-- 字段映射 -->
     <resultMap id="getTwoMap" type="com.lots.lotswxxw.domain.po.GetTwoPO">
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="uid" property="uid" jdbcType="VARCHAR" />
-        <result column="red_number" property="redNumber" jdbcType="VARCHAR" />
-        <result column="blue_number" property="blueNumber" jdbcType="VARCHAR" />
-        <result column="chapter" property="chapter" jdbcType="TIMESTAMP" />
-        <result column="is_true" property="isTrue" jdbcType="VARCHAR" />
-        <result column="is_rmb" property="isRmb" jdbcType="DECIMAL" />
-        <result column="create_timestamp" property="createTimestamp" jdbcType="TIMESTAMP" />
-        <result column="update_timestamp" property="updateTimestamp" jdbcType="TIMESTAMP" />
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="uid" property="uid" jdbcType="VARCHAR"/>
+        <result column="red_number" property="redNumber" jdbcType="VARCHAR"/>
+        <result column="blue_number" property="blueNumber" jdbcType="VARCHAR"/>
+        <result column="chapter" property="chapter" jdbcType="TIMESTAMP"/>
+        <result column="is_true" property="isTrue" jdbcType="VARCHAR"/>
+        <result column="is_rmb" property="isRmb" jdbcType="DECIMAL"/>
+        <result column="create_timestamp" property="createTimestamp" jdbcType="TIMESTAMP"/>
+        <result column="update_timestamp" property="updateTimestamp" jdbcType="TIMESTAMP"/>
 
     </resultMap>
-    
+
     <!-- 表查询字段 -->
     <sql id="allColumns">
         id, uid, red_number, blue_number, chapter, is_true, is_rmb, create_timestamp, 
         update_timestamp
     </sql>
-    
+
     <!-- 根据条件参数查询数据列表 -->
     <select id="findGetTwoByCondition" resultMap="getTwoMap" parameterType="map">
         SELECT
-        <include refid="allColumns" />
+        <include refid="allColumns"/>
         FROM get_two WHERE 1 = 1
         <if test="uid != null and uid != ''">
             AND uid LIKE CONCAT('%', #{uid}, '%')
@@ -39,7 +39,7 @@
             AND blue_number LIKE CONCAT('%', #{blueNumber}, '%')
         </if>
     </select>
-    
+
     <!-- 插入数据 -->
     <insert id="insertGetTwo" parameterType="map">
         INSERT INTO get_two (
@@ -57,7 +57,7 @@
             #{updateTimestamp}
         )
     </insert>
-    
+
     <!-- 修改数据 -->
     <update id="updateGetTwo" parameterType="map">
         UPDATE get_two
@@ -89,7 +89,7 @@
         </set>
         WHERE id = #{id}
     </update>
-    
+
     <!-- 根据主键批量删除数据 -->
     <delete id="deleteGetTwoByIds" parameterType="list">
         DELETE FROM get_two WHERE id IN
@@ -98,9 +98,9 @@
         </foreach>
     </delete>
 
-    <select id="getNowList" resultMap="getTwoMap" >
+    <select id="getNowList" resultMap="getTwoMap">
         SELECT
-        <include refid="allColumns" />
+        <include refid="allColumns"/>
         FROM get_two WHERE
         chapter=date_format(now(),'%Y-%m-%d');
     </select>

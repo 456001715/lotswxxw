@@ -4,6 +4,7 @@ import java.util.Random;
 
 /**
  * 高频方法工具类
+ *
  * @author lots
  * @date 14:08 2018/3/12
  */

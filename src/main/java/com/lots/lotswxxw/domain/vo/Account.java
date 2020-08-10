@@ -3,7 +3,8 @@ package com.lots.lotswxxw.domain.vo;
 import java.io.Serializable;
 
 /**
- *   账户
+ * 账户
+ *
  * @author lots
  * @date 16:25 2018/2/27
  */

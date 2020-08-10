@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class IndexPageController {
 
     @RequestMapping("login")
-    public String login(){
+    public String login() {
         return "login";
     }
 }

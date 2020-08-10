@@ -3,7 +3,8 @@ package com.lots.lotswxxw.domain.bo;
 import java.util.Date;
 
 /**
- *   角色
+ * 角色
+ *
  * @author lots
  * @date 9:42 2018/4/22
  */

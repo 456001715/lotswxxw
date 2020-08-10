@@ -4,11 +4,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.PathMatchingFilter;
 import org.apache.shiro.web.util.WebUtils;
+
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 /**
- *   重写过滤链路径匹配规则，增加REST风格post,get.delete,put..支持
+ * 重写过滤链路径匹配规则，增加REST风格post,get.delete,put..支持
+ *
  * @author lots
  * @date 23:37 2018/4/19
  */
@@ -23,7 +25,7 @@ public abstract class AbstractPathMatchingFilter extends PathMatchingFilter {
     /**
      * description 重写URL匹配  加入httpMethod支持
      *
-     * @param path 1
+     * @param path    1
      * @param request 2
      * @return boolean
      */
@@ -36,7 +38,7 @@ public abstract class AbstractPathMatchingFilter extends PathMatchingFilter {
         // path: url==method eg: http://api/menu==GET   需要解析出path中的url和httpMethod
         String[] strings = path.split("==");
         if (strings[0] != null && strings[0].endsWith(DEFAULT_PATH_SEPARATOR)) {
-            strings[0] = strings[0].substring(0 , strings[0].length() - 1);
+            strings[0] = strings[0].substring(0, strings[0].length() - 1);
         }
         if (strings.length <= 1) {
             // 分割出来只有URL
@@ -84,11 +86,9 @@ public abstract class AbstractPathMatchingFilter extends PathMatchingFilter {
     }
 
 
-
     protected void saveRequest(ServletRequest request) {
         WebUtils.saveRequest(request);
     }
-
 
 
 }

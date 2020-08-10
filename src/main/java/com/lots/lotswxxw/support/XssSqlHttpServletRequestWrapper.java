@@ -1,6 +1,7 @@
 package com.lots.lotswxxw.support;
 
 import com.lots.lotswxxw.util.XssUtil;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -9,11 +10,11 @@ import java.util.Map;
 
 /**
  * request请求安全过滤包装类
+ *
  * @author lots
  * @date 20:41 2018/4/15
  */
 public class XssSqlHttpServletRequestWrapper extends HttpServletRequestWrapper {
-
 
 
     public XssSqlHttpServletRequestWrapper(HttpServletRequest request) {
@@ -34,18 +35,18 @@ public class XssSqlHttpServletRequestWrapper extends HttpServletRequestWrapper {
         }
         int count = values.length;
         String[] encodedValues = new String[count];
-        for (int i = 0 ; i < count ; i++ ) {
+        for (int i = 0; i < count; i++) {
             encodedValues[i] = filterParamString(values[i]);
         }
         return encodedValues;
     }
 
     @Override
-    public Map<String,String[]> getParameterMap() {
-        Map<String,String[]> primary = super.getParameterMap();
-        Map<String,String[]> result = new HashMap<>(16);
-        for (Map.Entry<String,String[]> entry : primary.entrySet()) {
-            result.put(entry.getKey(),filterEntryString(entry.getValue()));
+    public Map<String, String[]> getParameterMap() {
+        Map<String, String[]> primary = super.getParameterMap();
+        Map<String, String[]> result = new HashMap<>(16);
+        for (Map.Entry<String, String[]> entry : primary.entrySet()) {
+            result.put(entry.getKey(), filterEntryString(entry.getValue()));
         }
         return result;
     }
@@ -64,7 +65,7 @@ public class XssSqlHttpServletRequestWrapper extends HttpServletRequestWrapper {
     public Cookie[] getCookies() {
         Cookie[] cookies = super.getCookies();
         if (cookies != null) {
-            for (int i = 0 ; i < cookies.length; i++) {
+            for (int i = 0; i < cookies.length; i++) {
                 Cookie cookie = cookies[i];
                 cookie.setValue(filterParamString(cookie.getValue()));
             }

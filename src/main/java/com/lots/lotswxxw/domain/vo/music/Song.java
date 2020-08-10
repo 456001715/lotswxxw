@@ -1,7 +1,8 @@
 /**
-  * Copyright 2020 bejson.com 
-  */
+ * Copyright 2020 bejson.com
+ */
 package com.lots.lotswxxw.domain.vo.music;
+
 import java.util.List;
 
 /**
@@ -47,249 +48,285 @@ public class Song {
     private int mv;
     private long publishTime;
     private Privilege privilege;
+
     public void setName(String name) {
-         this.name = name;
-     }
-     public String getName() {
-         return name;
-     }
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public void setId(long id) {
-         this.id = id;
-     }
-     public long getId() {
-         return id;
-     }
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
 
     public void setPst(int pst) {
-         this.pst = pst;
-     }
-     public int getPst() {
-         return pst;
-     }
+        this.pst = pst;
+    }
+
+    public int getPst() {
+        return pst;
+    }
 
     public void setT(int t) {
-         this.t = t;
-     }
-     public int getT() {
-         return t;
-     }
+        this.t = t;
+    }
+
+    public int getT() {
+        return t;
+    }
 
     public void setAr(List<Ar> ar) {
-         this.ar = ar;
-     }
-     public List<Ar> getAr() {
-         return ar;
-     }
+        this.ar = ar;
+    }
+
+    public List<Ar> getAr() {
+        return ar;
+    }
 
     public void setAlia(List<String> alia) {
-         this.alia = alia;
-     }
-     public List<String> getAlia() {
-         return alia;
-     }
+        this.alia = alia;
+    }
+
+    public List<String> getAlia() {
+        return alia;
+    }
 
     public void setPop(int pop) {
-         this.pop = pop;
-     }
-     public int getPop() {
-         return pop;
-     }
+        this.pop = pop;
+    }
+
+    public int getPop() {
+        return pop;
+    }
 
     public void setSt(int st) {
-         this.st = st;
-     }
-     public int getSt() {
-         return st;
-     }
+        this.st = st;
+    }
+
+    public int getSt() {
+        return st;
+    }
 
     public void setRt(String rt) {
-         this.rt = rt;
-     }
-     public String getRt() {
-         return rt;
-     }
+        this.rt = rt;
+    }
+
+    public String getRt() {
+        return rt;
+    }
 
     public void setFee(int fee) {
-         this.fee = fee;
-     }
-     public int getFee() {
-         return fee;
-     }
+        this.fee = fee;
+    }
+
+    public int getFee() {
+        return fee;
+    }
 
     public void setV(int v) {
-         this.v = v;
-     }
-     public int getV() {
-         return v;
-     }
+        this.v = v;
+    }
+
+    public int getV() {
+        return v;
+    }
 
     public void setCrbt(String crbt) {
-         this.crbt = crbt;
-     }
-     public String getCrbt() {
-         return crbt;
-     }
+        this.crbt = crbt;
+    }
+
+    public String getCrbt() {
+        return crbt;
+    }
 
     public void setCf(String cf) {
-         this.cf = cf;
-     }
-     public String getCf() {
-         return cf;
-     }
+        this.cf = cf;
+    }
+
+    public String getCf() {
+        return cf;
+    }
 
     public void setAl(Al al) {
-         this.al = al;
-     }
-     public Al getAl() {
-         return al;
-     }
+        this.al = al;
+    }
+
+    public Al getAl() {
+        return al;
+    }
 
     public void setDt(long dt) {
-         this.dt = dt;
-     }
-     public long getDt() {
-         return dt;
-     }
+        this.dt = dt;
+    }
+
+    public long getDt() {
+        return dt;
+    }
 
     public void setH(H h) {
-         this.h = h;
-     }
-     public H getH() {
-         return h;
-     }
+        this.h = h;
+    }
+
+    public H getH() {
+        return h;
+    }
 
     public void setM(M m) {
-         this.m = m;
-     }
-     public M getM() {
-         return m;
-     }
+        this.m = m;
+    }
+
+    public M getM() {
+        return m;
+    }
 
     public void setL(L l) {
-         this.l = l;
-     }
-     public L getL() {
-         return l;
-     }
+        this.l = l;
+    }
+
+    public L getL() {
+        return l;
+    }
 
     public void setA(String a) {
-         this.a = a;
-     }
-     public String getA() {
-         return a;
-     }
+        this.a = a;
+    }
+
+    public String getA() {
+        return a;
+    }
 
     public void setCd(String cd) {
-         this.cd = cd;
-     }
-     public String getCd() {
-         return cd;
-     }
+        this.cd = cd;
+    }
+
+    public String getCd() {
+        return cd;
+    }
 
     public void setNo(int no) {
-         this.no = no;
-     }
-     public int getNo() {
-         return no;
-     }
+        this.no = no;
+    }
+
+    public int getNo() {
+        return no;
+    }
 
     public void setRtUrl(String rtUrl) {
-         this.rtUrl = rtUrl;
-     }
-     public String getRtUrl() {
-         return rtUrl;
-     }
+        this.rtUrl = rtUrl;
+    }
+
+    public String getRtUrl() {
+        return rtUrl;
+    }
 
     public void setFtype(int ftype) {
-         this.ftype = ftype;
-     }
-     public int getFtype() {
-         return ftype;
-     }
+        this.ftype = ftype;
+    }
+
+    public int getFtype() {
+        return ftype;
+    }
 
     public void setRtUrls(List<String> rtUrls) {
-         this.rtUrls = rtUrls;
-     }
-     public List<String> getRtUrls() {
-         return rtUrls;
-     }
+        this.rtUrls = rtUrls;
+    }
+
+    public List<String> getRtUrls() {
+        return rtUrls;
+    }
 
     public void setDjId(int djId) {
-         this.djId = djId;
-     }
-     public int getDjId() {
-         return djId;
-     }
+        this.djId = djId;
+    }
+
+    public int getDjId() {
+        return djId;
+    }
 
     public void setCopyright(int copyright) {
-         this.copyright = copyright;
-     }
-     public int getCopyright() {
-         return copyright;
-     }
+        this.copyright = copyright;
+    }
+
+    public int getCopyright() {
+        return copyright;
+    }
 
     public void setS_id(int s_id) {
-         this.s_id = s_id;
-     }
-     public int getS_id() {
-         return s_id;
-     }
+        this.s_id = s_id;
+    }
+
+    public int getS_id() {
+        return s_id;
+    }
 
     public void setMark(int mark) {
-         this.mark = mark;
-     }
-     public int getMark() {
-         return mark;
-     }
+        this.mark = mark;
+    }
+
+    public int getMark() {
+        return mark;
+    }
 
     public void setRtype(int rtype) {
-         this.rtype = rtype;
-     }
-     public int getRtype() {
-         return rtype;
-     }
+        this.rtype = rtype;
+    }
+
+    public int getRtype() {
+        return rtype;
+    }
 
     public void setRurl(String rurl) {
-         this.rurl = rurl;
-     }
-     public String getRurl() {
-         return rurl;
-     }
+        this.rurl = rurl;
+    }
+
+    public String getRurl() {
+        return rurl;
+    }
 
     public void setMst(int mst) {
-         this.mst = mst;
-     }
-     public int getMst() {
-         return mst;
-     }
+        this.mst = mst;
+    }
+
+    public int getMst() {
+        return mst;
+    }
 
     public void setCp(long cp) {
-         this.cp = cp;
-     }
-     public long getCp() {
-         return cp;
-     }
+        this.cp = cp;
+    }
+
+    public long getCp() {
+        return cp;
+    }
 
     public void setMv(int mv) {
-         this.mv = mv;
-     }
-     public int getMv() {
-         return mv;
-     }
+        this.mv = mv;
+    }
+
+    public int getMv() {
+        return mv;
+    }
 
     public void setPublishTime(long publishTime) {
-         this.publishTime = publishTime;
-     }
-     public long getPublishTime() {
-         return publishTime;
-     }
+        this.publishTime = publishTime;
+    }
+
+    public long getPublishTime() {
+        return publishTime;
+    }
 
     public void setPrivilege(Privilege privilege) {
-         this.privilege = privilege;
-     }
-     public Privilege getPrivilege() {
-         return privilege;
-     }
+        this.privilege = privilege;
+    }
+
+    public Privilege getPrivilege() {
+        return privilege;
+    }
 
 }

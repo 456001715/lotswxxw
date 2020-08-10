@@ -13,12 +13,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *   资源URL管理
+ * 资源URL管理
+ *
  * @author lots
  * @date 21:36 2018/3/17
  */
@@ -31,7 +33,7 @@ public class ResourceController extends BaseAction {
     @Autowired
     private ResourceService resourceService;
 
-    @ApiOperation(value = "获取用户被授权菜单",notes = "通过uid获取对应用户被授权的菜单列表,获取完整菜单树形结构")
+    @ApiOperation(value = "获取用户被授权菜单", notes = "通过uid获取对应用户被授权的菜单列表,获取完整菜单树形结构")
     @GetMapping("authorityMenu")
     public Message getAuthorityMenu(HttpServletRequest request) {
         String uid = request.getHeader("appId");
@@ -40,11 +42,11 @@ public class ResourceController extends BaseAction {
 
         for (AuthResource resource : resources) {
             MenuTreeNode node = new MenuTreeNode();
-            BeanUtils.copyProperties(resource,node);
+            BeanUtils.copyProperties(resource, node);
             treeNodes.add(node);
         }
-        List<MenuTreeNode> menuTreeNodes = TreeUtil.buildTreeBy2Loop(treeNodes,-1);
-        return new Message().ok(6666,"return menu list success").addData("menuTree",menuTreeNodes);
+        List<MenuTreeNode> menuTreeNodes = TreeUtil.buildTreeBy2Loop(treeNodes, -1);
+        return new Message().ok(6666, "return menu list success").addData("menuTree", menuTreeNodes);
     }
 
     @ApiOperation(value = "获取全部菜单列", httpMethod = "GET")
@@ -54,34 +56,34 @@ public class ResourceController extends BaseAction {
         List<MenuTreeNode> treeNodes = new ArrayList<>();
         List<AuthResource> resources = resourceService.getMenus();
 
-        for (AuthResource resource: resources) {
+        for (AuthResource resource : resources) {
             MenuTreeNode node = new MenuTreeNode();
-            BeanUtils.copyProperties(resource,node);
+            BeanUtils.copyProperties(resource, node);
             treeNodes.add(node);
         }
-        List<MenuTreeNode> menuTreeNodes = TreeUtil.buildTreeBy2Loop(treeNodes,-1);
-        return new Message().ok(6666,"return menus success").addData("menuTree",menuTreeNodes);
+        List<MenuTreeNode> menuTreeNodes = TreeUtil.buildTreeBy2Loop(treeNodes, -1);
+        return new Message().ok(6666, "return menus success").addData("menuTree", menuTreeNodes);
     }
 
-    @ApiOperation(value = "增加菜单",httpMethod = "POST")
+    @ApiOperation(value = "增加菜单", httpMethod = "POST")
     @PostMapping("menu")
-    public Message addMenu(@RequestBody AuthResource menu ) {
+    public Message addMenu(@RequestBody AuthResource menu) {
 
         Boolean flag = resourceService.addMenu(menu);
         if (flag) {
-            return new Message().ok(6666,"add menu success");
+            return new Message().ok(6666, "add menu success");
         } else {
-            return new Message().error(1111,"add menu fail");
+            return new Message().error(1111, "add menu fail");
         }
     }
 
-    @ApiOperation(value = "修改菜单",httpMethod = "PUT")
+    @ApiOperation(value = "修改菜单", httpMethod = "PUT")
     @PutMapping("menu")
     public Message updateMenu(@RequestBody AuthResource menu) {
 
         Boolean flag = resourceService.modifyMenu(menu);
         if (flag) {
-            return new Message().ok(6666,"update menu success");
+            return new Message().ok(6666, "update menu success");
         } else {
             return new Message().error(1111, "update menu fail");
         }
@@ -100,7 +102,7 @@ public class ResourceController extends BaseAction {
     }
 
     @SuppressWarnings("unchecked")
-    @ApiOperation(value = "获取API list", notes = "需要分页,根据teamId判断,-1->获取api分类,0->获取全部api,id->获取对应分类id下的api",httpMethod = "GET")
+    @ApiOperation(value = "获取API list", notes = "需要分页,根据teamId判断,-1->获取api分类,0->获取全部api,id->获取对应分类id下的api", httpMethod = "GET")
     @GetMapping("api/{teamId}/{currentPage}/{pageSize}")
     public Message getApiList(@PathVariable Integer teamId, @PathVariable Integer currentPage, @PathVariable Integer pageSize) {
 
@@ -108,7 +110,7 @@ public class ResourceController extends BaseAction {
         if (teamId == -1) {
             // -1 为获取api分类
             resources = resourceService.getApiTeamList();
-            return new Message().ok(6666,"return apis success").addData("data",resources);
+            return new Message().ok(6666, "return apis success").addData("data", resources);
         }
         PageHelper.startPage(currentPage, pageSize);
         if (teamId == 0) {
@@ -119,28 +121,28 @@ public class ResourceController extends BaseAction {
             resources = resourceService.getApiListByTeamId(teamId);
         }
         PageInfo pageInfo = new PageInfo(resources);
-        return new Message().ok(6666,"return apis success").addData("data",pageInfo);
+        return new Message().ok(6666, "return apis success").addData("data", pageInfo);
     }
 
-    @ApiOperation(value = "增加API",httpMethod = "POST")
+    @ApiOperation(value = "增加API", httpMethod = "POST")
     @PostMapping("api")
-    public Message addApi(@RequestBody AuthResource api ) {
+    public Message addApi(@RequestBody AuthResource api) {
 
         Boolean flag = resourceService.addMenu(api);
         if (flag) {
-            return new Message().ok(6666,"add api success");
+            return new Message().ok(6666, "add api success");
         } else {
-            return new Message().error(1111,"add api fail");
+            return new Message().error(1111, "add api fail");
         }
     }
 
-    @ApiOperation(value = "修改API",httpMethod = "PUT")
+    @ApiOperation(value = "修改API", httpMethod = "PUT")
     @PutMapping("api")
     public Message updateApi(@RequestBody AuthResource api) {
 
         Boolean flag = resourceService.modifyMenu(api);
         if (flag) {
-            return new Message().ok(6666,"update api success");
+            return new Message().ok(6666, "update api success");
         } else {
             return new Message().error(1111, "update api fail");
         }

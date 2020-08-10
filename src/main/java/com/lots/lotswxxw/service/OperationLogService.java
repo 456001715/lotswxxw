@@ -13,7 +13,7 @@ public interface OperationLogService {
     /**
      * description TODO
      *
-     * @param  1
+     * @param 1
      * @return java.util.List<AuthOperationLog>
      */
     List<AuthOperationLog> getOperationList();

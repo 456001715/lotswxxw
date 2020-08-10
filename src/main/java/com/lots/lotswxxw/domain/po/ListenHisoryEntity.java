@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 
-
 /**
  * 听歌历史(listen_hisory)
  *
@@ -19,7 +18,9 @@ import java.util.Date;
 @ApiModel(description = "听歌历史")
 @Data
 public class ListenHisoryEntity implements Serializable {
-    /** 版本号 */
+    /**
+     * 版本号
+     */
     private static final long serialVersionUID = -8423853144673012800L;
 
     @ApiModelProperty(value = "表Id")
@@ -38,7 +39,7 @@ public class ListenHisoryEntity implements Serializable {
     private String singer;
 
     @ApiModelProperty(value = "创建时间")
-    @JsonFormat( pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date creatTime;
 
     @ApiModelProperty(value = "歌曲Id")

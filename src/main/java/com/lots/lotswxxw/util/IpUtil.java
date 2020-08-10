@@ -6,7 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Pattern;
 
 /**
- *  获取真实IP
+ * 获取真实IP
+ *
  * @author lots
  * @date 17:03 2018/4/25
  */

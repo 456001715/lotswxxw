@@ -1,7 +1,6 @@
 package com.lots.lotswxxw.domain.vo;
 
 
-
 /**
  * @author lifei
  * @date 2018/6/22
@@ -48,7 +47,6 @@ public class JsouResult<T> {
     }
 
 
-
     public Integer getCode() {
         return this.code;
     }
@@ -77,7 +75,7 @@ public class JsouResult<T> {
         this.data = data;
     }
 
-    public void setData(final Integer code, final String msg,final T data) {
+    public void setData(final Integer code, final String msg, final T data) {
         this.data = data;
     }
 

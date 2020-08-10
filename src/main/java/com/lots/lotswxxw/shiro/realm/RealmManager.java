@@ -9,12 +9,14 @@ import com.lots.lotswxxw.shiro.token.PasswordToken;
 import org.apache.shiro.realm.Realm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- *   realm管理器
+ * realm管理器
+ *
  * @author lots
  * @date 17:52 2018/3/3
  */
@@ -24,8 +26,9 @@ public class RealmManager {
     private PasswordMatcher passwordMatcher;
     private JwtMatcher jwtMatcher;
     private AccountProvider accountProvider;
+
     @Autowired
-    public RealmManager(AccountProvider accountProvider,PasswordMatcher passwordMatcher,JwtMatcher jwtMatcher) {
+    public RealmManager(AccountProvider accountProvider, PasswordMatcher passwordMatcher, JwtMatcher jwtMatcher) {
         this.accountProvider = accountProvider;
         this.passwordMatcher = passwordMatcher;
         this.jwtMatcher = jwtMatcher;

@@ -13,7 +13,7 @@ public interface RoleService {
     /**
      * description TODO
      *
-     * @param roleId 1
+     * @param roleId     1
      * @param resourceId 2
      * @return boolean
      */
@@ -46,7 +46,7 @@ public interface RoleService {
     /**
      * description TODO
      *
-     * @param roleId 1
+     * @param roleId     1
      * @param resourceId 2
      * @return boolean
      */

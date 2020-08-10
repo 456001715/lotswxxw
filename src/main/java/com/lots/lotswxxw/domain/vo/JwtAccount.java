@@ -47,6 +47,7 @@ public class JwtAccount implements Serializable {
     public JwtAccount() {
 
     }
+
     public JwtAccount(String tokenId, String appId, String issuer, Date issuedAt, String audience, String roles, String perms, String host) {
         this.tokenId = tokenId;
         this.appId = appId;

@@ -8,6 +8,7 @@ import com.lots.lotswxxw.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class UserServiceImpl implements UserService {
         authUserRole.setUserId(uid);
         authUserRole.setCreateTime(new Date());
         authUserRole.setUpdateTime(new Date());
-        return authUserRoleMapper.insert(authUserRole) == 1? Boolean.TRUE :Boolean.FALSE;
+        return authUserRoleMapper.insert(authUserRole) == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
         AuthUserRole authUserRole = new AuthUserRole();
         authUserRole.setUserId(uid);
         authUserRole.setRoleId(roleId);
-        return authUserRoleMapper.deleteByUniqueKey(authUserRole) == 1? Boolean.TRUE : Boolean.FALSE;
+        return authUserRoleMapper.deleteByUniqueKey(authUserRole) == 1 ? Boolean.TRUE : Boolean.FALSE;
     }
 
     @Override

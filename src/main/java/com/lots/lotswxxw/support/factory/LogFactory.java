@@ -6,7 +6,8 @@ import com.lots.lotswxxw.domain.bo.AuthOperationLog;
 import java.util.Date;
 
 /**
- *   日志对象工厂
+ * 日志对象工厂
+ *
  * @author lots
  * @date 9:50 2018/4/22
  */
@@ -16,7 +17,7 @@ public class LogFactory {
 
     }
 
-    public static AuthAccountLog createAccountLog(String userId,String logName, String ip, Short succeed, String message) {
+    public static AuthAccountLog createAccountLog(String userId, String logName, String ip, Short succeed, String message) {
         AuthAccountLog accountLog = new AuthAccountLog();
         accountLog.setUserId(userId);
         accountLog.setLogName(logName);
@@ -27,7 +28,7 @@ public class LogFactory {
         return accountLog;
     }
 
-    public static AuthOperationLog createOperationLog(String userId,String logName,String api, String method, Short succeed, String message) {
+    public static AuthOperationLog createOperationLog(String userId, String logName, String api, String method, Short succeed, String message) {
         AuthOperationLog operationLog = new AuthOperationLog();
         operationLog.setUserId(userId);
         operationLog.setLogName(logName);

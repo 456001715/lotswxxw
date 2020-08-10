@@ -3,6 +3,7 @@ package com.lots.lotswxxw.dao;
 import com.lots.lotswxxw.domain.bo.AuthResource;
 import com.lots.lotswxxw.shiro.rule.RolePermRule;
 import org.springframework.dao.DataAccessException;
+
 import java.util.List;
 
 /**
@@ -70,7 +71,7 @@ public interface AuthResourceMapper {
      * @return java.util.List<RolePermRule>
      * @throws DataAccessException when
      */
-    List<RolePermRule> selectRoleRules()  throws DataAccessException;
+    List<RolePermRule> selectRoleRules() throws DataAccessException;
 
     /**
      * description TODO
@@ -99,6 +100,7 @@ public interface AuthResourceMapper {
 
     /**
      * description TODO
+     *
      * @return java.util.List<AuthResource>
      * @throws DataAccessException when
      */

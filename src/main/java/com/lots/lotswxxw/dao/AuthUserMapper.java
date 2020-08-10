@@ -2,6 +2,7 @@ package com.lots.lotswxxw.dao;
 
 import com.lots.lotswxxw.domain.bo.AuthUser;
 import org.springframework.dao.DataAccessException;
+
 import java.util.List;
 
 /**

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
+ *
  * @author lots
  * @date 22:40 2018/4/16
  */
@@ -32,10 +33,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DataAccessException.class)
     @ResponseStatus(HttpStatus.OK)
     public Message sqlException(DataAccessException e) {
-        LOGGER.error("数据操作异常:",e);
+        LOGGER.error("数据操作异常:", e);
         final Throwable cause = e.getCause();
         // 之后判断cause类型进一步记录日志处理
-        if (cause instanceof MySQLIntegrityConstraintViolationException ) {
+        if (cause instanceof MySQLIntegrityConstraintViolationException) {
             return new Message().error(1111, "数据冲突操作失败");
         }
         return new Message().error(1111, "服务器开小差");
@@ -50,7 +51,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.OK)
     public Message notFoundException(RuntimeException e) {
-        LOGGER.error("运行时异常:",e);
-        return new Message().error(1111,"服务器开小差");
+        LOGGER.error("运行时异常:", e);
+        return new Message().error(1111, "服务器开小差");
     }
 }
