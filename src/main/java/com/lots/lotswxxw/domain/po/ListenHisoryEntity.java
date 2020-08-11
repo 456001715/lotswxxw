@@ -44,4 +44,6 @@ public class ListenHisoryEntity implements Serializable {
 
     @ApiModelProperty(value = "歌曲Id")
     private Long songId;
+
+
 }
