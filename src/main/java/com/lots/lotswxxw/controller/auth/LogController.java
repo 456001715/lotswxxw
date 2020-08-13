@@ -1,4 +1,4 @@
-package com.lots.lotswxxw.controller;
+package com.lots.lotswxxw.controller.auth;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
