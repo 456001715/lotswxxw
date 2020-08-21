@@ -29,4 +29,12 @@ public class TwoColorBallController {
         int [][]finalBalls=two.TwoColorBall();
        return new Message().ok(6666,"return number success").addData("number",finalBalls);
     }
+
+    @ApiOperation(value = "获取对应用户角色",notes = "GET根据用户的appId获取对应用户的角色")
+    @GetMapping("/two/get2")
+    public Message getUserRoleList2() {
+//        TwoColorBallUtil two;
+        int [][]finalBalls=two.TwoColorBall();
+        return new Message().ok(6666,"return number success").addData("number",finalBalls);
+    }
 }
