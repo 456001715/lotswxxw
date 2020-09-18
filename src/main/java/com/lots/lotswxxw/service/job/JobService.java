@@ -119,13 +119,13 @@ public class JobService {
                         String span_right = document.getElementsByClass("span_right").text();
                         String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
                         System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
-                        TwoBallHisoryPo po=new TwoBallHisoryPo();
-                        po.setBlueNumber(ball_blue+"");
-                        po.setRedNumber(redNumber);
-                        po.setCreatTime(new Date());
-                        twoBallHisoryMapper.insertTwoBallHisory(po);
                         if (getdate.equals(nowList.get(0).getChapter())) {
                             flag = false;
+                            TwoBallHisoryPo po=new TwoBallHisoryPo();
+                            po.setBlueNumber(ball_blue+"");
+                            po.setRedNumber(redNumber);
+                            po.setCreatTime(new Date());
+                            twoBallHisoryMapper.insertTwoBallHisory(po);
                             nowList.forEach(getTwo -> {
                                 int count = 0;
                                 for (String num1 : redNumber.split(" , ")) {
