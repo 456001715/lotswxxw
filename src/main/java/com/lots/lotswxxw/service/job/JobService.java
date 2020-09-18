@@ -7,8 +7,10 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.GetTwoMapper;
 import com.lots.lotswxxw.dao.ListenHisoryDao;
+import com.lots.lotswxxw.dao.TwoBallHisoryMapper;
 import com.lots.lotswxxw.domain.po.GetTwoPO;
 import com.lots.lotswxxw.domain.po.ListenHisoryEntity;
+import com.lots.lotswxxw.domain.po.TwoBallHisoryPo;
 import com.lots.lotswxxw.domain.vo.music.JsonRootBean;
 import com.lots.lotswxxw.domain.vo.music.WeekData;
 import com.lots.lotswxxw.util.CloudMusicApiUrl;
@@ -22,6 +24,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static cn.hutool.core.collection.CollUtil.isNotEmpty;
 
 /**
  * @author: lots
@@ -37,6 +41,9 @@ public class JobService {
 
     @Resource
     private GetTwoMapper getTwoMapper;
+
+    @Resource
+    private TwoBallHisoryMapper twoBallHisoryMapper;
 
     /**
      * 每1小时执行一次
@@ -60,7 +67,7 @@ public class JobService {
                 List<WeekData> weekData = jsonRootBean.getWeekData();
                 ListenHisoryEntity findUser = new ListenHisoryEntity();
                 findUser.setUserId(finalId);
-                if (CollUtil.isNotEmpty(weekData)) {
+                if (isNotEmpty(weekData)) {
                     weekData.forEach(week -> {
                         //分数
                         int score = week.getScore();
@@ -98,7 +105,7 @@ public class JobService {
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
         List<GetTwoPO> nowList = getTwoMapper.getNowList();
-        if (CollectionUtil.isNotEmpty(nowList)) {
+        if (isNotEmpty(nowList)) {
             Boolean flag = true;
 
             while (flag) {
@@ -112,6 +119,11 @@ public class JobService {
                         String span_right = document.getElementsByClass("span_right").text();
                         String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
                         System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
+                        TwoBallHisoryPo po=new TwoBallHisoryPo();
+                        po.setBlueNumber(ball_blue+"");
+                        po.setRedNumber(redNumber);
+                        po.setCreatTime(new Date());
+                        twoBallHisoryMapper.insertTwoBallHisory(po);
                         if (getdate.equals(nowList.get(0).getChapter())) {
                             flag = false;
                             nowList.forEach(getTwo -> {

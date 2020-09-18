@@ -1,7 +1,10 @@
 package com.lots.lotswxxw.util;
 
 import com.lots.lotswxxw.domain.vo.BaseTreeNode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +41,18 @@ public class TreeUtil {
             }
         }
         return trees;
+    }
+
+    public static void main(String[] args) throws IOException {
+        String url = "http://kaijiang.500.com/ssq.shtml";
+        Document document = Jsoup.connect(url).get();
+        String body = document.getElementsByClass("ball_red").text();
+        String[] s = body.split(" ");
+        String span_right = document.getElementsByClass("span_right").text();
+        String redNumber = String.join(" , ", s);
+        Integer blueNumber = Integer.parseInt(document.getElementsByClass("ball_blue").text());
+        String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
+        System.out.println(redNumber + "-" + blueNumber + "-" + getdate);
     }
 
 }
