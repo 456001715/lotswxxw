@@ -105,6 +105,7 @@ public class JobService {
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
         List<GetTwoPO> nowList = getTwoMapper.getNowList();
+        SimpleDateFormat f = new SimpleDateFormat("yyyy年M月d日");
         if (isNotEmpty(nowList)) {
             Boolean flag = true;
 
@@ -119,7 +120,7 @@ public class JobService {
                         String span_right = document.getElementsByClass("span_right").text();
                         String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
                         System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
-                        if (getdate.equals(nowList.get(0).getChapter())) {
+                        if (f.parse(getdate).getTime()==(f.parse(f.format(nowList.get(0).getChapter()))).getTime()){
                             flag = false;
                             TwoBallHisoryPo po=new TwoBallHisoryPo();
                             po.setBlueNumber(ball_blue+"");
@@ -166,7 +167,7 @@ public class JobService {
                                     getTwo.setUpdateTimestamp(new Date());
                                 }
                                 if (getTwo.getIsTrue()) {
-                                    MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + getTwo.getChapter() + "期", false);
+                                    MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + f.format(getTwo.getChapter()) + "期", false);
                                 }
                                 getTwoMapper.updateGetTwo(getTwo);
                             });
