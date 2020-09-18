@@ -21,27 +21,29 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TwoBallHisoryPo implements java.io.Serializable {
-/** 版本号 */
-private static final long serialVersionUID = 2674870152760852750L;
+/**
+ * 版本号
+ */
+private static final long serialVersionUID = 4565583408577614082L;
 
     /**
-	* 主键 
-	*/
+	 * 主键
+	 */
     @ApiModelProperty(value = "主键")
     private Integer id;
     /**
-	* 红球 
-	*/
+	 * 红球
+	 */
     @ApiModelProperty(value = "红球")
     private String redNumber;
     /**
-	* 篮球 
-	*/
+	 * 篮球
+	 */
     @ApiModelProperty(value = "篮球")
     private String blueNumber;
     /**
-	* 创建时间 
-	*/
+	 * 创建时间
+	 */
     @ApiModelProperty(value = "创建时间")
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date creatTime;
