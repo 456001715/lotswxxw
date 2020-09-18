@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
+import static com.lots.lotswxxw.util.LotteryTicketUtil.TwoColorBall;
+
 /**
  * @ClassName core
  * @Description 第一个功能-机选双色球 - -。。
@@ -21,20 +23,16 @@ import java.util.Set;
 
 @RestController
 public class TwoColorBallController {
-    public LotteryTicketUtil two;
-    @ApiOperation(value = "获取对应用户角色",notes = "GET根据用户的appId获取对应用户的角色")
+
     @GetMapping("/two/get")
     public Message getUserRoleList() {
-//        TwoColorBallUtil two;
-        int [][]finalBalls=two.TwoColorBall();
+        int [][]finalBalls=TwoColorBall();
        return new Message().ok(6666,"return number success").addData("number",finalBalls);
     }
 
-    @ApiOperation(value = "获取对应用户角色",notes = "GET根据用户的appId获取对应用户的角色")
     @GetMapping("/two/get2")
     public Message getUserRoleList2() {
-//        TwoColorBallUtil two;
-        int [][]finalBalls=two.TwoColorBall();
+        int [][]finalBalls=TwoColorBall();
         return new Message().ok(6666,"return number success").addData("number",finalBalls);
     }
 }
