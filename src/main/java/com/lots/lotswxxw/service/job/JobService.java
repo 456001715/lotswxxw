@@ -105,7 +105,6 @@ public class JobService {
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
         List<GetTwoPO> nowList = getTwoMapper.getNowList();
-        if (isNotEmpty(nowList)) {
             Boolean flag = true;
 
             while (flag) {
@@ -119,11 +118,12 @@ public class JobService {
                         String span_right = document.getElementsByClass("span_right").text();
                         String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
                         System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
-                        TwoBallHisoryPo po=new TwoBallHisoryPo();
-                        po.setBlueNumber(ball_blue+"");
+                        TwoBallHisoryPo po = new TwoBallHisoryPo();
+                        po.setBlueNumber(ball_blue + "");
                         po.setRedNumber(redNumber);
                         po.setCreatTime(new Date());
                         twoBallHisoryMapper.insertTwoBallHisory(po);
+                        if (isNotEmpty(nowList)) {
                         if (getdate.equals(nowList.get(0).getChapter())) {
                             flag = false;
                             nowList.forEach(getTwo -> {
@@ -171,12 +171,13 @@ public class JobService {
                                 getTwoMapper.updateGetTwo(getTwo);
                             });
                         }
+                    }
                     } catch (Exception e) {
 
                     }
                 }
 
             }
-        }
+
     }
 }
