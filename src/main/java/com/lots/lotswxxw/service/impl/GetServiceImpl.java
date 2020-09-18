@@ -49,7 +49,7 @@ public class GetServiceImpl implements GetService {
             }
         }
         List<String> list = new ArrayList<>();
-        set.forEach(s -> list.add(s.toString()));
+        set.forEach(s -> list.add(String.format("%02d", s)));
         /*Set<Integer> sortSet = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
         sortSet.addAll(set);
         String[] array = sortSet.toArray(new String[]{});*/
@@ -57,7 +57,7 @@ public class GetServiceImpl implements GetService {
         Set<Integer> set2 = new TreeSet<Integer>();
         int sui2 = RandomUtil.randomInt(1, 17);
         set2.add(sui2);
-        String blue = sui2 + "";
+        String blue = String.format("%02d", sui2) + "";
 
         Date date = new Date();
         SimpleDateFormat dateFm = new SimpleDateFormat("EEEE", Locale.CHINA);
