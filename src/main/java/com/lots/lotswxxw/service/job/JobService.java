@@ -116,7 +116,7 @@ public class JobService {
                         String body = document.getElementsByClass("ball_red").text();
                         String[] s = body.split(" ");
                         String redNumber = String.join(" , ", s);
-                        Integer ball_blue = Integer.parseInt(document.getElementsByClass("ball_blue").text());
+                        String ball_blue = document.getElementsByClass("ball_blue").text();
                         String span_right = document.getElementsByClass("span_right").text();
                         String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
                         System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
@@ -168,6 +168,9 @@ public class JobService {
                                 }
                                 if (getTwo.getIsTrue()) {
                                     MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + f.format(getTwo.getChapter()) + "期", false);
+                                }else{
+                                    MailUtil.send("553294090@qq.com", "很遗憾没有中奖", "开奖号码为："+redNumber + "-" + ball_blue + "-" + getdate+"你的号码为："+nowList.toString() , false);
+
                                 }
                                 getTwoMapper.updateGetTwo(getTwo);
                             });
