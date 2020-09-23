@@ -100,7 +100,7 @@ public class JobService {
         }
     }
 
-    @Scheduled(cron = "0 0 21 ? * 2,4,7")
+  /*  @Scheduled(cron = "0 0 21 ? * 2,4,7")
 //@Scheduled(cron = "0/5 * * * * ? ")
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
@@ -182,5 +182,5 @@ public class JobService {
 
             }
         }
-    }
+    }*/
 }
