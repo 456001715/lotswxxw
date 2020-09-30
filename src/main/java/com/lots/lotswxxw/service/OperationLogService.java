@@ -11,9 +11,8 @@ import java.util.List;
 public interface OperationLogService {
 
     /**
-     * description TODO
+     * description
      *
-     * @param 1
      * @return java.util.List<AuthOperationLog>
      */
     List<AuthOperationLog> getOperationList();
