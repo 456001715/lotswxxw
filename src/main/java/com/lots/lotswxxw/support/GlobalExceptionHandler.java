@@ -54,4 +54,15 @@ public class GlobalExceptionHandler {
         LOGGER.error("运行时异常:", e);
         return new Message().error(1111, "服务器开小差");
     }
+
+    /**
+     * 全局异常捕捉处理
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(value = Exception.class)
+    public Message errorHandler(Exception e) {
+        LOGGER.error("运行时异常:", e);
+        return new Message().error(1111, "服务器开小差");
+    }
 }
