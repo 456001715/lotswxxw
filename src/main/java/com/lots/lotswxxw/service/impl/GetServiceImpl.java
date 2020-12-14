@@ -1,6 +1,8 @@
 package com.lots.lotswxxw.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.date.Week;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -21,6 +23,8 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static cn.hutool.core.date.DateUtil.offsetDay;
+import static cn.hutool.core.date.DateUtil.thisDayOfWeekEnum;
 import static org.springframework.context.i18n.LocaleContextHolder.setTimeZone;
 
 /**
@@ -38,46 +42,31 @@ public class GetServiceImpl implements GetService {
 
     @Override
     public JsonResult getTwo() {
-        setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));//importan
         GetTwoPO get = new GetTwoPO();
-        Set<Integer> set = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
-        while (true) {
+        Set<Integer> set = new TreeSet<>(Integer::compareTo);
+        do {
             Integer sui = RandomUtil.randomInt(1, 34);
             set.add(sui);
-            if (set.size() == 6) {
-                break;
-            }
-        }
+        } while (set.size() != 6);
         List<String> list = new ArrayList<>();
         set.forEach(s -> list.add(String.format("%02d", s)));
-        /*Set<Integer> sortSet = new TreeSet<Integer>((o2, o1) -> o2.compareTo(o1));
-        sortSet.addAll(set);
-        String[] array = sortSet.toArray(new String[]{});*/
         String redList = String.join(" , ", list);
-        Set<Integer> set2 = new TreeSet<Integer>();
+        Set<Integer> set2 = new TreeSet<>();
         int sui2 = RandomUtil.randomInt(1, 17);
         set2.add(sui2);
         String blue = String.format("%02d", sui2) + "";
 
         Date date = new Date();
-        SimpleDateFormat dateFm = new SimpleDateFormat("EEEE", Locale.CHINA);
-        String currSun = dateFm.format(date);
+        String currSun = thisDayOfWeekEnum().toChinese();
         get.setRedNumber(redList);
         get.setBlueNumber(blue);
-        if (currSun.equals("星期二") || currSun.equals("星期四") || currSun.equals("星期日")) {
+        if (Week.TUESDAY.toChinese().equals(currSun) || Week.THURSDAY.toChinese().equals(currSun) || Week.SUNDAY.toChinese().equals(currSun)) {
             get.setChapter(date);
-        } else if (currSun.equals("星期五")) {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            c.add(Calendar.DAY_OF_MONTH, 2);
-            get.setChapter(c.getTime());
+        } else if (Week.FRIDAY.toChinese().equals(currSun)) {
+            get.setChapter(offsetDay(date,2));
         } else {
-            Calendar c = Calendar.getInstance();
-            c.setTime(date);
-            c.add(Calendar.DAY_OF_MONTH, 1);
-            get.setChapter(c.getTime());
+            get.setChapter(offsetDay(date,1));
         }
-
 
         return new JsonResult(200, "get two", get);
     }

@@ -22,10 +22,12 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static cn.hutool.core.collection.CollUtil.isNotEmpty;
+import static cn.hutool.core.date.DateUtil.*;
 
 /**
  * @author: lots
@@ -100,7 +102,7 @@ public class JobService {
         }
     }
 
-  /*  @Scheduled(cron = "0 0 21 ? * 2,4,7")
+    @Scheduled(cron = "0 0 21 ? * 2,4,7")
 //@Scheduled(cron = "0/5 * * * * ? ")
     public void getTwo() {
         String url = "http://kaijiang.500.com/ssq.shtml";
@@ -108,7 +110,9 @@ public class JobService {
         SimpleDateFormat f = new SimpleDateFormat("yyyy年M月d日");
         if (isNotEmpty(nowList)) {
             Boolean flag = true;
-
+            Long n = 60000L;
+            try { Thread.sleep ( n ) ;
+            } catch (InterruptedException ie){}
             while (flag) {
                 while (flag) {
                     try {
@@ -182,5 +186,6 @@ public class JobService {
 
             }
         }
-    }*/
+    }
+
 }
