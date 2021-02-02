@@ -61,7 +61,12 @@ public class JobService {
             String type = "1";
             data.put("uid", id);
             data.put("type", type);
-            String dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap<String, String>());
+            String dataPage = "";
+            try {
+                dataPage = CreateWebRequest.createWebPostRequest(CloudMusicApiUrl.domain, data, new HashMap<String, String>());
+            } catch (Exception e) {
+
+            }
             JSONObject jsonResult = JSONUtil.parseObj(dataPage);
             JsonRootBean jsonRootBean = (JsonRootBean) JSONUtil.toBean(jsonResult, JsonRootBean.class);
             if (jsonRootBean != null && jsonRootBean.getWeekData() != null && jsonRootBean.getWeekData().size() > 0) {
