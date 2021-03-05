@@ -31,4 +31,12 @@ public class jmController  extends BaseAction {
         em.init(p1,p2);
         return em.decrypt(data);
     }
+
+    @GetMapping("/get")
+    public Object userinfo(String data){
+        EncryptManager em =new EncryptManager();
+        em.init(p1,p2);
+        final String json = em.getRequestJson(data);
+        return json;
+    }
 }
