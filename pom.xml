@@ -111,11 +111,6 @@
             <artifactId>json</artifactId>
             <version>20140107</version>
         </dependency>
-        <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-            <version>5.3.1</version>
-        </dependency>
         <!-- shiro安全框架 -->
         <!--<dependency>-->
         <!--<groupId>org.apache.shiro</groupId>-->
@@ -224,6 +219,23 @@
             <version>5.4.0</version>
         </dependency>
     </dependencies>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <!-- 是否开启发布版构件下载 -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!-- 是否开启快照版构件下载 -->
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
 
     <build>
         <finalName>${project.artifactId}</finalName>
