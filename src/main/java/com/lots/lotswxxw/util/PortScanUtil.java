@@ -13,15 +13,19 @@ import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+* PortScanUtil
+* @author: lots
+* @date: 2021/4/6 15:36
+*/
+@SuppressWarnings({"ALL", "AlibabaThreadPoolCreation"})
 public class PortScanUtil {
     boolean flag = true;
     List<String> list = new ArrayList<String>();
 
     public static void main(String[] args) {
         PortScanUtil portScanDemo = new PortScanUtil();
-        //方式1
-        // portScanDemo.scanLargePorts("ultra-book.co", 20, 10000, 5,800);
-        // portScanDemo.scanLargePorts("180.97.161.184", 1, 100, 5);
+
         String ip = "47.244.21.169";
         //方式2
         Set<Integer> portSet = new LinkedHashSet<Integer>();
