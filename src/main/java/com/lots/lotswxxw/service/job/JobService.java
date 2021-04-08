@@ -2,6 +2,7 @@ package com.lots.lotswxxw.service.job;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -107,90 +108,88 @@ public class JobService {
         }
     }
 
-  /*  @Scheduled(cron = "0 0 21 ? * 2,4,7")
-//@Scheduled(cron = "0/5 * * * * ? ")
+    //    @Scheduled(cron = "0 0 21 ? * 2,4,7")
+    @Scheduled(cron = "0 */10 * * * ?")
     public void getTwo() {
-        String url = "http://kaijiang.500.com/ssq.shtml";
-        List<GetTwoPO> nowList = getTwoMapper.getNowList();
         SimpleDateFormat f = new SimpleDateFormat("yyyy年M月d日");
-        if (isNotEmpty(nowList)) {
-            Boolean flag = true;
-            Long n = 60000L;
-            try { Thread.sleep ( n ) ;
-            } catch (InterruptedException ie){}
-            while (flag) {
-                while (flag) {
-                    try {
-                        Document document = Jsoup.connect(url).get();
-                        String body = document.getElementsByClass("ball_red").text();
-                        String[] s = body.split(" ");
-                        String redNumber = String.join(" , ", s);
-                        Integer ball_blue = Integer.parseInt(document.getElementsByClass("ball_blue").text());
-                        String span_right = document.getElementsByClass("span_right").text();
-                        String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
-                        System.out.println(redNumber + "-" + ball_blue + "-" + getdate);
-                        if (f.parse(getdate).getTime()==(f.parse(f.format(nowList.get(0).getChapter()))).getTime()){
-                            flag = false;
-                            TwoBallHisoryPo po=new TwoBallHisoryPo();
-                            po.setBlueNumber(ball_blue+"");
-                            po.setRedNumber(redNumber);
-                            po.setCreatTime(new Date());
-                            twoBallHisoryMapper.insertTwoBallHisory(po);
-                            nowList.forEach(getTwo -> {
-                                int count = 0;
-                                for (String num1 : redNumber.split(" , ")) {
-                                    for (String num2 : getTwo.getRedNumber().split(" , ")) {
-                                        if (Integer.parseInt(num1) == Integer.parseInt(num2)) {
-                                            count += 1;
-                                        }
+        final int week = new DateTime().dayOfWeek();
+        final int hour = new DateTime().hour(true);
+        Boolean weekBool = week==5||week==3||week==0;
+        Boolean hourBool = hour>20;
+        //判断是否已经到时间了
+        if(weekBool && hourBool){
+            String url = "http://kaijiang.500.com/ssq.shtml";
+            List<GetTwoPO> nowList = getTwoMapper.getNowList();
+            //如果该天有参与且没判断过
+            if(isNotEmpty(nowList)){
+                try {
+                    Document document = Jsoup.connect(url).get();
+                    String body = document.getElementsByClass("ball_red").text();
+                    String[] s = body.split(" ");
+                    String redNumber = String.join(" , ", s);
+                    Integer ball_blue = Integer.parseInt(document.getElementsByClass("ball_blue").text());
+                    String span_right = document.getElementsByClass("span_right").text();
+                    String getdate = span_right.substring(span_right.lastIndexOf("开奖日期：") + 5).substring(0, span_right.indexOf(" 兑奖截止") - 5);
+                    if (f.parse(getdate).getTime()==(f.parse(f.format(nowList.get(0).getChapter()))).getTime()){
+                        TwoBallHisoryPo po=new TwoBallHisoryPo();
+                        po.setBlueNumber(ball_blue+"");
+                        po.setRedNumber(redNumber);
+                        po.setCreatTime(new Date());
+                        twoBallHisoryMapper.insertTwoBallHisory(po);
+                        nowList.forEach(getTwo -> {
+                            int count = 0;
+                            for (String num1 : redNumber.split(" , ")) {
+                                for (String num2 : getTwo.getRedNumber().split(" , ")) {
+                                    if (Integer.parseInt(num1) == Integer.parseInt(num2)) {
+                                        count += 1;
                                     }
                                 }
-                                Integer userBlueball = Integer.parseInt(getTwo.getBlueNumber());
-                                if (count == 6 && ball_blue.equals(userBlueball)) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(1);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else if (count == 6) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(2);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else if (count == 5 && ball_blue.equals(userBlueball)) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(3);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else if (count == 5 || count == 4 && ball_blue.equals(userBlueball)) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(4);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else if (count == 4 || count == 3 && ball_blue.equals(userBlueball)) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(5);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else if (ball_blue.equals(userBlueball)) {
-                                    getTwo.setIsTrue(true);
-                                    getTwo.setIsRmb(6);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                } else {
-                                    getTwo.setIsTrue(false);
-                                    getTwo.setIsRmb(0);
-                                    getTwo.setUpdateTimestamp(new Date());
-                                }
-                                if (getTwo.getIsTrue()) {
-                                    MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + f.format(getTwo.getChapter()) + "期", false);
-                                }else{
-                                    MailUtil.send("553294090@qq.com", "很遗憾没有中奖", "开奖号码为："+redNumber + "-" + ball_blue + "-" + getdate+"你的号码为："+nowList.toString() , false);
+                            }
+                            Integer userBlueball = Integer.parseInt(getTwo.getBlueNumber());
+                            if (count == 6 && ball_blue.equals(userBlueball)) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(1);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else if (count == 6) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(2);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else if (count == 5 && ball_blue.equals(userBlueball)) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(3);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else if (count == 5 || count == 4 && ball_blue.equals(userBlueball)) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(4);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else if (count == 4 || count == 3 && ball_blue.equals(userBlueball)) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(5);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else if (ball_blue.equals(userBlueball)) {
+                                getTwo.setIsTrue(true);
+                                getTwo.setIsRmb(6);
+                                getTwo.setUpdateTimestamp(new Date());
+                            } else {
+                                getTwo.setIsTrue(false);
+                                getTwo.setIsRmb(0);
+                                getTwo.setUpdateTimestamp(new Date());
+                            }
+                            if (getTwo.getIsTrue()) {
+                                MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + f.format(getTwo.getChapter()) + "期", false);
+                            }else{
+                                MailUtil.send("553294090@qq.com", "很遗憾没有中奖", "开奖号码为："+redNumber + "-" + ball_blue + "-" + getdate+"你的号码为："+nowList.toString() , false);
 
-                                }
-                                getTwoMapper.updateGetTwo(getTwo);
-                            });
-                        }
-                    } catch (Exception e) {
-
+                            }
+                            getTwoMapper.updateGetTwo(getTwo);
+                        });
                     }
+                }catch (Exception e){
+                    e.printStackTrace();
                 }
-
             }
         }
-    }*/
+    }
+
 
 }

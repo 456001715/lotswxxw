@@ -102,6 +102,6 @@
         SELECT
         <include refid="allColumns"/>
         FROM get_two WHERE
-        chapter=date_format(now(),'%Y-%m-%d');
+        chapter=date_format(now(),'%Y-%m-%d') and is_true is null;
     </select>
 </mapper>
