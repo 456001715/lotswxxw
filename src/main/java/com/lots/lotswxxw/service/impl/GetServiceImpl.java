@@ -18,15 +18,10 @@ import com.lots.lotswxxw.util.CloudMusicApiUrl;
 import com.lots.lotswxxw.util.CreateWebRequest;
 import com.lots.lotswxxw.util.PortScanUtil;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.*;
-
 import static cn.hutool.core.date.DateUtil.offsetDay;
 import static cn.hutool.core.date.DateUtil.thisDayOfWeekEnum;
-import static org.springframework.context.i18n.LocaleContextHolder.setTimeZone;
-
 /**
  * @author: lots
  * @date: 2020/4/24 10:28
