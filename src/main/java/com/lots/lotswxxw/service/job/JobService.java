@@ -178,7 +178,7 @@ public class JobService {
                             if (getTwo.getIsTrue()) {
                                 MailUtil.send("553294090@qq.com", "当你看到这份邮件", "就代表你中了" + getTwo.getIsRmb() + "级，在第" + f.format(getTwo.getChapter()) + "期", false);
                             }else{
-                                MailUtil.send("553294090@qq.com", "很遗憾没有中奖", "开奖号码为："+redNumber + "-" + ball_blue + "-" + getdate+"你的号码为："+nowList.toString() , false);
+                                MailUtil.send("553294090@qq.com", "很遗憾没有中奖", "开奖号码为："+redNumber + "-" + ball_blue + "-" + getdate+"你的号码为："+getTwo.getRedNumber()+"-"+getTwo.getBlueNumber() , false);
 
                             }
                             getTwoMapper.updateGetTwo(getTwo);
