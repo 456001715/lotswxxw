@@ -9,13 +9,21 @@ import com.lots.lotswxxw.domain.vo.JsonResult;
  * @description:
  */
 public interface GetService {
-    public JsonResult getTwo();
+    JsonResult getTwo();
 
-    public JsonResult getMusic(String id, String type);
+    JsonResult getMusic(String id, String type);
 
-    public JsonResult getMusicPage();
+    JsonResult getMusicPage();
 
-    public JsonResult getPort(String ip, Integer start, Integer end);
+    JsonResult getPort(String ip, Integer start, Integer end);
 
-    public JsonResult buyTwo(GetTwoPO get);
+    JsonResult buyTwo(GetTwoPO get);
+    /**
+     * GetController 发送邮件
+     * @author: lots
+     * @param txt:
+     * @return: com.lots.lotswxxw.domain.vo.JsonResult
+     * @date: 2021/4/9 9:44
+     */
+    JsonResult sendMail(String txt);
 }

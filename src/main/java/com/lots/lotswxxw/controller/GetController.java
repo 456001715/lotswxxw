@@ -57,5 +57,16 @@ public class GetController {
         return getService.getPort(ip, start, end);
     }
 
+    /**
+    * GetController 发送邮件
+    * @author: lots
+    * @param txt: 
+    * @return: com.lots.lotswxxw.domain.vo.JsonResult
+    * @date: 2021/4/9 9:44
+    */
+    @GetMapping("sendMail")
+    public JsonResult sendMail(String txt) {
+        return getService.sendMail(txt);
+    }
 
 }

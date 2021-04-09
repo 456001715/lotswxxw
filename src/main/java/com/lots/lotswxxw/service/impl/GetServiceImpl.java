@@ -1,9 +1,9 @@
 package com.lots.lotswxxw.service.impl;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.Week;
 import cn.hutool.core.util.RandomUtil;
+import cn.hutool.extra.mail.MailUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.lots.lotswxxw.dao.GetTwoMapper;
@@ -132,5 +132,16 @@ public class GetServiceImpl implements GetService {
             return new JsonResult();
         }
         return new JsonResult(500, "服务器开小差了");
+    }
+
+    @Override
+    public JsonResult sendMail(String txt) {
+        try{
+            MailUtil.send("553294090@qq.com","手机端发送", txt, false);
+        } catch (Exception e){
+            new JsonResult(500, "服务器开小差了");
+        }
+
+        return new JsonResult();
     }
 }
