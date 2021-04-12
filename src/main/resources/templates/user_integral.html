@@ -1,0 +1,305 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>积分排行榜</title>
+    <link rel="stylesheet" href="../static/assets/agile/css/agile.layout.css">
+    <link rel="stylesheet" href="../static/assets/third/seedsui/plugin/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="../static/assets/third/seedsui/plugin/seedsui/custom.css">
+</head>
+
+<body>
+
+
+<div id="section_container">
+
+    <section data-role="section" id="page_index" class="active">
+
+        <header>
+            <div class="titlebar">
+                <a class="titlebar-button left" href="javascript:back()">
+                    <i class="icon icon-arrowleft"></i>
+                </a>
+                <h1 class="text-center">积分排行榜</h1>
+            </div>
+        </header>
+
+
+        <!--主体-->
+
+        <article data-role="article" id="index_article" class="active scrollbox" style="top:44px;bottom:48px;">
+
+            <div class="bg-gray bpadding8">
+                <div class="group nomargin">
+                    <ul class="tabbar" data-type="animate-oneline" id="tabbar">
+                        <li class="tab active">
+                            <label class="tabbar-tab-label">个人积分排名</label>
+                        </li>
+                        <li class="tab">
+                            <label class="tabbar-tab-label">部门积分排名</label>
+                        </li>
+                    </ul>
+                    <div class="slider-container" id="carouselPage" style="height: 100%;">
+                        <div class="slider-wrapper" style="padding-bottom:70px">
+                            <div class="slider-slide padding8">
+                                <!--start-->
+                                <ul class="app-goodsList">
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_1.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">乔杉</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">328</label>
+                                                <small class="app-goodsResult-right">第1名</small></p>
+                                        </div>
+                                    </li>
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_2.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">肖旭</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">308</label>
+                                                <small class="app-goodsResult-right">第2名</small></p>
+                                        </div>
+                                    </li>
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_3.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">路一鸣</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">228</label>
+                                                <small class="app-goodsResult-right">第3名</small></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="table-box">
+                                    <table align="center">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width:80px;">名称</th>
+                                            <th>姓名</th>
+                                            <th class="text-center" style="width:90px">积分</th>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第4名</span></td>
+                                            <td>张三</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第5名</span></td>
+                                            <td>李四</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第6名</span></td>
+                                            <td>王五</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第7名</span></td>
+                                            <td>赵六</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第8名</span></td>
+                                            <td>任七</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--end-->
+                            </div>
+                            <div class="slider-slide padding8">
+                                <!--部门:start-->
+                                <ul class="app-goodsList">
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_1.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">乔杉</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">328</label>
+                                                <small class="app-goodsResult-right">第1名</small></p>
+                                        </div>
+                                    </li>
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_2.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">肖旭</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">308</label>
+                                                <small class="app-goodsResult-right">第2名</small></p>
+                                        </div>
+                                    </li>
+                                    <li class="underline">
+                                        <div class="app-goodsImg"><img src="../static/images/ranking_3.png"></div>
+                                        <div class="app-goodsContent">
+                                            <p class="app-goodsTitle">路一鸣</p>
+                                            <p class="app-goodsResult">
+                                                <small>积分：</small>
+                                                <label class="app-goodsPrice">228</label>
+                                                <small class="app-goodsResult-right">第3名</small></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="table-box">
+                                    <table align="center">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width:80px;">名称</th>
+                                            <th>姓名</th>
+                                            <th class="text-center" style="width:90px">积分</th>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第4名</span></td>
+                                            <td>张三</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第5名</span></td>
+                                            <td>李四</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第6名</span></td>
+                                            <td>王五</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第7名</span></td>
+                                            <td>赵六</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="mark-warn">第8名</span></td>
+                                            <td>任七</td>
+                                            <td class="text-center">36</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--部门:end-->
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </article>
+
+        <footer>
+            <ul class="menubar">
+                <li class="tab" data-role="tab" href="index.html" data-toggle="article">
+                    <i class="icon icon-home"></i>
+                    <label class="tab-label">首页</label>
+                </li>
+
+                <li class="tab">
+                    <a href="message.html" class="block color-nav">
+                        <i class="icon icon-fileperson"></i>
+                        <label class="tab-label">我的信息</label>
+                    </a>
+                </li>
+                <li class="tab active" data-role="tab" href="#" data-toggle="article">
+                    <a href="user.html" class="block">
+                        <i class="icon icon-person-fill"></i>
+                        <label class="tab-label">个人中心</label>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </section>
+</div>
+
+<script src="../static/assets/third/seedsui/plugin/seedsui/seedsui.min.js"></script>
+
+<!--Exmobi能力-->
+<!--<script src="../../plugin/exmobi/exmobi.js"></script>-->
+<script type="text/javascript">
+    /*==========
+    滑动页
+    ===========*/
+    var carouselPage;
+
+    function initSlider() {
+        carouselPage = new Slider("#carouselPage", {
+            "onSlideChangeEnd": function (e) {
+                tabActive(e.index);
+            }
+        });
+
+    }
+
+    /*==========
+    页签
+    ===========*/
+    var tabbar = document.getElementById("tabbar");
+    var tab = tabbar.querySelectorAll(".tab");
+
+    //选中tab
+    function tabActive(index) {
+        for (var i = 0, t; t = tab[i++];) {
+            t.classList.remove("active");
+        }
+        tab[index].classList.add("active");
+    }
+
+    //初始化tabbar
+    function initTabbar() {
+        for (var i = 0, t; t = tab[i++];) {
+            (function (i) {
+                t.addEventListener("click", function () {
+                    carouselPage.slideTo(i - 1);
+                    tabActive(i - 1);
+                }, false);
+            })(i);
+        }
+    }
+
+    /*==========
+    下拉刷新
+    ===========*/
+    function initDrag() {
+        var drag = new Dragrefresh(carouselPage.slides[0], {
+            "onRefreshStart": function (e) {
+                setTimeout(function () {
+                    e.refreshComplete();
+                }, 2000);
+            },
+            "onRefreshEnd": function (e) {
+                console.log("刷新完成");
+            },
+            "onBottom": function (e) {
+                console.log("滚动到底部啦");
+                //数据加载完成时，隐藏下面的元素
+                setTimeout(function () {
+                    e.bottomContainer.style.display = "none";
+                }, 5000);
+            }
+        });
+    }
+
+    window.addEventListener("load", function () {
+        initSlider();
+        initTabbar();
+        initDrag();
+    }, false);
+
+    //定义exmobi返回
+    function back() {
+        history.go(-1);
+    }
+</script>
+</body>
+</html>

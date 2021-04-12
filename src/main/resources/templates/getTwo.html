@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>get two page</title>
+    <link rel="stylesheet" href="../../static/assets/agile/css/agile.layout.css">
+    <link rel="stylesheet" href="../../static/assets/third/seedsui/plugin/seedsui/seedsui.min.css">
+    <link rel="stylesheet" href="../../static/assets/third/seedsui/plugin/seedsui/custom.css">
+    <style>
+        .card-handler > a {
+            height: auto;
+            line-height: 16px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="section_container">
+    <header>
+        <div class="titlebar">
+            <a class="titlebar-button left" href="javascript:back()">
+                <i class="icon icon-arrowleft"></i>
+            </a>
+            <h1 class="text-center">get two page</h1>
+        </div>
+    </header>
+    <article id="main_article" data-role="article" class="active" style="top:44px; bottom:50px">
+        <div style="border-bottom:1px solid #ddd;">
+            <div class="userinfo before-filter-blur">
+                <span class="right absolute color-white" style="top:10px; right:10px"><i
+                        class="ico icon-femalesign"></i> </span>
+                <span class="photo radiusround size80"
+                      style="border:2px solid white;background-image:url(../../static/images/me.jpg);"></span>
+                <span class="photoname bold">lots</span>
+                <small class="color-white">lotswxxw管理员</small>
+                <small class="color-white block">admin</small>
+            </div>
+        </div>
+        <div style="height:12px;background-color:#f4f4f4"></div>
+        <form id="ID-Form">
+            <div class="inputbox underline">
+                <label class="inputbox-left">期数</label>
+                <div class="inputbox-right inputbox" data-input="clear">
+                    <input type="text" placeholder="期数" name="chapter" id="chapter" data-rule-field="期数"
+                           readonly="readonly">
+                    <i class="icon icon-clear-fill color-placeholder"
+                       style="font-size: 20px;line-height: 24px;text-align: center;display: none;"></i>
+                </div>
+            </div>
+
+            <div class="inputbox underline">
+                <label class="inputbox-left">红号码</label>
+                <div class="inputbox-right inputbox" data-input="reveal">
+                    <span class="mark-cancel" name="redNumber" id="redNumber"></span>
+                    <!--
+                                            <input type="text" placeholder="红号码" name="redNumber"id="redNumber" data-rule-field="红号码"  readonly="readonly" value=""/>
+                    -->
+                </div>
+            </div>
+
+            <div class="inputbox underline">
+                <label class="inputbox-left">蓝号码</label>
+                <div class="inputbox-right inputbox" data-input="reveal">
+                    <span class="mark-info" name="blueNumber" id="blueNumber"></span>
+                    <!--<input type="text" placeholder="蓝号码" name="blueNumber" id="blueNumber" data-rule-field="蓝号码"  readonly="readonly" value="12"/>-->
+                </div>
+            </div>
+
+
+        </form>
+        <div style="height:12px;background-color:#f4f4f4"></div>
+        <div style="border-top:1px solid #ddd;">
+            <a class="radius4 button block margin8" id="btn_alert" onclick="buyTwo()">
+                <i class="icon icon-rdook-fill"></i>
+                <label>确认已购买该组</label>
+            </a>
+        </div>
+    </article>
+    <!--<footer>
+            <ul class="menubar">
+                    <li class="tab" data-role="tab" href="index.html" data-toggle="article">
+                        <i class="icon icon-home color-nav"></i>
+                        <label class="tab-label">首页</label>
+                    </li>
+
+                    <li class="tab">
+                        <a href="message.html" class="block color-nav">
+                        <i class="icon icon-fileperson"></i>
+                        <label class="tab-label">我的信息</label>
+                        </a>
+                    </li>
+                     <li class="tab active" data-role="tab" href="#" data-toggle="article">
+                     <a href="user.html" class="block">
+                        <i class="icon icon-person-fill"></i>
+                        <label class="tab-label">个人中心</label>
+                        </a>
+                    </li>
+                </ul>
+            </footer>-->
+    </section>
+</div>
+
+<script src="../../static/assets/third/seedsui/plugin/seedsui/seedsui.min-date.js"></script>
+<script src="../../static/assets/third/jquery/jquery-2.1.3.min.js"></script>
+<script src="../../static/assets/third/jquery/jquery.mobile.custom.min.js"></script>
+
+<script type="text/javascript" src="../../static/assets/agile/js/agile.js"></script>
+<script type="text/javascript" src="../../static/assets/bridge/exmobi.js"></script>
+<script type="text/javascript" src="../../static/assets/bridge/agile.exmobi.js"></script>
+
+<script type="text/javascript" src="../../static/assets/app/js/app.seedsui.js"></script>
+
+<script>
+    (function () {
+        var url = "/get/two";
+        $.get(url, function (data) {
+            var redNumber = data.data.redNumber;
+            var blueNumber = data.data.blueNumber;
+            var chapter = data.data.chapter;
+            $("#redNumber").text(redNumber,);
+            $("#blueNumber").text(blueNumber);
+            $("#chapter").attr("value", chapter);
+        })
+
+    })();
+
+    function buyTwo() {
+        var redNumber = $("#redNumber").text();
+        var blueNumber = $("#blueNumber").text();
+        var chapter = $("#chapter").val();
+
+        var url = "/get/buyTwo";
+        var param = {
+            "uid": "lots",
+            "blueNumber": blueNumber,
+            "redNumber": redNumber,
+            "chapter": chapter,
+            "uid": "lots",
+        }
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json",
+            dataType: "JSON",
+            async: false,
+            data: JSON.stringify(param),
+            success: function (data) {//格式{key:value}
+                A.alert('提示', data.msg);
+            }
+        });
+
+    }
+
+
+</script>
+</body>
+</html>
