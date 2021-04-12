@@ -4,7 +4,7 @@
  Source Server         : lotsAliYun
  Source Server Type    : MySQL
  Source Server Version : 80021
- Source Host           : 119.23.206.234:3306
+ Source Host           : localhost:3306
  Source Schema         : lotswxxw
 
  Target Server Type    : MySQL

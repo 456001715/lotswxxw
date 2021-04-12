@@ -132,7 +132,7 @@ public class AesUtil {
         // 配置加密解密的密码/salt值
         encryptor.setPassword("e!lotsbalbal");
         // 对"raw_password"进行加密：S5kR+Y7CI8k7MaecZpde25yK8NKUnd6p
-        String password = "119.23.206.234";
+        String password = "localhost";
         String encPwd = encryptor.encrypt(password);
         System.out.println(encPwd);
         // 再进行解密：raw_password
