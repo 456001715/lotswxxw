@@ -25,7 +25,7 @@ public class XssUtil {
      * @param value 1
      * @return java.lang.String
      */
-    public static String stripXSS(String value) {
+    public static String stripXss(String value) {
         String rlt = null;
 
         if (null != value) {
@@ -91,7 +91,7 @@ public class XssUtil {
      * @return java.lang.String
      */
     public static String stripSqlXss(String value) {
-        return stripXSS(stripSqlInjection(value));
+        return stripXss(stripSqlInjection(value));
     }
 
 }
