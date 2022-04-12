@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 后台资源表(lots_resource) -->
+<mapper namespace="com.lots.lots.dao.mapper.LotsResourceMapper">
+
+    <!-- 字段映射 -->
+    <resultMap id="LotsResourceMap" type="com.lots.lots.entity.vo.LotsResourceVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="category_id" property="categoryId" jdbcType="BIGINT"/>
+    </resultMap>
+    <!-- 表查询字段 -->
+    <sql id="allColumns">
+        lr
+        .
+        id
+        , lr.create_time, lr.name, lr.url, lr.description, lr.category_id
+    </sql>
+
+    <!--查询单个-->
+    <select id="findById" resultMap="LotsResourceMap">
+        select *
+        FROM lots_resource
+        where id = #{id}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LotsResourceMap" parameterType="map">
+        SELECT
+        *
+        FROM lots_resource lr WHERE 1 = 1
+        <if test="createTime != null">
+            AND lr.create_time = #{createTime}
+        </if>
+        <if test="name != null and name != ''">
+            AND lr.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="url != null and url != ''">
+            AND lr.url LIKE CONCAT('%', #{url}, '%')
+        </if>
+        <if test="description != null and description != ''">
+            AND lr.description LIKE CONCAT('%', #{description}, '%')
+        </if>
+        <if test="categoryId != null">
+            AND lr.category_id = #{categoryId}
+        </if>
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAllPage" resultMap="LotsResourceMap" parameterType="map">
+        SELECT
+        *
+        FROM lots_resource lr WHERE 1 = 1
+        <if test="createTime != null">
+            AND lr.create_time = #{createTime}
+        </if>
+        <if test="name != null and name != ''">
+            AND lr.name LIKE CONCAT('%', #{name}, '%')
+        </if>
+        <if test="url != null and url != ''">
+            AND lr.url LIKE CONCAT('%', #{url}, '%')
+        </if>
+        <if test="description != null and description != ''">
+            AND lr.description LIKE CONCAT('%', #{description}, '%')
+        </if>
+        <if test="categoryId != null">
+            AND lr.category_id = #{categoryId}
+        </if>
+    </select>
+
+
+    <select id="getResourceList" resultType="com.lots.lots.entity.vo.LotsResourceVo">
+        SELECT ur.id          id,
+               ur.create_time createTime,
+               ur.`name`      `name`,
+               ur.url         url,
+               ur.description description,
+               ur.category_id categoryId
+        FROM lots_user_role_relation ar
+                 LEFT JOIN lots_role r ON ar.role_id = r.id
+                 LEFT JOIN lots_role_resource_relation rrr ON r.id = rrr.role_id
+                 LEFT JOIN lots_resource ur ON ur.id = rrr.resource_id
+        WHERE ar.user_id = #{userId}
+          AND ur.id IS NOT NULL
+        GROUP BY ur.id
+    </select>
+    <!--新增所有列-->
+    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO lots_resource (id,
+                                   create_time,
+                                   name,
+                                   url,
+                                   description,
+                                   category_id)
+        VALUES (#{id},
+                now(),
+                #{name},
+                #{url},
+                #{description},
+                #{categoryId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update" parameterType="map">
+        UPDATE lots_resource
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+            <if test="categoryId != null">
+                category_id = #{categoryId}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        DELETE
+        FROM lots_resource
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

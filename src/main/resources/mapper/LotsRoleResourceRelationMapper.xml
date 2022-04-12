@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 后台角色资源关系表(lots_role_resource_relation) -->
+<mapper namespace="com.lots.lots.dao.mapper.LotsRoleResourceRelationMapper">
+
+    <!-- 字段映射 -->
+    <resultMap id="LotsRoleResourceRelationMap" type="com.lots.lots.entity.vo.LotsRoleResourceRelationVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="role_id" property="roleId" jdbcType="BIGINT"/>
+        <result column="resource_id" property="resourceId" jdbcType="BIGINT"/>
+    </resultMap>
+    <!-- 表查询字段 -->
+    <sql id="allColumns">
+        lrrr
+        .
+        id
+        , lrrr.role_id, lrrr.resource_id
+    </sql>
+
+    <!--查询单个-->
+    <select id="findById" resultMap="LotsRoleResourceRelationMap">
+        select *
+        FROM lots_role_resource_relation
+        where id = #{id}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LotsRoleResourceRelationMap" parameterType="map">
+        SELECT
+        *
+        FROM lots_role_resource_relation lrrr WHERE 1 = 1
+        <if test="roleId != null">
+            AND lrrr.role_id = #{roleId}
+        </if>
+        <if test="resourceId != null">
+            AND lrrr.resource_id = #{resourceId}
+        </if>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO lots_role_resource_relation (id,
+                                                 role_id,
+                                                 resource_id)
+        VALUES (#{id},
+                #{roleId},
+                #{resourceId})
+    </insert>
+
+    <!--批量新增数据-->
+    <insert id="insertList" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO lots_role_resource_relation (
+        id,
+        role_id,
+        resource_id
+        ) VALUES
+        <foreach collection="list" separator="," item="item" index="index">
+            (
+            #{item.id},
+            #{item.roleId},
+            #{item.resourceId}
+            )
+        </foreach>
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update" parameterType="map">
+        UPDATE lots_role_resource_relation
+        <set>
+            <if test="roleId != null">
+                role_id = #{roleId},
+            </if>
+            <if test="resourceId != null">
+                resource_id = #{resourceId}
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <!--通过主键批量删除-->
+    <delete id="deleteByIds">
+        DELETE
+        FROM lots_role_resource_relation
+        WHERE FIND_IN_SET(id, #{ids});
+    </delete>
+
+    <delete id="deleteByRoleId">
+        DELETE
+        FROM lots_role_resource_relation
+        WHERE role_id = #{roleId};
+    </delete>
+
+</mapper>
