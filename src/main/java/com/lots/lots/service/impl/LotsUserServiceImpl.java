@@ -273,15 +273,13 @@ public class LotsUserServiceImpl implements LotsUserService {
      */
     private void insertLoginLog(String username) {
         LotsUserVo admin = getAdminByUsername(username);
-        if (admin == null) {
-            return;
-        }
-        LotsUserLoginLogVo loginLog = new LotsUserLoginLogVo();
-        loginLog.setUserId(admin.getId());
-        loginLog.setCreateTime(new Date());
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        loginLog.setIp(getIpAddress(request));
+        List<LotsUserPermissionRelationVo> relationList = permissionIdList.stream().map(permissionId -> {
+            LotsUserPermissionRelationVo relation = new LotsUserPermissionRelationVo();
+            relation.setUserId(userId);
+            relation.setType(type);
+            relation.setPermissionId(permissionId);
+            return relation;
+        }).collect(Collectors.toList());
         loginLogMapper.insert(loginLog);
     }
 
