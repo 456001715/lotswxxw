@@ -130,10 +130,6 @@ public class LotsUserServiceImpl implements LotsUserService {
 
     @Override
     public List<LotsResourceVo> getResourceList(Long userId) {
-        List<LotsResourceVo> resourceList = lotsUserCacheService.getResourceList(userId);
-        if (CollUtil.isNotEmpty(resourceList)) {
-            return resourceList;
-        }
         resourceList = lotsResourceMapper.getResourceList(userId);
         if (CollUtil.isNotEmpty(resourceList)) {
             lotsUserCacheService.setResourceList(userId, resourceList);
@@ -143,10 +139,6 @@ public class LotsUserServiceImpl implements LotsUserService {
 
     @Override
     public LotsUserVo getAdminByUsername(String username) {
-        LotsUserVo admin = lotsUserCacheService.getAdmin(username);
-        if (admin != null) {
-            return admin;
-        }
         LotsUserVo adminVo = lotsUserMapper.getAdminByUsername(username);
         if (adminVo != null) {
             lotsUserCacheService.setAdmin(adminVo);
@@ -168,15 +160,6 @@ public class LotsUserServiceImpl implements LotsUserService {
         List<LotsUserVo> userNameVos = lotsUserMapper.queryAll(uniqueLotsUser);
         if (CollUtil.isNotEmpty(userNameVos)) {
             return JsonResult.failed("该帐号已被注册，请更换注册账号");
-        }
-        if (StrUtil.isNotEmpty(lotsUser.getEmail())) {
-            uniqueLotsUser.setUsername(null);
-            uniqueLotsUser.setEmail(null);
-            uniqueLotsUser.setEmail(lotsUser.getEmail());
-            List<LotsUserVo> emailVos = lotsUserMapper.queryAll(uniqueLotsUser);
-            if (CollUtil.isNotEmpty(emailVos)) {
-                return JsonResult.failed("该邮箱已被注册，请更换注册邮箱");
-            }
         }
         if (StrUtil.isNotEmpty(lotsUser.getPhone())) {
             uniqueLotsUser.setUsername(null);
@@ -237,10 +220,6 @@ public class LotsUserServiceImpl implements LotsUserService {
                 || StrUtil.isEmpty(param.getNewPassword())) {
             return -1;
         }
-        LotsUserVo lotsUser = lotsUserMapper.getAdminByUsername(param.getUsername());
-        if (lotsUser == null) {
-            return -2;
-        }
         if (!passwordEncoder.matches(param.getOldPassword(), lotsUser.getPassword())) {
             return -3;
         }
@@ -252,11 +231,18 @@ public class LotsUserServiceImpl implements LotsUserService {
 
     @Override
     public int delete(Long id) {
-        final LotsUserVo byId = lotsUserMapper.findById(id);
-        lotsUserCacheService.delAdmin(byId.getUsername());
-        int count = lotsUserMapper.deleteById(id);
-        lotsUserCacheService.delResourceList(id);
-        return count;
+        if (StrUtil.isEmpty(param.getUsername())
+                || StrUtil.isEmpty(param.getOldPassword())
+                || StrUtil.isEmpty(param.getNewPassword())) {
+            return -1;
+        }
+        lotsUser.setPassword(passwordEncoder.encode(param.getNewPassword()));
+        lotsUserMapper.updateByPrimaryKey(lotsUser);
+        lotsUserCacheService.delAdmin(lotsUser.getUsername());
+        lotsUser.setPassword(passwordEncoder.encode(param.getNewPassword()));
+        lotsUserMapper.updateByPrimaryKey(lotsUser);
+        lotsUserCacheService.delAdmin(lotsUser.getUsername());
+        return 1;
     }
 
     @Override
