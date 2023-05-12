@@ -3,6 +3,7 @@ package com.lots.lots.entity.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -13,30 +14,28 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class IndexImgDTO{
-    private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("主键")
-    private Long imgId;
+    @NotNull(message = "userId not null")
+    @ApiModelProperty("用户id")
+    private Long userId;
 
-    @ApiModelProperty("店铺ID")
-    private Long shopId;
+    @NotBlank(message = "用户名不能为空")
+    @ApiModelProperty("用户名")
+    private String username;
 
-//    @NotNull(message = "图片不能为空")
-    @ApiModelProperty("图片")
-    private String imgUrl;
+    @ApiModelProperty("密码")
+    private String password;
 
-    @ApiModelProperty("状态")
+    @NotNull(message = "status not null")
+    @ApiModelProperty("状态 1启用 0禁用")
     private Integer status;
 
-    @NotNull(message = "序号不能为空")
-    @ApiModelProperty("顺序")
-    private Integer seq;
+    @ApiModelProperty("邮箱")
+    private String email;
 
-    @ApiModelProperty("关联商品id")
-    private Long spuId;
-
-//	@NotNull(message = "图片类型不能为空")
-    @ApiModelProperty("图片类型 0:小程序 1:pc")
-    private Integer imgType;
+    @ApiModelProperty("手机号")
+    private String phone;
+    @ApiModelProperty("性别 0-为男，1-女")
+    private Integer sex;
 
 }

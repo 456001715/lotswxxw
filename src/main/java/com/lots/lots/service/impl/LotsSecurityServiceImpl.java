@@ -43,12 +43,11 @@ public class LotsSecurityServiceImpl implements LotsSecurityService {
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        //获取用户信息
-        LotsUserVo admin = lotsUserMapper.getAdminByUsername(username);
+        List<LotsResourceVo> resourceList = lotsUserCacheService.getResourceList(userId);
         resourceList = lotsResourceMapper.getResourceList(userId);
         if (CollUtil.isNotEmpty(resourceList)) {
             lotsUserCacheService.setResourceList(userId, resourceList);
         }
-        throw new UsernameNotFoundException("用户名或密码错误");
+        return resourceList;
     }
 }
