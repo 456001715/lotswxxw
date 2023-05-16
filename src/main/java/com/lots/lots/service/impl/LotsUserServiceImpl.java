@@ -209,8 +209,15 @@ public class LotsUserServiceImpl implements LotsUserService {
 
     @Override
     public IPage<LotsUserVo> list(String keyword, Integer pageSize, Integer pageNum) {
-        IPage<LotsUserVo> list = lotsUserMapper.findByNamePage(new Page(pageNum,pageSize),keyword);
-        return list;
+        LotsUserVo admin = getAdminByUsername(username);
+        List<LotsUserPermissionRelationVo> relationList = permissionIdList.stream().map(permissionId -> {
+            LotsUserPermissionRelationVo relation = new LotsUserPermissionRelationVo();
+            relation.setUserId(userId);
+            relation.setType(type);
+            relation.setPermissionId(permissionId);
+            return relation;
+        }).collect(Collectors.toList());
+        loginLogMapper.insert(loginLog);
     }
 
     @Override
@@ -231,18 +238,22 @@ public class LotsUserServiceImpl implements LotsUserService {
 
     @Override
     public int delete(Long id) {
-        if (StrUtil.isEmpty(param.getUsername())
-                || StrUtil.isEmpty(param.getOldPassword())
-                || StrUtil.isEmpty(param.getNewPassword())) {
-            return -1;
+        int count = roleIds == null ? 0 : roleIds.size();
+        //先删除原来的关系
+        userRoleRelationMapper.deleteByUserId(userId);
+        //建立新关系
+        if (!CollectionUtils.isEmpty(roleIds)) {
+            List<LotsUserRoleRelationVo> list = new ArrayList<>();
+            for (Long roleId : roleIds) {
+                LotsUserRoleRelationVo roleRelation = new LotsUserRoleRelationVo();
+                roleRelation.setUserId(userId);
+                roleRelation.setRoleId(roleId);
+                list.add(roleRelation);
+            }
+            userRoleRelationMapper.insertList(list);
         }
-        lotsUser.setPassword(passwordEncoder.encode(param.getNewPassword()));
-        lotsUserMapper.updateByPrimaryKey(lotsUser);
-        lotsUserCacheService.delAdmin(lotsUser.getUsername());
-        lotsUser.setPassword(passwordEncoder.encode(param.getNewPassword()));
-        lotsUserMapper.updateByPrimaryKey(lotsUser);
-        lotsUserCacheService.delAdmin(lotsUser.getUsername());
-        return 1;
+        lotsUserCacheService.delResourceList(userId);
+        return count;
     }
 
     @Override

@@ -39,15 +39,24 @@ public class LotsUserCacheServiceImpl implements LotsUserCacheService {
 
     @Override
     public void delAdmin(String username) {
-        String key = redisDataBase + ":" + redisKeyAdmin + ":" + username;
-        redisService.del(key);
-
+        List<LotsUserRoleRelationVo> relationList = lotsUserRoleRelationMapper.findRoleIdIn(roleIds);
+        if (CollUtil.isNotEmpty(relationList)) {
+            String keyPrefix = redisDataBase + ":" + redisKeyResourceList + ":";
+            List<String> keys = relationList.stream().map(relation -> keyPrefix + relation.getUserId()).collect(Collectors.toList());
+            redisService.del(keys);
+        }
     }
 
     @Override
     public void delResourceList(Long userId) {
-        String key = redisDataBase + ":" + redisKeyResourceList + ":" + userId;
-        redisService.del(key);
+        LotsUserRoleRelationVo vo = new LotsUserRoleRelationVo();
+        vo.setRoleId(roleId);
+        List<LotsUserRoleRelationVo> relationList = lotsUserRoleRelationMapper.queryAll(vo);
+        if (CollUtil.isNotEmpty(relationList)) {
+            String keyPrefix = redisDataBase + ":" + redisKeyResourceList + ":";
+            List<String> keys = relationList.stream().map(relation -> keyPrefix + relation.getUserId()).collect(Collectors.toList());
+            redisService.del(keys);
+        }
     }
 
     @Override
