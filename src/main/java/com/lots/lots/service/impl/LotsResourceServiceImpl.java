@@ -38,49 +38,103 @@ public class LotsResourceServiceImpl implements LotsResourceService {
      * @param lotsResource 实例对象
      * @return 实例对象
      */
-    @Override
-    public int insert(LotsResourceVo lotsResource) {
+    private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
+    private static final String CLAIM_KEY_USERNAME = "sub";
+    private static final String CLAIM_KEY_CREATED = "created";
+    @Value("${jwt.secret}")
+    private String secret;
+    @Value("${jwt.expiration}")
+    private Long expiration;
+    @Value("${jwt.tokenHead}")
+    private String tokenHead;
+    private static final int COUNT_2 = 2;
+    private static CompressionCodecResolver codecResolver = new DefaultCompressionCodecResolver();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
-        return this.lotsResourceMapper.insert(lotsResource);
+    /**
+     * 根据负责生成JWT的token
+     */
+    private String generateToken(Map<String, Object> claims) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setExpiration(generateExpirationDate())
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .compact();
     }
 
     /**
-     * 修改数据
-     *
-     * @param lotsResource 实例对象
-     * @return 实例对象
+     * 从token中获取JWT中的负载
      */
-    @Override
-    public int update(LotsResourceVo lotsResource) {
-
-        return this.lotsResourceMapper.update(lotsResource);
+    private Claims getClaimsFromToken(String token) {
+        Claims claims = null;
+        try {
+            claims = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (Exception e) {
+            LOGGER.info("JWT格式验证失败:{}", token);
+        }
+        return claims;
     }
 
     /**
-     * 通过主键删除数据
-     *
-     * @param id 主键
-     * @return 是否成功
+     * 生成token的过期时间
      */
-    @Override
-    public int deleteById(Long id) {
-        return this.lotsResourceMapper.deleteById(id);
+    private Date generateExpirationDate() {
+        return new Date(System.currentTimeMillis() + expiration * 1000);
     }
 
     /**
-     * 查询全部资源
-     *
-     * @author: lots
-     * @return: java.util.List<com.lots.lots.entity.vo.LotsResourceVo>
-     * @date: 2021/4/28 18:05
+     * 从token中获取登录用户名
      */
-    @Override
-    public List<LotsResourceVo> listAll() {
-        return lotsResourceMapper.queryAll(new LotsResourceVo());
+    public String getUserNameFromToken(String token) {
+        String username;
+        try {
+            Claims claims = getClaimsFromToken(token);
+            username = claims.getSubject();
+        } catch (Exception e) {
+            username = null;
+        }
+        return username;
     }
 
-    @Override
-    public IPage<LotsResourceVo> pageList(LotsResourceVo lotsResource, Integer pageSize, Integer pageNum) {
-        return lotsResourceMapper.queryAllPage(new Page(pageNum,pageSize),lotsResource);
+    /**
+     * 验证token是否还有效
+     *
+     * @param token       客户端传入的token
+     * @param userDetails 从数据库中查询出来的用户信息
+     */
+    public boolean validateToken(String token, UserDetails userDetails) {
+        String username = getUserNameFromToken(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
     }
+
+    /**
+     * 判断token是否已经失效
+     */
+    private boolean isTokenExpired(String token) {
+        Date expiredDate = getExpiredDateFromToken(token);
+        return expiredDate.before(new Date());
+    }
+
+    /**
+     * 从token中获取过期时间
+     */
+    private Date getExpiredDateFromToken(String token) {
+        Claims claims = getClaimsFromToken(token);
+        return claims.getExpiration();
+    }
+
+    /**
+     * 根据用户信息生成token
+     */
+    public String generateToken(UserDetails userDetails) {
+        Map<String, Object> claims = new HashMap<>(20);
+        claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+        claims.put(CLAIM_KEY_CREATED, new Date());
+        return generateToken(claims);
+    }
+
+
 }
