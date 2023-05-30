@@ -38,13 +38,12 @@ public class LotsUserCacheServiceImpl implements LotsUserCacheService {
     private String redisKeyResourceList;
 
     @Override
-    public void delAdmin(String username) {
-        List<LotsUserRoleRelationVo> relationList = lotsUserRoleRelationMapper.findRoleIdIn(roleIds);
-        if (CollUtil.isNotEmpty(relationList)) {
-            String keyPrefix = redisDataBase + ":" + redisKeyResourceList + ":";
-            List<String> keys = relationList.stream().map(relation -> keyPrefix + relation.getUserId()).collect(Collectors.toList());
-            redisService.del(keys);
-        }
+    @SaCheckPermission("biz:merchantRoomTime:export")
+    @Log(title = "商家-房间已占时间", businessType = BusinessType.EXPORT)
+    @PostMapping("/export")
+    public void export(ZMerchantRoomTimeBo bo, HttpServletResponse response) {
+        List<ZMerchantRoomTimeVo> list = iZMerchantRoomTimeService.queryList(bo);
+        ExcelUtils.exportExcel(list, "商家-房间已占时间", ZMerchantRoomTimeVo.class, response);
     }
 
     @Override

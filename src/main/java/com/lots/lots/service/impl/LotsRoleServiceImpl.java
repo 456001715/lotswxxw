@@ -88,13 +88,12 @@ public class LotsRoleServiceImpl implements LotsRoleService {
     }
 
     @Override
-    public int create(LotsRoleVo role) {
-        {
-            role.setCreateTime(new Date());
-            role.setAdminCount(0);
-            role.setSort(0);
-            return lotsRoleMapper.insert(role);
-        }
+    @SaCheckPermission("biz:merchantRoomTime:export")
+    @Log(title = "商家-房间已占时间", businessType = BusinessType.EXPORT)
+    @PostMapping("/export")
+    public void export(ZMerchantRoomTimeBo bo, HttpServletResponse response) {
+        List<ZMerchantRoomTimeVo> list = iZMerchantRoomTimeService.queryList(bo);
+        ExcelUtils.exportExcel(list, "商家-房间已占时间", ZMerchantRoomTimeVo.class, response);
     }
 
     @Override
