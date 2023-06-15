@@ -42,8 +42,14 @@ public class LotsUserCacheServiceImpl implements LotsUserCacheService {
     @Log(title = "商家-房间已占时间", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(ZMerchantRoomTimeBo bo, HttpServletResponse response) {
-        List<ZMerchantRoomTimeVo> list = iZMerchantRoomTimeService.queryList(bo);
-        ExcelUtils.exportExcel(list, "商家-房间已占时间", ZMerchantRoomTimeVo.class, response);
+        LotsUserRoleRelationVo vo = new LotsUserRoleRelationVo();
+        vo.setRoleId(roleId);
+        List<LotsUserRoleRelationVo> relationList = lotsUserRoleRelationMapper.queryAll(vo);
+        if (CollUtil.isNotEmpty(relationList)) {
+            String keyPrefix = redisDataBase + ":" + redisKeyResourceList + ":";
+            List<String> keys = relationList.stream().map(relation -> keyPrefix + relation.getUserId()).collect(Collectors.toList());
+            redisService.del(keys);
+        }
     }
 
     @Override
