@@ -29,7 +29,7 @@
         <bcprov-jdk15to18.version>1.68</bcprov-jdk15to18.version>
         <mail.version>1.4.7</mail.version>
         <json.version>20140107</json.version>
-        <jsoup.version>1.14.2</jsoup.version>
+        <jsoup.version>1.15.3</jsoup.version>
         <commons-lang.version>2.6</commons-lang.version>
         <commons-codec.version>1.11</commons-codec.version>
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
