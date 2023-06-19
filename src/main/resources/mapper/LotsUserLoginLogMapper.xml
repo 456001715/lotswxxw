@@ -21,12 +21,15 @@
         , lull.user_id, lull.create_time, lull.ip, lull.address, lull.user_agent
     </sql>
 
-    <!--查询单个-->
-    <select id="findById" resultMap="LotsUserLoginLogMap">
-        select *
-        FROM lots_user_login_log
-        where id = #{id}
-    </select>
+    <resultMap id="LotsRoleMap" type="com.lots.lots.entity.vo.LotsRoleVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="admin_count" property="adminCount" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="sort" property="sort" jdbcType="INTEGER"/>
+    </resultMap>
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="LotsUserLoginLogMap" parameterType="map">

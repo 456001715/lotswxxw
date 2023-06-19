@@ -13,16 +13,15 @@
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="status" property="status" jdbcType="INTEGER"/>
         <result column="sort" property="sort" jdbcType="INTEGER"/>
-    </resultMap>
-    <!-- 表查询字段 -->
-    <sql id="allColumns">
-        lr
-        .
-        id
-        , lr.name, lr.description, lr.admin_count, lr.create_time, lr.status, lr.sort
-    </sql>
-
-    <!--查询单个-->
+    </resultMap><resultMap id="LotsRoleMap" type="com.lots.lots.entity.vo.LotsRoleVo">
+    <id column="id" property="id" jdbcType="BIGINT"/>
+    <result column="name" property="name" jdbcType="VARCHAR"/>
+    <result column="description" property="description" jdbcType="VARCHAR"/>
+    <result column="admin_count" property="adminCount" jdbcType="INTEGER"/>
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    <result column="status" property="status" jdbcType="INTEGER"/>
+    <result column="sort" property="sort" jdbcType="INTEGER"/>
+</resultMap>个-->
     <select id="findById" resultMap="LotsRoleMap">
         select *
         FROM lots_role
