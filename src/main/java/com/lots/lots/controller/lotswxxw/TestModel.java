@@ -15,18 +15,52 @@ import java.math.BigDecimal;
  */
 @Data
 public class TestModel {
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    @GetMapping(value = "/redis")
+    public JsonResult redis(String value) throws Exception {
+        String falseString = "1";
+        if (falseString.equals(value)) {
+            throw new Exception("lalalaal");
+        }
+        redisTemplate.opsForValue().set(value, value, 5, TimeUnit.SECONDS);
+        return JsonResult.success(JsonResult.failed("这是加密的"));
+    }
+
     /**
-     * 订单id
+     * 图形验证码
      */
-    @ApiModelProperty(value = "id")
-    @NotNull(message = "ID不能为空", groups = {Delete.class, Update.class})
-    private Long id;
+    @GetMapping(value = "/img")
+    @ResponseEncrypt
+    public void img(String value) throws Exception {
+        // 1. 创建图片验证码
+        CaptchaVo captchaVo = CaptchaUtils.createCaptchaImage(CaptChaiPo.builder().build());
+        String captcha = captchaVo.getCaptcha();
+        BufferedImage captchaImage = captchaVo.getCaptchaImage();
 
-    @ApiModelProperty(value = "已收取的取车其他费用")
-    private BigDecimal otherFeesPickCarPrice;
+        // 2. 设置验证码到Redis
+        String captchaRedisKey = String.format(CaptchaUtils.CAPTCHA_REDIS_PREFIX, captcha);
+        redisTemplate.opsForValue().set(captchaRedisKey, captcha, 6, TimeUnit.SECONDS);
+        // 3. 设置验证码到响应输出流
+        HttpServletResponse response = ServletUtils.getResponse();
+        response.setContentType("image/png");
+        OutputStream output;
+        try {
+            output = response.getOutputStream();
+            // 响应结束时servlet会自动将output关闭
+            ImageIO.write(captchaImage, "png", output);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    @ApiModelProperty("免押类型 0=全额免押,1=未免押")
-    @NotNull(message="免押类型不能为空", groups = Insert.class)
-    private Integer depositType;
+    /**
+     * 参数校验
+     */
+    @PostMapping(value = "validated")
+    public JsonResult Validated (@Validated(Selete.class) @RequestBody TestModel testModel ){
+        return JsonResult.success("成功了");
+    }
 
 }
