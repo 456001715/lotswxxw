@@ -1,0 +1,4 @@
+==================================================
+${lots.application.name}-${lots.application.version}
+Base on Spring Boot ${spring-boot.version}
+==================================================

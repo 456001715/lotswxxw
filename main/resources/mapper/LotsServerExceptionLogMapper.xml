@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 服务器异常日志表(lots_server_exception_log) -->
+<mapper namespace="com.lots.lots.dao.mapper.LotsServerExceptionLogMapper">
+
+    <!-- 字段映射 -->
+    <resultMap id="LotsServerExceptionLogMap" type="com.lots.lots.entity.vo.LotsServerExceptionLogVo">
+        <id column="logid" property="logid" jdbcType="VARCHAR"/>
+        <result column="ipaddress" property="ipaddress" jdbcType="VARCHAR"/>
+        <result column="port" property="port" jdbcType="VARCHAR"/>
+        <result column="exceptionname" property="exceptionname" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="BLOB"/>
+        <result column="createtime" property="createtime" jdbcType="TIMESTAMP"/>
+        <result column="syspath" property="syspath" jdbcType="VARCHAR"/>
+        <result column="clientip" property="clientip" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="menuid" property="menuid" jdbcType="VARCHAR"/>
+        <result column="menuname" property="menuname" jdbcType="VARCHAR"/>
+        <result column="useragent" property="useragent" jdbcType="VARCHAR"/>
+        <result column="exceptiontype" property="exceptiontype" jdbcType="VARCHAR"/>
+        <result column="requestparameter" property="requestparameter" jdbcType="BLOB"/>
+    </resultMap>
+    <!-- 表查询字段 -->
+    <sql id="allColumns">
+        lsel
+        .
+        logid
+        , lsel.ipaddress, lsel.port, lsel.exceptionname, lsel.content, lsel.createtime, lsel.syspath, lsel.clientip,
+        lsel.url, lsel.menuid, lsel.menuname, lsel.useragent, lsel.exceptiontype, lsel.requestparameter
+    </sql>
+
+    <!--查询单个-->
+    <select id="findById" resultMap="LotsServerExceptionLogMap">
+        select *
+        FROM lots_server_exception_log
+        where logid = #{id}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LotsServerExceptionLogMap" parameterType="map">
+        SELECT
+        *
+        FROM lots_server_exception_log lsel WHERE 1 = 1
+        <if test="ipaddress != null and ipaddress != ''">
+            AND lsel.ipaddress LIKE CONCAT('%', #{ipaddress}, '%')
+        </if>
+        <if test="port != null and port != ''">
+            AND lsel.port LIKE CONCAT('%', #{port}, '%')
+        </if>
+        <if test="exceptionname != null and exceptionname != ''">
+            AND lsel.exceptionname LIKE CONCAT('%', #{exceptionname}, '%')
+        </if>
+        <if test="content != null">
+            AND lsel.content = #{content}
+        </if>
+        <if test="createtime != null">
+            AND lsel.createtime = #{createtime}
+        </if>
+        <if test="syspath != null and syspath != ''">
+            AND lsel.syspath LIKE CONCAT('%', #{syspath}, '%')
+        </if>
+        <if test="clientip != null and clientip != ''">
+            AND lsel.clientip LIKE CONCAT('%', #{clientip}, '%')
+        </if>
+        <if test="url != null and url != ''">
+            AND lsel.url LIKE CONCAT('%', #{url}, '%')
+        </if>
+        <if test="menuid != null and menuid != ''">
+            AND lsel.menuid LIKE CONCAT('%', #{menuid}, '%')
+        </if>
+        <if test="menuname != null and menuname != ''">
+            AND lsel.menuname LIKE CONCAT('%', #{menuname}, '%')
+        </if>
+        <if test="useragent != null and useragent != ''">
+            AND lsel.useragent LIKE CONCAT('%', #{useragent}, '%')
+        </if>
+        <if test="exceptiontype != null and exceptiontype != ''">
+            AND lsel.exceptiontype LIKE CONCAT('%', #{exceptiontype}, '%')
+        </if>
+        <if test="requestparameter != null">
+            AND lsel.requestparameter = #{requestparameter}
+        </if>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" parameterType="map" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO lots_server_exception_log (logid,
+                                               ipaddress,
+                                               port,
+                                               exceptionname,
+                                               content,
+                                               createtime,
+                                               syspath,
+                                               clientip,
+                                               url,
+                                               menuid,
+                                               menuname,
+                                               useragent,
+                                               exceptiontype,
+                                               requestparameter)
+        VALUES (#{logid},
+                #{ipaddress},
+                #{port},
+                #{exceptionname},
+                #{content},
+                #{createtime},
+                #{syspath},
+                #{clientip},
+                #{url},
+                #{menuid},
+                #{menuname},
+                #{useragent},
+                #{exceptiontype},
+                #{requestparameter})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update" parameterType="map">
+        UPDATE lots_server_exception_log
+        <set>
+            <if test="ipaddress != null">
+                ipaddress = #{ipaddress},
+            </if>
+            <if test="port != null">
+                port = #{port},
+            </if>
+            <if test="exceptionname != null">
+                exceptionname = #{exceptionname},
+            </if>
+            <if test="content != null">
+                content = #{content},
+            </if>
+            <if test="createtime != null">
+                createtime = #{createtime},
+            </if>
+            <if test="syspath != null">
+                syspath = #{syspath},
+            </if>
+            <if test="clientip != null">
+                clientip = #{clientip},
+            </if>
+            <if test="url != null">
+                url = #{url},
+            </if>
+            <if test="menuid != null">
+                menuid = #{menuid},
+            </if>
+            <if test="menuname != null">
+                menuname = #{menuname},
+            </if>
+            <if test="useragent != null">
+                useragent = #{useragent},
+            </if>
+            <if test="exceptiontype != null">
+                exceptiontype = #{exceptiontype},
+            </if>
+            <if test="requestparameter != null">
+                requestparameter = #{requestparameter}
+            </if>
+        </set>
+        WHERE logid = #{logid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        DELETE
+        FROM lots_server_exception_log
+        WHERE logid = #{logid}
+    </delete>
+
+</mapper>

@@ -1,0 +1,91 @@
+lots:
+  application:
+    name: lots
+    version: 1.0.0
+  request-encry-decry:
+    #是否开启
+    enable: true
+    #是否开启单例(随机生成固定的密匙)
+    enable-singleton: true
+    #加密类型 暂时支持aes与rsa模式 与aesRsa 模式
+    encry-type: aes
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+jasypt:
+  encryptor:
+    password: 1otssto!
+    property:
+      prefix: lots@(
+      suffix: )
+spring:
+  profiles:
+    active: dev #默认为开发环境
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 10MB #限制文件上传大小为10M
+  banner:
+    charset: UTF-8
+    location: banner.txt
+  mvc:
+    static-path-pattern: /static/**
+  # 这个开发配置为false，避免改了模板还要重启服务器
+  thymeleaf:
+    cache: false
+mybatis:
+  # 指向实体类包路径
+  type-aliases-package: com.lots.lots.entity.vo
+  # mapper xml 文件地址
+  mapper-locations: classpath:mapper/*.xml
+  # 检查 mybatis 配置是否存在，一般命名为 mybatis-config.xml
+  check-config-location: true
+  # 执行模式。默认是 SIMPLE
+  executor-type: simple
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: lots-lots-lots #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24*7)
+  tokenHead: 'Bearer ' #JWT负载中拿到开头
+
+redis:
+  database: lots
+  key:
+    admin: 'lots:admin'
+    resourceList: 'lots:resourceList'
+  expire:
+    common: 86400 # 24小时
+
+secure:
+  ignored:
+    urls: #安全路径白名单
+      - /doc.html
+      - /swagger-resources/**
+      - /swagger/**
+      - /**/v2/api-docs
+      - /**/*.js
+      - /**/*.css
+      - /**/*.png
+      - /**/*.ico
+      - /webjars/springfox-swagger-ui/**
+      - /actuator/**
+      - /druid/**
+      - /admin/login
+      - /admin/register
+      - /admin/info
+      - /admin/logout
+      - /admin/getCaptcha
+      - /test/**
+      - /lots/key/**
+#logging:
+#  level:
+#    root: info #日志配置DEBUG,INFO,WARN,ERROR
+#    com.lots.lots: debug
+##  file: demo_log.log #配置日志生成路径
+##  path: /var/logs #配置日志文件名称
+logging:
+  config: classpath:logback-spring.xml
+knife4j:
+  enable: true
