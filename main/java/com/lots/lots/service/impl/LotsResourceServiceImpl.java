@@ -2,9 +2,10 @@ package com.lots.lots.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.lots.lots.dao.mapper.LotsResourceMapper;
-import com.lots.lots.entity.vo.LotsResourceVo;
+import com.lots.lots.dao.mapper.*;
+import com.lots.lots.entity.vo.*;
 import com.lots.lots.service.LotsResourceService;
+import com.lots.lots.service.LotsUserCacheService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +20,16 @@ import java.util.List;
 @Service
 public class LotsResourceServiceImpl implements LotsResourceService {
     @Resource
-    private LotsResourceMapper lotsResourceMapper;
+    private LotsRoleMapper lotsRoleMapper;
+    @Resource
+    private LotsUserCacheService lotsUserCacheService;
+    @Resource
+    private LotsMenuMapper lotsMenuMapper;
+    @Resource
+    private LotsRoleMenuRelationMapper lotsRoleMenuRelationMapper;
+    @Resource
+    private LotsRoleResourceRelationMapper lotsRoleResourceRelationMapper;
+
 
     /**
      * 通过ID查询单条数据
@@ -28,32 +38,31 @@ public class LotsResourceServiceImpl implements LotsResourceService {
      * @return 实例对象
      */
     @Override
-    public LotsResourceVo findById(Long id) {
-        return this.lotsResourceMapper.findById(id);
+    public LotsRoleVo findById(Long id) {
+        return this.lotsRoleMapper.findById(id);
     }
 
     /**
      * 新增数据
      *
-     * @param lotsResource 实例对象
+     * @param lotsRole 实例对象
      * @return 实例对象
      */
     @Override
-    public int insert(LotsResourceVo lotsResource) {
-
-        return this.lotsResourceMapper.insert(lotsResource);
+    public LotsRoleVo insert(LotsRoleVo lotsRole) {
+        this.lotsRoleMapper.insert(lotsRole);
+        return lotsRole;
     }
 
     /**
      * 修改数据
      *
-     * @param lotsResource 实例对象
+     * @param lotsRole 实例对象
      * @return 实例对象
      */
     @Override
-    public int update(LotsResourceVo lotsResource) {
-
-        return this.lotsResourceMapper.update(lotsResource);
+    public Integer update(LotsRoleVo lotsRole) {
+        return this.lotsRoleMapper.update(lotsRole);
     }
 
     /**
@@ -63,24 +72,92 @@ public class LotsResourceServiceImpl implements LotsResourceService {
      * @return 是否成功
      */
     @Override
-    public int deleteById(Long id) {
-        return this.lotsResourceMapper.deleteById(id);
+    public boolean deleteById(Long id) {
+        return this.lotsRoleMapper.deleteById(id.toString()) > 0;
     }
 
-    /**
-     * 查询全部资源
-     *
-     * @author: lots
-     * @return: java.util.List<com.lots.lots.entity.vo.LotsResourceVo>
-     * @date: 2021/4/28 18:05
-     */
+
     @Override
-    public List<LotsResourceVo> listAll() {
-        return lotsResourceMapper.queryAll(new LotsResourceVo());
+    public List<LotsMenuVo> getMenuList(Long userId) {
+        return lotsMenuMapper.getMenuList(userId);
     }
 
     @Override
-    public IPage<LotsResourceVo> pageList(LotsResourceVo lotsResource, Integer pageSize, Integer pageNum) {
-        return lotsResourceMapper.queryAllPage(new Page(pageNum,pageSize),lotsResource);
+    public int create(LotsRoleVo role) {
+        {
+            role.setCreateTime(new Date());
+            role.setAdminCount(0);
+            role.setSort(0);
+            return lotsRoleMapper.insert(role);
+        }
+    }
+
+    @Override
+    public int deleteByIds(String ids) {
+        int count = lotsRoleMapper.deleteById(ids);
+        String[] splitIds = ids.split(",");
+        List<Long> longIds = new ArrayList<>();
+        for (String splitId : splitIds) {
+            longIds.add(Long.valueOf(splitId));
+        }
+        lotsUserCacheService.delResourceListByRoleIds(longIds);
+        return count;
+    }
+
+
+    @Override
+    public List<LotsRoleVo> findAll() {
+        return lotsRoleMapper.queryAll(new LotsRoleVo());
+    }
+
+    @Override
+    public IPage<LotsRoleVo> pageList(String keyword, Integer pageSize, Integer pageNum) {
+        LotsRoleVo lotsRoleVo = new LotsRoleVo();
+        lotsRoleVo.setName(keyword);
+        return lotsRoleMapper.queryAllPage(new Page(pageNum,pageSize),lotsRoleVo);
+    }
+
+    @Override
+    public List<LotsMenuVo> getMenuByRoleId(Long roleId) {
+        return lotsRoleMapper.getMenuListByRoleId(roleId);
+    }
+
+    @Override
+    public List<LotsResourceVo> listResource(Long roleId) {
+        return lotsRoleMapper.getResourceListByRoleId(roleId);
+    }
+
+    @Override
+    public int allocMenu(Long roleId, String menuIds) {
+        //先删除原有关系
+        lotsRoleMenuRelationMapper.deleteByRoleId(roleId);
+        //批量插入新关系
+        List<LotsRoleMenuRelationVo> relationList = new ArrayList<>();
+        String comma = ",";
+        for (String menuId : menuIds.split(comma)) {
+            LotsRoleMenuRelationVo relation = new LotsRoleMenuRelationVo();
+            relation.setRoleId(roleId);
+            relation.setMenuId(Long.valueOf(menuId));
+            relationList.add(relation);
+        }
+        return lotsRoleMenuRelationMapper.insertList(relationList);
+    }
+
+    @Override
+    public int allocResource(Long roleId, String resourceIds) {
+        //先删除原有关系
+        lotsRoleResourceRelationMapper.deleteByRoleId(roleId);
+        //批量插入新关系
+        List<LotsRoleResourceRelationVo> relationList = new ArrayList<>();
+        String comma = ",";
+        for (String resourceId : resourceIds.split(comma)) {
+            LotsRoleResourceRelationVo relation = new LotsRoleResourceRelationVo();
+            relation.setRoleId(roleId);
+            relation.setResourceId(Long.valueOf(resourceId));
+            relationList.add(relation);
+        }
+        int i = lotsRoleResourceRelationMapper.insertList(relationList);
+        lotsUserCacheService.delResourceListByRole(roleId);
+        return i;
     }
 }
